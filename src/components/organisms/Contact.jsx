@@ -1,18 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiInstagram } from 'react-icons/fi';
 
 const Contact = () => {
   const currentYear = new Date().getFullYear();
+  const [status, setStatus] = useState("Send Message");
+
+  // Fungsi pengirim pesan Web3Forms
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    
+    const formData = new FormData(e.target);
+    // Access Key Boss sudah saya masukkan di sini
+    formData.append("access_key", "51772b50-2bb2-4261-a569-79b304699acd");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("Message Sent! 🚀");
+        e.target.reset(); 
+        setTimeout(() => setStatus("Send Message"), 3000);
+      } else {
+        console.error("Error:", data);
+        setStatus("Failed to Send ❌");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setStatus("Failed to Send ❌");
+    }
+  };
 
   return (
     <section id="contact" className="bg-[#0B0F19] py-32 text-center">
       <div data-aos="zoom-in" className="max-w-3xl mx-auto px-6">
         
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Get In Touch</h2>
-        <p className="text-neutral-400 mb-16 text-lg font-light max-w-lg mx-auto">
+        <p className="text-neutral-400 mb-12 text-lg font-light max-w-lg mx-auto">
           Feel free to reach out for collaboration, project discussion, or job opportunities.
         </p>
         
+        {/* --- AREA FORMULIR KONTAK MULAI DI SINI --- */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left max-w-xl mx-auto mb-16">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="name" className="text-sm font-medium text-neutral-400">Name</label>
+            <input 
+              type="text" 
+              name="name" 
+              id="name" 
+              required 
+              placeholder="Your Name"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-sm font-medium text-neutral-400">Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              required 
+              placeholder="your@email.com"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="message" className="text-sm font-medium text-neutral-400">Message</label>
+            <textarea 
+              name="message" 
+              id="message" 
+              required 
+              rows="4"
+              placeholder="How can I help you?"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all resize-none"
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2"
+          >
+            {status}
+          </button>
+        </form>
+        {/* --- AREA FORMULIR KONTAK SELESAI --- */}
+
+        {/* SOSIAL MEDIA ICON */}
         <div className="flex justify-center gap-6 mb-20">
           <a href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
             <FiGithub className="w-6 h-6" />
@@ -31,6 +111,7 @@ const Contact = () => {
           </a>
         </div>
 
+        {/* COPYRIGHT */}
         <p className="text-sm text-neutral-600 font-medium tracking-wide">
           &copy; {currentYear} Mochamad Dapa Adhari. All rights reserved.
         </p>

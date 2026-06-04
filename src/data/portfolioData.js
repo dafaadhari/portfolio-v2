@@ -80,7 +80,7 @@ export const experiences = [
 export const galleryItems = [
     {
         id: 1,
-        image: "/assets/images/gallery1.jpeg",
+        image: "/assets/images/galleryaquascape.jpg",
         category: "ENVIRONMENT VISUALIZATION",
         title: "Aquascape Concepts",
         description: "Aquascape themes Natural Style for nano tanks."

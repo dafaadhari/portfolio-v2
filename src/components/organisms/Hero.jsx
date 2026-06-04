@@ -38,7 +38,7 @@ const Hero = () => {
       >
          
          {/* Nama Utama */}
-         <motion.h1 variants={itemVariants} className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-2 drop-shadow-lg leading-[1.05]">
+         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-2 drop-shadow-lg leading-[1.05]">
            Moch Dapa Adhari
          </motion.h1>
          

@@ -9,6 +9,7 @@ import Experience from './components/organisms/Experience';
 import Projects from './components/organisms/Projects';
 import Gallery from './components/organisms/Gallery';
 import Contact from './components/organisms/Contact'; 
+import ScrollProgress from './components/atoms/ScrollProgress';
 
 function App() {
   useEffect(() => {
@@ -17,13 +18,14 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[#0B0F19] selection:bg-blue-500/30">
-      <Navbar /> {/* Navigasi Kaca */}
+        <ScrollProgress />
+        <Navbar />
 
       <main>
         <Hero />
         <Stats />
         <Experience />
-        <Projects />
+        <Projects />  
         <Gallery />
         <Contact />
       </main>
