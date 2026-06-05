@@ -10,6 +10,7 @@ import Projects from './components/organisms/Projects';
 import Gallery from './components/organisms/Gallery';
 import Contact from './components/organisms/Contact'; 
 import ScrollProgress from './components/atoms/ScrollProgress';
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,9 @@ function App() {
         <Gallery />
         <Contact />
       </main>
+
+      <Analytics />
+
     </div>
   );
 }

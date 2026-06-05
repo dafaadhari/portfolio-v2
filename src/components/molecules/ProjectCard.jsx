@@ -1,5 +1,6 @@
 import React from 'react';
-import { FiArrowUpRight, FiLock, FiMonitor } from 'react-icons/fi';
+// 1. Tambahkan FiGithub di baris import ini
+import { FiArrowUpRight, FiLock, FiMonitor, FiGithub } from 'react-icons/fi';
 
 const ProjectCard = ({ project }) => {
   return (
@@ -17,7 +18,9 @@ const ProjectCard = ({ project }) => {
           </div>
         )}
 
-        <div className="mt-auto flex gap-6">
+        {/* 2. Tambahkan flex-wrap dan items-center di sini agar rapi di HP */}
+        <div className="mt-auto flex flex-wrap items-center gap-6">
+          
           {project.status === 'live' ? (
              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center font-medium text-white hover:text-blue-400 transition-colors">
                Preview <FiArrowUpRight className="ml-1 w-5 h-5" />
@@ -27,6 +30,14 @@ const ProjectCard = ({ project }) => {
                {project.status === 'local' ? <><FiMonitor className="mr-2"/> Local Only</> : <><FiLock className="mr-2"/> Internal</>}
              </span>
           )}
+
+          {/* 3. Tombol Source Code Github akan muncul OTOMATIS jika data githubUrl diisi */}
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center font-medium text-neutral-400 hover:text-white transition-colors">
+              <FiGithub className="mr-2 w-5 h-5" /> Source Code
+            </a>
+          )}
+
         </div>
       </div>
 

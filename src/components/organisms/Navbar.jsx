@@ -12,7 +12,6 @@ const Navbar = () => {
   });
 
   return (
-    // PERUBAHAN DI SINI: w-full diganti jadi w-screen max-w-[100vw]
     <nav className={`fixed top-0 left-0 w-screen max-w-[100vw] z-50 transition-all duration-500 ${
       isScrolled ? 'py-4 backdrop-blur-xl bg-[#0B0F19]/20 border-white/5 shadow-lg' : 'py-6 bg-transparent'
     }`}>

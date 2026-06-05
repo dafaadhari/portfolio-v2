@@ -8,7 +8,8 @@ export const projects = [
         image: "/assets/images/dogma.png",
         liveUrl: "https://dogma.gt.tc/",
         status: "live",
-        credentials: null
+        credentials: null,
+        githubUrl: "https://github.com/dafaadhari/dogma-web"
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ export const projects = [
         image: "/assets/images/dss.png",
         liveUrl: "https://spksaw.gt.tc",
         status: "live",
-        credentials: "Email: review@gmail.com | Pass: review123"
+        credentials: "Email: review@gmail.com | Pass: review123",
+        githubUrl: "https://github.com/dafaadhari/spk-saw"
     },
     {
         id: 3,
@@ -26,7 +28,8 @@ export const projects = [
         image: "/assets/images/superapps.png",
         liveUrl: "#",
         status: "internal",
-        credentials: null
+        credentials: null,
+        githubUrl: "https://github.com/LEMLIT/simakip-app"
     },
     {
         id: 4,
@@ -35,7 +38,8 @@ export const projects = [
         image: "/assets/images/stuntguard.jpg",
         liveUrl: "#",
         status: "local",
-        credentials: null
+        credentials: null,
+        githubUrl: "https://github.com/dafaadhari/StuntGuard"
     },
     
 ];
@@ -56,7 +60,7 @@ export const experiences = [
         period: "Mar 2024 - Jan 2025",
         role: "Front-End Developer Intern",
         company: "LPPM UHAMKA",
-        color: "purple", // Warna ungu
+        color: "purple",
         description: [
             "Mengembangkan antarmuka web responsif menggunakan Next.js, JavaScript, Tailwind CSS, dan Ant Design.",
             "Mengonversi prototipe desain Figma menjadi komponen UI modular yang reusable.",
@@ -68,7 +72,7 @@ export const experiences = [
         period: "Aug 2023 - Dec 2023",
         role: "Front-End Developer (Studi Independen)",
         company: "VOCASIA",
-        color: "emerald", // Warna hijau
+        color: "emerald", 
         description: [
             "Mengembangkan komponen UI berbasis React.js dan Tailwind CSS dengan implementasi arsitektur komponen.",
             "Melakukan fetching data API dan menyajikannya dalam format grafik interaktif untuk mempermudah analisis pengguna.",
