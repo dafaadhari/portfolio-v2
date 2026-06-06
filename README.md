@@ -1,16 +1,47 @@
-# React + Vite
+# Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Crafting seamless digital experiences through clean code and modern design.
 
-Currently, two official plugins are available:
+Welcome to the repository of my personal portfolio website. This project is meticulously designed to showcase my professional journey, technical skills, and featured projects as a Software Engineer. Built with a focus on performance, aesthetics, and user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Key Features
 
-## React Compiler
+- **Sleek & Responsive UI:** Fully optimized for a seamless viewing experience across all devices.
+- **Interactive Elements:** Smooth scrolling and subtle transition animations utilizing AOS.
+- **Direct Communication:** Integrated and functional contact form without the need for a complex backend.
+- **SEO & Analytics Ready:** Configured with Open Graph meta tags for link sharing and Vercel Web Analytics for traffic monitoring.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework:** React.js powered by Vite
+- **Styling:** Tailwind CSS
+- **Deployment:** Vercel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Local Setup
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dafaadhari/portfolio-v2.git
+   cd portfolio-v2
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   
+The application will be available at `http://localhost:5173`.
+
+### Let's Connect
+
+[Live Website](https://dap-psi.vercel.app) • [LinkedIn](https://www.linkedin.com/in/dafa-adhari) • [Email](mailto:dafaadhar01@gmail.com)
+
+---
+*Designed and developed by **Mochamad Dapa Adhari**.*
