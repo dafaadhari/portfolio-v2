@@ -51,7 +51,9 @@ const Navbar = () => {
           {/* Language Switcher (Mobile) */}
           <button 
             onClick={toggleLanguage}
+            aria-label="Toggle Navigation Menu"
             className="px-2.5 py-1 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white"
+
           >
             {i18n.language === 'en' ? 'ID' : 'EN'}
           </button>
@@ -60,6 +62,7 @@ const Navbar = () => {
           <button 
             className="text-white focus:outline-none p-1.5 rounded-md hover:bg-white/5 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (

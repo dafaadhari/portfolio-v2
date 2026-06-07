@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next'; // <-- Import library terjemahan
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
-  const { t } = useTranslation(); // <-- Memanggil fungsi penterjemah
+  const { t } = useTranslation();
 
   const containerVariants = {
     hidden: { opacity: 0 },

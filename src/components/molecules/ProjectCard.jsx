@@ -1,11 +1,11 @@
 import React from 'react';
 // 1. Tambahkan FiGithub di baris import ini
 import { FiArrowUpRight, FiLock, FiMonitor, FiGithub } from 'react-icons/fi';
-import { useTranslation } from 'react-i18next'; // <-- Tambahkan import ini
+import { useTranslation } from 'react-i18next';
 
 const ProjectCard = ({ project }) => {
-  const { i18n } = useTranslation(); // <-- Ambil status bahasa
-  const lang = i18n.language || 'en'; // <-- Tentukan bahasa aktif
+  const { i18n } = useTranslation();
+  const lang = i18n.language || 'en';
 
   return (
     <div className="w-full flex flex-col md:flex-row bg-[#151B2B] rounded-2xl overflow-hidden shadow-xl border border-white/5 h-auto md:h-[450px]">
@@ -24,7 +24,6 @@ const ProjectCard = ({ project }) => {
           </div>
         )}
 
-        {/* 2. Tambahkan flex-wrap dan items-center di sini agar rapi di HP */}
         <div className="mt-auto flex flex-wrap items-center gap-6">
           
           {project.status === 'live' ? (
@@ -50,7 +49,8 @@ const ProjectCard = ({ project }) => {
       <div className="w-full md:w-1/2 bg-[#0B0F19] relative min-h-[250px]">
         <img 
           src={project.image} 
-          alt={project.title} 
+          alt={project.title}
+          loading="lazy" 
           className="absolute inset-0 w-full h-full object-cover object-left-top opacity-90 hover:opacity-100 transition-opacity duration-500" 
         />
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { galleryItems } from '../../data/portfolioData';
-import { useTranslation } from 'react-i18next'; // <-- Import library terjemahan
+import { useTranslation } from 'react-i18next';
 
 const Gallery = () => {
-  const { t, i18n } = useTranslation(); // <-- Ambil fungsi t dan status bahasa
-  const lang = i18n.language || 'en'; // <-- Tentukan bahasa aktif
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language || 'en';
 
   return (
     <section id="gallery" className="bg-[#0B0F19] pt-16 pb-32">
@@ -26,7 +26,11 @@ const Gallery = () => {
               key={item.id} data-aos="fade-up" data-aos-delay={index * 100} 
               className="group relative h-64 md:h-80 overflow-hidden rounded-xl bg-[#050505] shadow-lg border border-white/10 cursor-pointer"
             >
-              <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" />
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                loading="lazy" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" />
               
               <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 to-transparent opacity-90 transition-opacity duration-500"></div>
 
@@ -37,7 +41,6 @@ const Gallery = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                   {item.title}
                 </h3>
-                {/* Penawar Error: Tambahkan [lang] di sini */}
                 <p className="text-neutral-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
                   {item.description[lang]} 
                 </p>
