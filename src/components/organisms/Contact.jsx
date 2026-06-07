@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiInstagram } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const currentYear = new Date().getFullYear();
-  const [status, setStatus] = useState("Send Message");
+  const { t } = useTranslation();
+  
+  const [statusKey, setStatusKey] = useState("contact_btn_send");
 
-  // Fungsi pengirim pesan Web3Forms
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setStatusKey("contact_btn_sending");
     
     const formData = new FormData(e.target);
-    // Access Key Boss sudah saya masukkan di sini
     formData.append("access_key", "51772b50-2bb2-4261-a569-79b304699acd");
 
     try {
@@ -23,16 +24,16 @@ const Contact = () => {
       const data = await response.json();
 
       if (data.success) {
-        setStatus("Message Sent! 🚀");
+        setStatusKey("contact_btn_success");
         e.target.reset(); 
-        setTimeout(() => setStatus("Send Message"), 3000);
+        setTimeout(() => setStatusKey("contact_btn_send"), 3000);
       } else {
         console.error("Error:", data);
-        setStatus("Failed to Send ❌");
+        setStatusKey("contact_btn_error");
       }
     } catch (error) {
       console.error("Fetch error:", error);
-      setStatus("Failed to Send ❌");
+      setStatusKey("contact_btn_error");
     }
   };
 
@@ -40,45 +41,53 @@ const Contact = () => {
     <section id="contact" className="bg-[#0B0F19] py-32 text-center">
       <div data-aos="zoom-in" className="max-w-3xl mx-auto px-6">
         
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Get In Touch</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          {t('contact_title', 'Get In Touch')}
+        </h2>
         <p className="text-neutral-400 mb-12 text-lg font-light max-w-lg mx-auto">
-          Feel free to reach out for collaboration, project discussion, or job opportunities.
+          {t('contact_subtitle', 'Feel free to reach out for collaboration, project discussion, or job opportunities.')}
         </p>
         
         {/* --- AREA FORMULIR KONTAK MULAI DI SINI --- */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left max-w-xl mx-auto mb-16">
           <div className="flex flex-col gap-2">
-            <label htmlFor="name" className="text-sm font-medium text-neutral-400">Name</label>
+            <label htmlFor="name" className="text-sm font-medium text-neutral-400">
+              {t('contact_label_name', 'Name')}
+            </label>
             <input 
               type="text" 
               name="name" 
               id="name" 
               required 
-              placeholder="Your Name"
+              placeholder={t('contact_ph_name', 'Your Name')}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-neutral-400">Email</label>
+            <label htmlFor="email" className="text-sm font-medium text-neutral-400">
+              {t('contact_label_email', 'Email')}
+            </label>
             <input 
               type="email" 
               name="email" 
               id="email" 
               required 
-              placeholder="your@email.com"
+              placeholder={t('contact_ph_email', 'your@email.com')}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="message" className="text-sm font-medium text-neutral-400">Message</label>
+            <label htmlFor="message" className="text-sm font-medium text-neutral-400">
+              {t('contact_label_message', 'Message')}
+            </label>
             <textarea 
               name="message" 
               id="message" 
               required 
               rows="4"
-              placeholder="How can I help you?"
+              placeholder={t('contact_ph_message', 'How can I help you?')}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all resize-none"
             ></textarea>
           </div>
@@ -87,7 +96,7 @@ const Contact = () => {
             type="submit" 
             className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2"
           >
-            {status}
+            {t(statusKey)}
           </button>
         </form>
         {/* --- AREA FORMULIR KONTAK SELESAI --- */}
@@ -110,11 +119,6 @@ const Contact = () => {
             <FiInstagram className="w-6 h-6" />
           </a>
         </div>
-
-        {/* COPYRIGHT */}
-        <p className="text-sm text-neutral-600 font-medium tracking-wide">
-          &copy; {currentYear} Mochamad Dapa Adhari. All rights reserved.
-        </p>
 
       </div>
     </section>

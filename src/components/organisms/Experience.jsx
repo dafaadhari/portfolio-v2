@@ -1,18 +1,21 @@
 import React from 'react';
 import ExperienceItem from '../molecules/ExperienceItem';
 import { experiences } from '../../data/portfolioData';
+import { useTranslation } from 'react-i18next';
 
 const Experience = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="experience" className="bg-[#0B0F19] pt-24 pb-16 border-b border-white/5">
       <div className="max-w-4xl mx-auto px-6">
         
         <div className="text-center mb-16">
           <h2 data-aos="fade-down" className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            Experience
+            {t('exp_title', 'Experience')}
           </h2>
           <p data-aos="fade-up" className="text-lg font-light text-gray-400">
-            My professional journey and technical growth.
+            {t('exp_subtitle', 'My professional journey and technical growth.')}
           </p>
         </div>
 

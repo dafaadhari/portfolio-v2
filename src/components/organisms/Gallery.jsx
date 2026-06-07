@@ -1,17 +1,21 @@
 import React from 'react';
 import { galleryItems } from '../../data/portfolioData';
+import { useTranslation } from 'react-i18next'; // <-- Import library terjemahan
 
 const Gallery = () => {
+  const { t, i18n } = useTranslation(); // <-- Ambil fungsi t dan status bahasa
+  const lang = i18n.language || 'en'; // <-- Tentukan bahasa aktif
+
   return (
     <section id="gallery" className="bg-[#0B0F19] pt-16 pb-32">
       <div className="max-w-6xl mx-auto px-6">
         
         <div className="text-center mb-16">
           <h2 data-aos="fade-down" className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            Creative Media & AI
+            {t('gallery_title', 'Creative Media & AI')}
           </h2>
           <p data-aos="fade-up" className="text-lg font-light text-gray-400">
-            Exploring visual aesthetics through AI generation and cinematic production.
+            {t('gallery_subtitle', 'Exploring visual aesthetics through AI generation and cinematic production.')}
           </p>
         </div>
 
@@ -33,8 +37,9 @@ const Gallery = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                   {item.title}
                 </h3>
+                {/* Penawar Error: Tambahkan [lang] di sini */}
                 <p className="text-neutral-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
-                  {item.description}
+                  {item.description[lang]} 
                 </p>
               </div>
             </div>

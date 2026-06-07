@@ -4,7 +4,10 @@ export const projects = [
     {
         id: 1,
         title: "DOGMA Media Portal",
-        description: "A dynamic web-based news and media portal developed independently for the DOGMA Community. Built with Laravel to handle content management, article publishing, and community engagement efficiently.",
+        description: {
+            en: "A dynamic web-based news and media portal developed independently for the DOGMA Community. Built with Laravel to handle content management, article publishing, and community engagement efficiently.",
+            id: "Portal berita dan media dinamis berbasis web yang dikembangkan secara mandiri untuk Komunitas DOGMA. Dibangun menggunakan Laravel untuk mengelola konten, publikasi artikel, dan interaksi komunitas secara efisien."
+        },
         image: "/assets/images/dogma.png",
         liveUrl: "https://dogma.gt.tc/",
         status: "live",
@@ -14,7 +17,10 @@ export const projects = [
     {
         id: 2,
         title: "Decision Support System",
-        description: "Developed a web-based Decision Support System to evaluate and rank education personnel using the Simple Additive Weighting (SAW) method.",
+        description: {
+            en: "Developed a web-based Decision Support System to evaluate and rank education personnel using the Simple Additive Weighting (SAW) method.",
+            id: "Sistem Pendukung Keputusan (SPK) berbasis web untuk mengevaluasi dan memeringkat kinerja tenaga kependidikan menggunakan metode Simple Additive Weighting (SAW)."
+        },
         image: "/assets/images/dss.png",
         liveUrl: "https://spksaw.gt.tc",
         status: "live",
@@ -24,7 +30,10 @@ export const projects = [
     {
         id: 3,
         title: "Super'Apps",
-        description: "An employee performance management dashboard built using Next.js. Developed as part of a large-scale university ecosystem project during my internship period in 2024.",
+        description: {
+            en: "An employee performance management dashboard built using Next.js. Developed as part of a large-scale university ecosystem project during my internship period in 2024.",
+            id: "Dasboard manajemen kinerja pegawai yang dibangun menggunakan Next.js. Dikembangkan sebagai bagian dari proyek ekosistem berskala universitas selama masa magang pada tahun 2024."
+        },
         image: "/assets/images/superapps.png",
         liveUrl: "#",
         status: "internal",
@@ -34,50 +43,90 @@ export const projects = [
     {
         id: 4,
         title: "StuntGuard",
-        description: "A web-based system designed to monitor children's nutrition and detect potential stunting conditions. Provides data visualization and health indicators for early monitoring.",
+        description: {
+            en: "A web-based system designed to monitor children's nutrition and detect potential stunting conditions. Provides data visualization and health indicators for early monitoring.",
+            id: "Sistem berbasis web yang dirancang untuk memantau gizi anak dan mendeteksi potensi stunting. Dilengkapi dengan visualisasi data dan indikator kesehatan untuk pemantauan sejak dini."
+        },
         image: "/assets/images/stuntguard.jpg",
         liveUrl: "#",
         status: "local",
         credentials: null,
         githubUrl: "https://github.com/dafaadhari/StuntGuard"
-    },
-    
+    }
 ];
+
 
 export const experiences = [
     {
         id: 1,
-        period: "Nov 2025 - Present",
-        role: "Admin, Ops & Finance",
+        period: {
+            en: "Nov 2025 - Present",
+            id: "Nov 2025 - Sekarang"
+        },
+        role: {
+            en: "Admin, Ops & Finance",
+            id: "Admin Operasional & Keuangan"
+        },
         company: "CV RAYYAN KARYA",
-        color: "blue", // Warna biru
-        description: [
-            "Mengoordinasikan tata kelola operasional perusahaan, termasuk manajemen administrasi digital, keuangan (penyusunan invoice), logistik, serta memastikan kelancaran alur kerja harian untuk penyediaan material konstruksi."
-        ]
+        color: "blue",
+        description: {
+            en: [
+                "Streamlined daily operational workflows, overseeing digital administration, financial management, and logistics to ensure an efficient supply chain for construction materials."
+            ],
+            id: [
+                "Mengoordinasikan operasional harian perusahaan, mencakup administrasi digital, manajemen keuangan, hingga logistik. Bertanggung jawab memastikan kelancaran alur kerja untuk rantai pasokan material konstruksi."
+            ]
+        }
     },
     {
         id: 2,
-        period: "Mar 2024 - Jan 2025",
-        role: "Front-End Developer Intern",
+        period: {
+            en: "Mar 2024 - Jan 2025",
+            id: "Mar 2024 - Jan 2025"
+        },
+        role: {
+            en: "Front-End Developer Intern",
+            id: "Magang Front-End Developer"
+        },
         company: "LPPM UHAMKA",
         color: "purple",
-        description: [
-            "Mengembangkan antarmuka web responsif menggunakan Next.js, JavaScript, Tailwind CSS, dan Ant Design.",
-            "Mengonversi prototipe desain Figma menjadi komponen UI modular yang reusable.",
-            "Berperan aktif dalam pengembangan proyek Super'Apps skala universitas, dengan fokus pada integrasi dan penayangan data dinamis dari API."
-        ]
+        description: {
+            en: [
+                "Engineered responsive and interactive web interfaces utilizing Next.js, JavaScript, Tailwind CSS, and Ant Design.",
+                "Translated high-fidelity Figma prototypes into modular, highly reusable UI components.",
+                "Played a key role in developing the university-wide 'Super'Apps' ecosystem, focusing on seamless API integration and dynamic data rendering."
+            ],
+            id: [
+                "Membangun antarmuka web yang responsif dan interaktif menggunakan Next.js, JavaScript, Tailwind CSS, serta Ant Design.",
+                "Menerjemahkan rancangan antarmuka dari Figma menjadi komponen UI yang modular dan dapat digunakan kembali.",
+                "Berkontribusi penuh dalam pengembangan ekosistem 'Super'Apps' tingkat universitas, dengan fokus utama pada integrasi API dan pengelolaan data dinamis."
+            ]
+        }
     },
     {
         id: 3,
-        period: "Aug 2023 - Dec 2023",
-        role: "Front-End Developer (Studi Independen)",
+        period: {
+            en: "Aug 2023 - Dec 2023",
+            id: "Agt 2023 - Des 2023"
+        },
+        role: {
+            en: "Front-End Developer (Independent Study)",
+            id: "Front-End Developer (Studi Independen)"
+        },
         company: "VOCASIA",
-        color: "emerald", 
-        description: [
-            "Mengembangkan komponen UI berbasis React.js dan Tailwind CSS dengan implementasi arsitektur komponen.",
-            "Melakukan fetching data API dan menyajikannya dalam format grafik interaktif untuk mempermudah analisis pengguna.",
-            "Berkolaborasi secara agile dalam tim untuk mendeliver aplikasi web sebagai proyek akhir kelulusan program."
-        ]
+        color: "emerald",
+        description: {
+            en: [
+                "Architected and developed user interfaces using React.js and Tailwind CSS with a strong emphasis on component-driven design.",
+                "Integrated RESTful APIs to transform complex data into interactive, user-friendly graphical visualizations.",
+                "Collaborated within an Agile team to successfully deliver a comprehensive web application as the capstone project."
+            ],
+            id: [
+                "Merancang dan mengembangkan antarmuka pengguna menggunakan React.js dan Tailwind CSS dengan pendekatan arsitektur berbasis komponen.",
+                "Mengelola integrasi data dari API untuk divisualisasikan menjadi grafik interaktif yang memudahkan proses analisis pengguna.",
+                "Bekerja sama dalam tim menggunakan metodologi Agile untuk merilis aplikasi web secara utuh sebagai proyek akhir kelulusan."
+            ]
+        }
     }
 ];
 
@@ -87,20 +136,29 @@ export const galleryItems = [
         image: "/assets/images/galleryaquascape.jpg",
         category: "ENVIRONMENT VISUALIZATION",
         title: "Aquascape Concepts",
-        description: "Aquascape themes Natural Style for nano tanks."
+        description: {
+            en: "Aquascape themes Natural Style for nano tanks.",
+            id: "Konsep aquascape bergaya Natural untuk akuarium berukuran nano."
+        }
     },
     {
         id: 2,
         image: "/assets/images/gallery2.png",
         category: "BRANDING & IDENTITY",
         title: "Corporate Visuals",
-        description: "Stylized imagery and branding materials designed to elevate business operations."
+        description: {
+            en: "Stylized imagery and branding materials designed to elevate business operations.",
+            id: "Visualisasi dan materi branding untuk meningkatkan citra operasional bisnis."
+        }
     },
     {
         id: 3,
         image: "/assets/images/gallery3.jpeg",
         category: "AI CINEMATIC VIDEO",
         title: "Promotional Assets",
-        description: "High-quality video assets tailored for digital campaigns and promotional content."
+        description: {
+            en: "High-quality video assets tailored for digital campaigns and promotional content.",
+            id: "Aset video berkualitas tinggi untuk kebutuhan kampanye digital dan konten promosi."
+        }
     }
 ];

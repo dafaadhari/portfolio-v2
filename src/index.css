@@ -33,3 +33,9 @@ html, body {
   width: 100% !important;
   position: relative;
 }
+
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}

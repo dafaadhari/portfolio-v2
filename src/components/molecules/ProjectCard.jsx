@@ -1,15 +1,21 @@
 import React from 'react';
 // 1. Tambahkan FiGithub di baris import ini
 import { FiArrowUpRight, FiLock, FiMonitor, FiGithub } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next'; // <-- Tambahkan import ini
 
 const ProjectCard = ({ project }) => {
+  const { i18n } = useTranslation(); // <-- Ambil status bahasa
+  const lang = i18n.language || 'en'; // <-- Tentukan bahasa aktif
+
   return (
     <div className="w-full flex flex-col md:flex-row bg-[#151B2B] rounded-2xl overflow-hidden shadow-xl border border-white/5 h-auto md:h-[450px]">
       
       <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
         <h3 className="text-3xl md:text-4xl font-bold text-blue-500 mb-4">{project.title}</h3>
+        
+        {/* Panggil deskripsi berdasarkan bahasa yang sedang aktif */}
         <p className="text-neutral-400 text-base md:text-lg mb-8 font-light leading-relaxed">
-          {project.description}
+          {project.description[lang]}
         </p>
 
         {project.credentials && (

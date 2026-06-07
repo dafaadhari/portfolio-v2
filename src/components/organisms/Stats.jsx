@@ -23,7 +23,6 @@ const Stats = () => {
             {techStack.map((tech, index) => (
               <div 
                 key={index} data-aos="fade-up" data-aos-delay={index * 50} 
-                // Hover super smooth dengan scale kecil dan pergerakan lambat
                 className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-105"
               >
                 <div className="relative">
@@ -59,10 +58,8 @@ const Stats = () => {
               </div>
             </div>
 
-            {/* Card Streak Minimalis */}
             <div data-aos="fade-left" className="w-full md:w-[400px] bg-[#050505] rounded-xl border border-white/10 p-4 transition-colors flex items-center justify-center h-[170px] relative overflow-hidden group hover:border-blue-500/50">
               
-              {/* Animasi Api Biru di Background */}
               <div className="absolute -inset-4 bg-blue-600/10 blur-2xl rounded-full animate-pulse group-hover:bg-blue-600/20 transition-all duration-500"></div>
               
               <img 
