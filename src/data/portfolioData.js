@@ -48,8 +48,8 @@ export const projects = [
             id: "Sistem berbasis web yang dirancang untuk memantau gizi anak dan mendeteksi potensi stunting. Dilengkapi dengan visualisasi data dan indikator kesehatan untuk pemantauan sejak dini."
         },
         image: "/assets/images/stuntguard.jpg",
-        liveUrl: "#",
-        status: "local",
+        liveUrl: "https://stunt-guard-m44x.vercel.app/",
+        status: "live",
         credentials: null,
         githubUrl: "https://github.com/dafaadhari/StuntGuard"
     }
