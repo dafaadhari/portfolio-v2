@@ -14,6 +14,7 @@ import Footer from './components/organisms/Footer';
 import ScrollProgress from './components/atoms/ScrollProgress';
 import NotFound from './components/pages/NotFound';
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const [currentPath] = useState(window.location.pathname);
@@ -48,6 +49,7 @@ function App() {
       </main>
 
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
