@@ -2,9 +2,37 @@
 
 export const projects = [
     {
+        id: 5,
+        title: "QSHE Inspection App",
+        category: "Full-Stack",
+        framework: "React JS",
+        description: {
+            en: "A comprehensive Quality, Safety, Health, and Environment (QSHE) digital inspection and reporting system. Streamlines field auditing, safety checks, and real-time compliance reporting.",
+            id: "Sistem pelaporan dan inspeksi digital K3LH (QSHE) yang komprehensif. Berfungsi menyederhanakan audit lapangan, pemeriksaan keselamatan, dan pelaporan kepatuhan secara real-time."
+        },
+        image: "/assets/images/qshe.png",
+        liveUrl: "https://qshe-inspection-app.vercel.app",
+        status: "live",
+        credentials: "Email: qshe@admin.com | Pass: admin321",
+        githubUrl: "https://github.com/dafaadhari/qshe-inspection",
+        highlights: {
+            en: [
+                "Developed a robust relational database schema to track safety audits, violations, and resolutions.",
+                "Integrated real-time PDF generation and report sharing for instant field reporting.",
+                "Designed a responsive mobile-first UI for safety inspectors to easily document on-site issues."
+            ],
+            id: [
+                "Mengembangkan skema database relasional yang kuat untuk memantau audit keselamatan, pelanggaran, dan penyelesaian masalah.",
+                "Mengintegrasikan pembuatan dokumen PDF & Excel real-time serta pembagian laporan instan dari lapangan.",
+                "Merancang antarmuka responsif mobile-first bagi inspektur K3LH untuk mendokumentasikan temuan lapangan secara praktis."
+            ]
+        }
+    },
+    {
         id: 1,
         title: "DOGMA Media Portal",
         category: "Full-Stack",
+        framework: "Laravel",
         description: {
             en: "A dynamic web-based news and media portal developed independently for the DOGMA Community. Built with Laravel to handle content management, article publishing, and community engagement efficiently.",
             id: "Portal berita dan media dinamis berbasis web yang dikembangkan secara mandiri untuk Komunitas DOGMA. Dibangun menggunakan Laravel untuk mengelola konten, publikasi artikel, dan interaksi komunitas secara efisien."
@@ -31,6 +59,7 @@ export const projects = [
         id: 2,
         title: "Decision Support System",
         category: "Full-Stack",
+        framework: "Laravel",
         description: {
             en: "Developed a web-based Decision Support System to evaluate and rank education personnel using the Simple Additive Weighting (SAW) method.",
             id: "Sistem Pendukung Keputusan (SPK) berbasis web untuk mengevaluasi dan memeringkat kinerja tenaga kependidikan menggunakan metode Simple Additive Weighting (SAW)."
@@ -57,6 +86,7 @@ export const projects = [
         id: 3,
         title: "Super'Apps",
         category: "Front-End",
+        framework: "Next JS",
         description: {
             en: "An employee performance management dashboard built using Next.js. Developed as part of a large-scale university ecosystem project during my internship period in 2024.",
             id: "Dasboard manajemen kinerja pegawai yang dibangun menggunakan Next.js. Dikembangkan sebagai bagian dari proyek ekosistem berskala universitas selama masa magang pada tahun 2024."
@@ -83,6 +113,7 @@ export const projects = [
         id: 4,
         title: "StuntGuard",
         category: "Front-End",
+        framework: "React JS",
         description: {
             en: "A web-based system designed to monitor children's nutrition and detect potential stunting conditions. Provides data visualization and health indicators for early monitoring.",
             id: "Sistem berbasis web yang dirancang untuk memantau gizi anak dan mendeteksi potensi stunting. Dilengkapi dengan visualisasi data dan indikator kesehatan untuk pemantauan sejak dini."

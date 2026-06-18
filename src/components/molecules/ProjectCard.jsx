@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiArrowUpRight, FiLock, FiMonitor, FiGithub, FiCpu, FiX } from 'react-icons/fi';
+import { SiReact, SiLaravel, SiNextdotjs } from 'react-icons/si';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -8,11 +9,32 @@ const ProjectCard = ({ project }) => {
   const lang = i18n.language || 'en';
   const [showDrawer, setShowDrawer] = useState(false);
 
+  const frameworkIcons = {
+    "React JS": { icon: SiReact, color: "text-[#61DAFB]", bg: "bg-[#61DAFB]/10", border: "border-[#61DAFB]/20", glow: "shadow-[0_0_15px_rgba(97,218,251,0.25)]" },
+    "Laravel": { icon: SiLaravel, color: "text-[#FF2D20]", bg: "bg-[#FF2D20]/10", border: "border-[#FF2D20]/20", glow: "shadow-[0_0_15px_rgba(255,45,32,0.25)]" },
+    "Next JS": { icon: SiNextdotjs, color: "text-white", bg: "bg-white/10", border: "border-white/20", glow: "shadow-[0_0_15px_rgba(255,255,255,0.15)]" },
+  };
+
+  const fw = project.framework ? frameworkIcons[project.framework] : null;
+  const FwIcon = fw ? fw.icon : null;
+
   return (
     <div className="relative w-full flex flex-col md:flex-row bg-[#151B2B] rounded-2xl overflow-hidden shadow-xl border border-white/5 h-auto md:min-h-[450px]">
       
       <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-        <h3 className="text-3xl md:text-4xl font-bold text-blue-500 mb-4">{project.title}</h3>
+        <h3 className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">{project.title}</h3>
+        
+        {/* Dynamic Framework Logo Badge */}
+        {fw && FwIcon && (
+          <div className="flex items-center gap-2 mb-6">
+            <span 
+              className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full border ${fw.bg} ${fw.border} ${fw.color} ${fw.glow} tracking-wider`}
+            >
+              <FwIcon className="w-4.5 h-4.5" />
+              {project.framework}
+            </span>
+          </div>
+        )}
         
         <p className="text-neutral-400 text-base md:text-lg mb-8 font-light leading-relaxed">
           {project.description[lang]}
