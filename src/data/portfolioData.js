@@ -13,7 +13,19 @@ export const projects = [
         liveUrl: "https://dogma.gt.tc/",
         status: "live",
         credentials: null,
-        githubUrl: "https://github.com/dafaadhari/dogma-web"
+        githubUrl: "https://github.com/dafaadhari/dogma-web",
+        highlights: {
+            en: [
+                "Architected a custom Content Management System (CMS) handling multi-role publishing workflows.",
+                "Optimized database indexing and implemented query caching to minimize load times.",
+                "Integrated real-time SEO indexing protocols for published articles."
+            ],
+            id: [
+                "Merancang Content Management System (CMS) kustom untuk alur kerja publikasi multi-role.",
+                "Mengoptimalkan indeks database dan mengimplementasikan query caching untuk meminimalkan waktu tunggu.",
+                "Mengintegrasikan protokol pengindeksan SEO real-time untuk artikel yang dipublikasikan."
+            ]
+        }
     },
     {
         id: 2,
@@ -27,7 +39,19 @@ export const projects = [
         liveUrl: "https://spksaw.gt.tc",
         status: "live",
         credentials: "Email: review@gmail.com | Pass: review123",
-        githubUrl: "https://github.com/dafaadhari/spk-saw"
+        githubUrl: "https://github.com/dafaadhari/spk-saw",
+        highlights: {
+            en: [
+                "Implemented the complete SAW mathematical model in PHP for real-time ranking calculation.",
+                "Created responsive tables and score visualizations using raw Tailwind CSS animations.",
+                "Secured authentication mechanisms and session security tokens for evaluation integrity."
+            ],
+            id: [
+                "Mengimplementasikan model matematika SAW secara utuh menggunakan PHP untuk perhitungan peringkat real-time.",
+                "Membangun visualisasi data skor dan tabel responsif menggunakan animasi Tailwind CSS.",
+                "Mengamankan mekanisme autentikasi dan token sesi untuk menjaga integritas penilaian."
+            ]
+        }
     },
     {
         id: 3,
@@ -41,7 +65,19 @@ export const projects = [
         liveUrl: "#",
         status: "internal",
         credentials: null,
-        githubUrl: "https://github.com/LEMLIT/simakip-app"
+        githubUrl: "https://github.com/LEMLIT/simakip-app",
+        highlights: {
+            en: [
+                "Built and maintained atomic React components utilizing Ant Design standards and custom Tailwind styling.",
+                "Optimized state management for complex performance matrices and nested employee evaluation data.",
+                "Connected and handled multiple RESTful APIs for unified enterprise dashboards."
+            ],
+            id: [
+                "Membangun dan memelihara komponen React berbasis arsitektur atom menggunakan standar Ant Design dan Tailwind CSS.",
+                "Mengoptimalkan state management untuk matriks kinerja kompleks dan data penilaian bertingkat.",
+                "Menghubungkan dan menangani berbagai RESTful API untuk menyajikan dashboard perusahaan yang terpadu."
+            ]
+        }
     },
     {
         id: 4,
@@ -55,7 +91,19 @@ export const projects = [
         liveUrl: "https://stunt-guard-m44x.vercel.app/",
         status: "live",
         credentials: null,
-        githubUrl: "https://github.com/dafaadhari/StuntGuard"
+        githubUrl: "https://github.com/dafaadhari/StuntGuard",
+        highlights: {
+            en: [
+                "Designed clear UI dashboards visualizing physiological parameters of children.",
+                "Optimized build size and asset caching strategies to ensure high accessibility in remote areas.",
+                "Implemented client-side calculations of health markers using international nutrition standards."
+            ],
+            id: [
+                "Merancang antarmuka dashboard interaktif yang memvisualisasikan parameter fisiologis gizi anak.",
+                "Mengoptimalkan ukuran build dan strategi caching aset untuk memastikan akses cepat di daerah terpencil.",
+                "Mengembangkan algoritma kalkulasi indikator kesehatan client-side sesuai standar gizi internasional."
+            ]
+        }
     }
 ];
 
@@ -138,6 +186,7 @@ export const galleryItems = [
     {
         id: 1,
         image: "/assets/images/galleryaquascape.jpg",
+        videoUrl: "/assets/videos/aquascape.mp4",
         category: "ENVIRONMENT VISUALIZATION",
         title: "Aquascape Concepts",
         description: {
@@ -158,6 +207,7 @@ export const galleryItems = [
     {
         id: 3,
         image: "/assets/images/gallery3.jpeg",
+        videoUrl: "/assets/videos/aicinematic.mp4",
         category: "AI CINEMATIC VIDEO",
         title: "Promotional Assets",
         description: {

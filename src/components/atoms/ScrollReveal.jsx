@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ScrollReveal = ({ children, direction = "up", delay = 0, duration = 0.6 }) => {
+const ScrollReveal = ({ children, direction = "up", delay = 0, duration = 0.6, className = "" }) => {
   // Menentukan posisi awal bersembunyi berdasarkan arah (direction)
   const hiddenVariants = {
     up: { opacity: 0, y: 50, x: 0 },
@@ -31,6 +31,7 @@ const ScrollReveal = ({ children, direction = "up", delay = 0, duration = 0.6 })
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }} // Animasi jalan jika 20% elemen masuk layar
+      className={className}
     >
       {children}
     </motion.div>

@@ -32,7 +32,14 @@ const resources = {
       contact_btn_sending: "Sending...",
       contact_btn_success: "Message Sent!",
       contact_btn_error: "Failed to Send",
-      contact_rights: "All rights reserved."
+      contact_rights: "All rights reserved.",
+      gallery_close: "Close",
+      gallery_category: "Category",
+      project_details_btn: "Technical Highlights",
+      project_details_close: "Back",
+      project_highlights_title: "Key Engineering Highlights",
+      stats_show_expertise: "Show Expertise Levels",
+      stats_hide_expertise: "Hide Expertise Levels"
     }
   },
   id: {
@@ -65,7 +72,14 @@ const resources = {
       contact_btn_sending: "Mengirim...",
       contact_btn_success: "Pesan Terkirim!",
       contact_btn_error: "Gagal Mengirim!",
-      contact_rights: "Hak Cipta Dilindungi."
+      contact_rights: "Hak Cipta Dilindungi.",
+      gallery_close: "Tutup",
+      gallery_category: "Kategori",
+      project_details_btn: "Highlight Teknis",
+      project_details_close: "Kembali",
+      project_highlights_title: "Pencapaian Rekayasa Utama",
+      stats_show_expertise: "Tampilkan Tingkat Keahlian",
+      stats_hide_expertise: "Sembunyikan Tingkat Keahlian"
     }
   }
 };

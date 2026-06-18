@@ -27,7 +27,7 @@ const ExperienceItem = ({ exp, isLast, isActive }) => {
         <div className={`w-6 h-6 rounded-full border-[3px] transition-all duration-500 ${circleGlow}`}></div>
       </div>
 
-      <div data-aos="fade-left" className="flex-1">
+      <div className="flex-1">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1 gap-2 md:gap-0">
           <div>
             <h3 className={`text-xl md:text-2xl font-bold tracking-wide transition-colors duration-300 ${titleColor}`}>

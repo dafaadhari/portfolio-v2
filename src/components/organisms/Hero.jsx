@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import InteractiveGrid from '../atoms/InteractiveGrid';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const Hero = () => {
          />
          <div className="absolute inset-0 bg-[#0B0F19]/35 mix-blend-multiply"></div>
          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F19]/20 via-transparent to-[#0B0F19]"></div>
+         <InteractiveGrid />
       </div>
 
       <motion.div 

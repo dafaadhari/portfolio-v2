@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from '../molecules/ProjectCard';
 import { projects } from '../../data/portfolioData';
 import { useTranslation } from 'react-i18next';
+import ScrollReveal from '../atoms/ScrollReveal';
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -18,25 +19,29 @@ const Projects = () => {
   return (
     <section id="projects" className="bg-[#0B0F19] pt-24 pb-48 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-6 mb-12">
-        <h2 data-aos="fade-right" className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-10">
-          {t('projects_title', 'Featured Projects')}
-        </h2>
+        <ScrollReveal direction="right">
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-10">
+            {t('projects_title', 'Featured Projects')}
+          </h2>
+        </ScrollReveal>
 
-        <div data-aos="fade-up" className="flex gap-4 flex-wrap">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
-                filter === cat 
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
-                  : 'bg-transparent text-neutral-400 border-neutral-700 hover:border-blue-500 hover:text-white'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <ScrollReveal direction="up" delay={0.2}>
+          <div className="flex gap-4 flex-wrap">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  filter === cat 
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
+                    : 'bg-transparent text-neutral-400 border-neutral-700 hover:border-blue-500 hover:text-white'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative">
