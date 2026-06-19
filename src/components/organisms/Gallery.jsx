@@ -136,7 +136,7 @@ const Gallery = () => {
                 <div className="mt-8 flex justify-end">
                   <button
                     onClick={() => setSelectedItem(null)}
-                    className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-xs font-semibold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] cursor-pointer"
+                    className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-xs font-semibold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] cursor-pointer active:bg-blue-500 active:scale-95 active:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
                   >
                     {t('gallery_close', 'Close')}
                   </button>
@@ -146,7 +146,7 @@ const Gallery = () => {
               {/* Close Button floating */}
               <button 
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/40 border border-white/10 hover:bg-black/60 text-white transition-all cursor-pointer"
+                className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/40 border border-white/10 hover:bg-black/60 text-white transition-all cursor-pointer active:bg-black/80 active:scale-95"
                 aria-label="Close lightbox"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

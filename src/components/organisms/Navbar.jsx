@@ -39,7 +39,7 @@ const Navbar = () => {
           {/* Language Switcher (Desktop) */}
           <button 
             onClick={toggleLanguage}
-            className="px-3 py-1.5 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white"
+            className="px-3 py-1.5 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white active:bg-white/20 active:scale-95"
           >
             {i18n.language === 'en' ? 'ID' : 'EN'}
           </button>
@@ -51,7 +51,7 @@ const Navbar = () => {
           {/* Language Switcher (Mobile) */}
           <button 
             onClick={toggleLanguage}
-            className="px-2.5 py-1 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white"
+            className="px-2.5 py-1 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white active:bg-white/20 active:scale-95"
             
           >
             {i18n.language === 'en' ? 'ID' : 'EN'}
@@ -59,7 +59,7 @@ const Navbar = () => {
 
           {/* Hamburger Menu */}
           <button 
-            className="text-white focus:outline-none p-1.5 rounded-md hover:bg-white/5 transition-colors"
+            className="text-white focus:outline-none p-1.5 rounded-md hover:bg-white/5 transition-colors active:bg-white/10 active:scale-95"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >

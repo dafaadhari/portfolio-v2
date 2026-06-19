@@ -32,7 +32,7 @@ const Stats = () => {
           <ScrollReveal direction="up" delay={0.1}>
             <button 
               onClick={() => setShowDetails(!showDetails)}
-              className="mb-12 px-6 py-2.5 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 hover:text-blue-300 font-semibold border border-blue-500/30 hover:border-blue-500/50 rounded-full text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.1)] hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] cursor-pointer"
+              className="mb-12 px-6 py-2.5 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 hover:text-blue-300 font-semibold border border-blue-500/30 hover:border-blue-500/50 rounded-full text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.1)] hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] cursor-pointer active:bg-blue-600/30 active:shadow-[0_0_25px_rgba(37,99,235,0.3)] active:scale-98"
             >
               {showDetails ? t('stats_hide_expertise') : t('stats_show_expertise')}
             </button>
@@ -137,7 +137,7 @@ const Stats = () => {
                   <div className="text-left">
                     <h3 className="text-xl font-bold text-white">Dafa Adhari</h3>
                     <p className="text-sm text-blue-400 mb-4">@dafaadhari</p>
-                    <a href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="inline-flex items-center px-4 py-1.5 bg-white/5 hover:bg-white/10 text-white text-xs font-medium rounded-lg border border-white/10 transition-colors">
+                    <a href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="inline-flex items-center px-4 py-1.5 bg-white/5 hover:bg-white/10 text-white text-xs font-medium rounded-lg border border-white/10 transition-colors active:bg-white/20 active:scale-95">
                       Follow & View
                     </a>
                   </div>

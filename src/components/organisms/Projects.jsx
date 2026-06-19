@@ -31,7 +31,7 @@ const Projects = () => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border active:bg-blue-700 active:border-blue-700 active:scale-98 active:text-white ${
                   filter === cat 
                     ? 'bg-blue-600 text-white border-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
                     : 'bg-transparent text-neutral-400 border-neutral-700 hover:border-blue-500 hover:text-white'

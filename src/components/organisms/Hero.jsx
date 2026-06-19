@@ -56,7 +56,7 @@ const Hero = () => {
          </motion.p>
          
          {/* Tombol Resume */}
-         <motion.a variants={itemVariants} href="/assets/docs/CV_MOCHAMAD DAPA ADHARI_EN.pdf" download className="group w-full md:w-auto inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-500 transition-all duration-300 text-sm shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1">
+         <motion.a variants={itemVariants} href="/assets/docs/CV_MOCHAMAD DAPA ADHARI_EN.pdf" download className="group w-full md:w-auto inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-500 transition-all duration-300 text-sm shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1 active:bg-blue-500 active:shadow-[0_0_30px_rgba(37,99,235,0.8)] active:-translate-y-0.5 active:scale-98">
            {t('hero_button', 'Resume')}
          </motion.a>
 

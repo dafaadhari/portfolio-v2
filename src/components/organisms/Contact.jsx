@@ -98,7 +98,7 @@ const Contact = () => {
 
             <button 
               type="submit" 
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2 active:bg-blue-500 active:shadow-[0_0_30px_rgba(37,99,235,0.7)] active:scale-98"
             >
               {t(statusKey)}
             </button>
@@ -109,25 +109,25 @@ const Contact = () => {
           <div className="flex justify-center gap-6 mb-20">
             <a 
               aria-label="GitHub Profile"
-              href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+              href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-white hover:text-black hover:border-white transition-all duration-300 active:scale-90 active:bg-white active:text-black active:border-white">
               <FiGithub className="w-6 h-6" />
             </a>
             
             <a 
               aria-label="LinkedIn Profile"
-              href="https://www.linkedin.com/in/dafa-adhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all duration-300">
+              href="https://www.linkedin.com/in/dafa-adhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all duration-300 active:scale-90 active:bg-[#0077b5] active:text-white active:border-[#0077b5]">
               <FiLinkedin className="w-6 h-6" />
             </a>
             
             <a 
               aria-label="Send Email"
-              href="mailto:dafaadhari01@gmail.com" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all duration-300">
+              href="mailto:dafaadhari01@gmail.com" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all duration-300 active:scale-90 active:bg-red-500 active:text-white active:border-red-500">
               <FiMail className="w-6 h-6" />
             </a>
             
             <a 
               aria-label="Instagram Profile"
-              href="https://www.instagram.com/mochdafaadhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all duration-300">
+              href="https://www.instagram.com/mochdafaadhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all duration-300 active:scale-90 active:bg-pink-600 active:text-white active:border-pink-600">
               <FiInstagram className="w-6 h-6" />
             </a>
           </div>
