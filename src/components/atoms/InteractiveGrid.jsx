@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const InteractiveGrid = () => {
   const canvasRef = useRef(null);
@@ -10,11 +10,27 @@ const InteractiveGrid = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let particles = [];
+    let isVisible = true;
+    let isPageVisible = true;
     const mouse = { x: null, y: null, radius: 150 };
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+    if (reduceMotion || coarsePointer) {
+      return;
+    }
 
     const handleResize = () => {
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
+      const width = canvas.parentElement.clientWidth;
+      const height = canvas.parentElement.clientHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.dataset.width = width;
+      canvas.dataset.height = height;
       initParticles();
     };
 
@@ -47,10 +63,13 @@ const InteractiveGrid = () => {
       }
 
       update() {
-        if (this.x > canvas.width || this.x < 0) {
+        const width = Number(canvas.dataset.width) || canvas.width;
+        const height = Number(canvas.dataset.height) || canvas.height;
+
+        if (this.x > width || this.x < 0) {
           this.directionX = -this.directionX;
         }
-        if (this.y > canvas.height || this.y < 0) {
+        if (this.y > height || this.y < 0) {
           this.directionY = -this.directionY;
         }
 
@@ -76,11 +95,13 @@ const InteractiveGrid = () => {
     const initParticles = () => {
       particles = [];
       // Calculate particle count based on screen area
-      const numberOfParticles = Math.min(Math.floor((canvas.width * canvas.height) / 18000), 80);
+      const width = Number(canvas.dataset.width) || canvas.width;
+      const height = Number(canvas.dataset.height) || canvas.height;
+      const numberOfParticles = Math.min(Math.floor((width * height) / 22000), 60);
       for (let i = 0; i < numberOfParticles; i++) {
         const size = Math.random() * 2 + 1;
-        const x = Math.random() * (canvas.width - size * 2) + size;
-        const y = Math.random() * (canvas.height - size * 2) + size;
+        const x = Math.random() * (width - size * 2) + size;
+        const y = Math.random() * (height - size * 2) + size;
         const directionX = (Math.random() * 0.4) - 0.2;
         const directionY = (Math.random() * 0.4) - 0.2;
         const color = 'rgba(59, 130, 246, 0.45)'; // Soft blue neon node
@@ -90,7 +111,6 @@ const InteractiveGrid = () => {
     };
 
     const connect = () => {
-      let opacityValue = 1;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
           let dx = particles[a].x - particles[b].x;
@@ -98,7 +118,7 @@ const InteractiveGrid = () => {
           let distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 110) {
-            opacityValue = 1 - (distance / 110);
+            const opacityValue = 1 - (distance / 110);
             ctx.strokeStyle = `rgba(59, 130, 246, ${opacityValue * 0.15})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -114,7 +134,7 @@ const InteractiveGrid = () => {
           let dy = mouse.y - particles[a].y;
           let distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < mouse.radius) {
-            opacityValue = 1 - (distance / mouse.radius);
+            const opacityValue = 1 - (distance / mouse.radius);
             ctx.strokeStyle = `rgba(59, 130, 246, ${opacityValue * 0.35})`; // Brighter connection to mouse
             ctx.lineWidth = 1.2;
             ctx.beginPath();
@@ -127,7 +147,15 @@ const InteractiveGrid = () => {
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const width = Number(canvas.dataset.width) || canvas.width;
+      const height = Number(canvas.dataset.height) || canvas.height;
+
+      if (!isVisible || !isPageVisible) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+
+      ctx.clearRect(0, 0, width, height);
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();
       }
@@ -135,16 +163,28 @@ const InteractiveGrid = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    });
+
     // Attach to parent element bounds
     handleResize();
     window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     canvas.parentElement.addEventListener('mousemove', handleMouseMove);
     canvas.parentElement.addEventListener('mouseleave', handleMouseLeave);
+    observer.observe(canvas);
 
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer.disconnect();
       if (canvas.parentElement) {
         canvas.parentElement.removeEventListener('mousemove', handleMouseMove);
         canvas.parentElement.removeEventListener('mouseleave', handleMouseLeave);

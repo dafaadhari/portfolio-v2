@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../atoms/ScrollReveal';
@@ -17,6 +17,8 @@ const techStack = [
 const Stats = () => {
   const { t } = useTranslation();
   const [showDetails, setShowDetails] = useState(false);
+  const [activeTech, setActiveTech] = useState(null);
+  const [activeGithubCard, setActiveGithubCard] = useState(null);
 
   return (
     <section className="py-24 bg-[#0B0F19] border-b border-white/5 relative z-20">
@@ -46,12 +48,15 @@ const Stats = () => {
 
               return (
                 <ScrollReveal key={index} direction="up" delay={index * 0.05}>
-                  <div 
-                    className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-105"
+                  <button 
+                    type="button"
+                    onClick={() => setActiveTech(activeTech === index ? null : index)}
+                    className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-100 focus:outline-none"
+                    aria-pressed={activeTech === index}
                   >
                     <div className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
                        {/* Glow Background */}
-                       <div className="absolute inset-0 bg-blue-500/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+                       <div className={`absolute inset-0 bg-blue-500/5 blur-xl transition-opacity duration-500 rounded-full ${activeTech === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-active:opacity-100'}`}></div>
                        
                        {/* Progress Ring */}
                        <AnimatePresence>
@@ -110,8 +115,8 @@ const Stats = () => {
                          )}
                        </AnimatePresence>
                     </div>
-                    <span className="text-xs font-medium text-neutral-500 group-hover:text-white transition-colors duration-500">{tech.name}</span>
-                  </div>
+                    <span className={`text-xs font-medium transition-colors duration-500 ${activeTech === index ? 'text-blue-400' : 'text-neutral-500 group-hover:text-white group-active:text-blue-400'}`}>{tech.name}</span>
+                  </button>
                 </ScrollReveal>
               );
             })}
@@ -128,7 +133,10 @@ const Stats = () => {
             
             {/* Card Profile Minimalis */}
             <ScrollReveal direction="right" delay={0.2} className="w-full md:w-[400px]">
-              <div className="w-full flex items-center bg-[#18181b] rounded-xl border border-white/10 p-6 hover:border-white/30 transition-colors h-[170px]">
+              <div
+                onClick={() => setActiveGithubCard(activeGithubCard === 'profile' ? null : 'profile')}
+                className={`w-full flex items-center bg-[#18181b] rounded-xl border p-6 transition-colors h-[170px] cursor-pointer ${activeGithubCard === 'profile' ? 'border-blue-500/50' : 'border-white/10 hover:border-white/30 active:border-blue-500/50'}`}
+              >
                 <div className="flex items-center gap-6 w-full">
                   <div className="relative">
                     <div className="absolute inset-0 bg-blue-500 blur-xl opacity-20 rounded-full"></div>
@@ -147,8 +155,11 @@ const Stats = () => {
 
             {/* GitHub Streak Card */}
             <ScrollReveal direction="left" delay={0.2} className="w-full md:w-[400px]">
-              <div className="w-full bg-[#050505] rounded-xl border border-white/10 p-4 transition-colors flex items-center justify-center h-[170px] relative overflow-hidden group hover:border-blue-500/50">
-                <div className="absolute -inset-4 bg-blue-600/10 blur-2xl rounded-full animate-pulse group-hover:bg-blue-600/20 transition-all duration-500"></div>
+              <div
+                onClick={() => setActiveGithubCard(activeGithubCard === 'streak' ? null : 'streak')}
+                className={`w-full bg-[#050505] rounded-xl border p-4 transition-colors flex items-center justify-center h-[170px] relative overflow-hidden group cursor-pointer ${activeGithubCard === 'streak' ? 'border-blue-500/50' : 'border-white/10 hover:border-blue-500/50 active:border-blue-500/50'}`}
+              >
+                <div className={`absolute -inset-4 blur-2xl rounded-full animate-pulse transition-all duration-500 ${activeGithubCard === 'streak' ? 'bg-blue-600/20' : 'bg-blue-600/10 group-hover:bg-blue-600/20 group-active:bg-blue-600/20'}`}></div>
                 <img 
                   src="https://github-readme-streak-stats.herokuapp.com/?user=dafaadhari&background=05050500&hide_border=true&title_color=FFFFFF&text_color=A3A3A3&sideNums=FFFFFF&sideLabels=A3A3A3&ring=3B82F6&fire=3B82F6&currStreakLabel=3B82F6&currStreakNum=FFFFFF" 
                   alt="GitHub Streak" 

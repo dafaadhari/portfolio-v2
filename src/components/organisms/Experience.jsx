@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import ExperienceItem from '../molecules/ExperienceItem';
 import { experiences } from '../../data/portfolioData';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +6,7 @@ import ScrollReveal from '../atoms/ScrollReveal'; // Pastikan path ini sesuai
 
 const Experience = () => {
   const { t } = useTranslation();
+  const [activeExperience, setActiveExperience] = useState(0);
 
   return (
     <section id="experience" className="bg-[#0B0F19] pt-24 pb-16 border-b border-white/5 overflow-hidden">
@@ -35,7 +36,8 @@ const Experience = () => {
               <ExperienceItem 
                 exp={exp} 
                 isLast={index === experiences.length - 1} 
-                isActive={index === 0}
+                isActive={activeExperience === index}
+                onSelect={() => setActiveExperience(index)}
               />
             </ScrollReveal>
           ))}

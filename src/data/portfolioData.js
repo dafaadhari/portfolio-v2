@@ -3,28 +3,28 @@
 export const projects = [
     {
         id: 5,
-        title: "QSHE Inspection App",
+        title: "QHSE Super App",
         category: "Full-Stack",
         framework: "React JS",
         description: {
-            en: "A comprehensive Quality, Safety, Health, and Environment (QSHE) digital inspection and reporting system. Streamlines field auditing, safety checks, and real-time compliance reporting.",
-            id: "Sistem pelaporan dan inspeksi digital K3LH (QSHE) yang komprehensif. Berfungsi menyederhanakan audit lapangan, pemeriksaan keselamatan, dan pelaporan kepatuhan secara real-time."
+            en: "An integrated enterprise QHSE platform for construction operations, combining digital inspections, equipment monitoring, medical dashboards, and employee passport management in one centralized system.",
+            id: "Platform enterprise QHSE terintegrasi untuk operasional konstruksi, menggabungkan inspeksi digital, monitoring alat, dashboard medis, dan manajemen QHSE Passport karyawan dalam satu sistem terpusat."
         },
         image: "/assets/images/qshe.png",
         liveUrl: "https://qshe-inspection-app.vercel.app",
         status: "live",
-        credentials: "Email: qshe@admin.com | Pass: admin321",
+        credentials: null,
         githubUrl: "https://github.com/dafaadhari/qshe-inspection",
         highlights: {
             en: [
-                "Developed a robust relational database schema to track safety audits, violations, and resolutions.",
-                "Integrated real-time PDF generation and report sharing for instant field reporting.",
-                "Designed a responsive mobile-first UI for safety inspectors to easily document on-site issues."
+                "Built a super app architecture that unifies 4 QHSE modules: Inspection, Equipment Monitoring, Medical Dashboard, and QHSE Passport.",
+                "Designed shared employee, role, and division data flows to reduce duplication across field inspection, medical, and equipment workflows.",
+                "Implemented audit-ready reporting features with Excel/PDF export planning, mobile-first inspection forms, and Supabase-based auth, storage, and database integration."
             ],
             id: [
-                "Mengembangkan skema database relasional yang kuat untuk memantau audit keselamatan, pelanggaran, dan penyelesaian masalah.",
-                "Mengintegrasikan pembuatan dokumen PDF & Excel real-time serta pembagian laporan instan dari lapangan.",
-                "Merancang antarmuka responsif mobile-first bagi inspektur K3LH untuk mendokumentasikan temuan lapangan secara praktis."
+                "Membangun arsitektur super app yang menyatukan 4 modul QHSE: Inspection, Equipment Monitoring, Dashboard Medis, dan QHSE Passport.",
+                "Merancang alur data karyawan, role, dan divisi yang terpusat untuk mengurangi duplikasi pada proses inspeksi lapangan, medis, dan monitoring alat.",
+                "Mengembangkan fondasi pelaporan siap audit dengan export Excel/PDF, form inspeksi mobile-first, serta integrasi Supabase untuk auth, storage, dan database."
             ]
         }
     },
