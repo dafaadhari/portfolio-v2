@@ -16,7 +16,10 @@ const InteractiveGrid = () => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
-    if (reduceMotion || coarsePointer) {
+    // Respect user's reduced-motion preference (skip animation entirely).
+    // For touch devices (coarse pointer) we KEEP the particle animation,
+    // only the mouse interaction is disabled below.
+    if (reduceMotion) {
       return;
     }
 
@@ -175,8 +178,10 @@ const InteractiveGrid = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    canvas.parentElement.addEventListener('mousemove', handleMouseMove);
-    canvas.parentElement.addEventListener('mouseleave', handleMouseLeave);
+    if (!coarsePointer) {
+      canvas.parentElement.addEventListener('mousemove', handleMouseMove);
+      canvas.parentElement.addEventListener('mouseleave', handleMouseLeave);
+    }
     observer.observe(canvas);
 
     animate();
