@@ -30,22 +30,22 @@ const Gallery = () => {
 
         {/* Grid 3 Kolom */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {galleryItems.map((item, index) => (
-            <ScrollReveal key={item.id} direction="none" delay={0.4 + (index * 0.15)}>
-              <div 
+          {galleryItems.map((item) => (
+            <ScrollReveal key={item.id} direction="none">
+              <div
                 onClick={() => setSelectedItem(item)}
                 className="group relative h-64 md:h-80 overflow-hidden rounded-xl bg-[#050505] shadow-lg border border-white/10 cursor-pointer"
               >
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  loading="lazy" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" 
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
                 />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 to-transparent opacity-90 transition-opacity duration-500"></div>
 
-                {/* Hover Play Button Overlay */}
+                {/* Hover Play Button Overlay (video only) */}
                 {item.videoUrl && (
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="w-14 h-14 rounded-full bg-blue-600/90 flex items-center justify-center text-white border border-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-500">
@@ -54,15 +54,16 @@ const Gallery = () => {
                   </div>
                 )}
 
-                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <span className="text-[10px] md:text-xs font-bold text-blue-500 tracking-widest uppercase mb-1 block">
                     {item.category}
                   </span>
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-neutral-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
-                    {item.description[lang]} 
+                  {/* Short description: always visible on mobile, revealed on hover (desktop) */}
+                  <p className="text-neutral-300 text-sm font-light leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100 line-clamp-2">
+                    {item.description[lang]}
                   </p>
                 </div>
               </div>
@@ -102,18 +103,39 @@ const Gallery = () => {
                       allowFullScreen
                     />
                   ) : (
-                    <video 
-                      src={selectedItem.videoUrl} 
-                      controls 
-                      autoPlay 
+                    <video
+                      src={selectedItem.videoUrl}
+                      controls
+                      autoPlay
                       className="w-full h-full object-contain max-h-[500px]"
                       poster={selectedItem.image}
                     />
                   )
+                ) : selectedItem.images && selectedItem.images.length > 1 ? (
+                  /* Horizontal Photo Accordion inside the lightbox:
+                     - Desktop: hover a photo to expand it (terbuka), others shrink.
+                     - Mobile: horizontal scroll left-to-right with snap. */
+                  <div className="flex w-full h-[300px] md:h-[500px] gap-1 overflow-x-auto md:overflow-hidden snap-x snap-mandatory md:snap-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    {selectedItem.images.map((src, i) => (
+                      <div
+                        key={i}
+                        className="group/photo relative h-full shrink-0 basis-[80%] snap-center md:shrink md:basis-0 md:flex-1 md:hover:flex-[4] overflow-hidden transition-all duration-500 ease-out"
+                      >
+                        <img
+                          src={src}
+                          alt={`${selectedItem.title} ${i + 1}`}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Dim collapsed panels on desktop so the expanded one stands out */}
+                        <div className="hidden md:block absolute inset-0 bg-black/60 md:group-hover/photo:bg-black/0 transition-colors duration-500" />
+                      </div>
+                    ))}
+                  </div>
                 ) : (
-                  <img 
-                    src={selectedItem.image} 
-                    alt={selectedItem.title} 
+                  <img
+                    src={selectedItem.image}
+                    alt={selectedItem.title}
                     className="w-full h-full object-contain max-h-[500px]"
                   />
                 )}

@@ -32,7 +32,7 @@ const Experience = () => {
         <div className="space-y-0">
           {experiences.map((exp, index) => (
             /* Rumus index * 0.2 menciptakan efek muncul bergantian secara berurutan */
-            <ScrollReveal key={exp.id} direction="up" delay={0.4 + (index * 0.2)}>
+            <ScrollReveal key={exp.id} direction="up" delay={index * 0.1}>
               <ExperienceItem 
                 exp={exp} 
                 isLast={index === experiences.length - 1} 

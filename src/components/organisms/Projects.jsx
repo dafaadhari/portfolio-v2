@@ -46,16 +46,16 @@ const Projects = () => {
 
       <div className="max-w-6xl mx-auto px-6 relative">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project) => (
             <motion.div 
               layout
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               transition={{ duration: 0.5, type: "spring", bounce: 0.3 }}
-              key={project.id} 
-              className="sticky transition-all duration-500"
-              style={{ top: `calc(10vh + ${index * 40}px)`, marginBottom: '40px' }}
+              key={project.id}
+              className="sticky top-[10vh] transition-all duration-500"
+              style={{ marginBottom: '40px' }}
             >
               <ProjectCard project={project} />
             </motion.div>

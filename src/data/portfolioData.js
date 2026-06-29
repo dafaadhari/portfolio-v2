@@ -5,7 +5,7 @@ export const projects = [
         id: 5,
         title: "QHSE Super App",
         category: "Full-Stack",
-        framework: "React JS",
+        frameworks: ["React JS", "Vite"],
         description: {
             en: "An integrated enterprise QHSE platform for construction operations, combining digital inspections, equipment monitoring, medical dashboards, and employee passport management in one centralized system.",
             id: "Platform enterprise QHSE terintegrasi untuk operasional konstruksi, menggabungkan inspeksi digital, monitoring alat, dashboard medis, dan manajemen QHSE Passport karyawan dalam satu sistem terpusat."
@@ -216,8 +216,13 @@ export const experiences = [
 export const galleryItems = [
     {
         id: 1,
-        image: "/assets/images/galleryaquascape.jpg",
-        videoUrl: "/assets/videos/aquascape.mp4",
+        image: "/assets/images/gallery1.jpg",
+        // Multiple photos -> rendered as a horizontal accordion INSIDE the card.
+        images: [
+            "/assets/images/gallery1.jpg",
+            "/assets/images/galleryaquascape1.jpeg",
+            "/assets/images/galleryaquascape2.jpg",
+        ],
         category: "ENVIRONMENT VISUALIZATION",
         title: "Aquascape Concepts",
         description: {
