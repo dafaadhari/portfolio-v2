@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiArrowUpRight, FiLock, FiMonitor, FiGithub, FiCpu, FiX } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,8 +16,7 @@ const ProjectCard = ({ project }) => {
     "Next JS": { logo: "/assets/logos/nextjs.svg", color: "text-white", border: "border-white/30", glow: "shadow-[0_0_6px_rgba(255,255,255,0.12)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(255,255,255,0.3)]" },
   };
 
-  // Support both single `framework` (string) and `frameworks` (array)
-  const frameworkList = project.frameworks || (project.framework ? [project.framework] : []);
+  const frameworkList = project.frameworks || [];
 
   return (
     <div className="relative w-full flex flex-col h-auto md:flex-row bg-[#151B2B] rounded-2xl overflow-hidden shadow-xl border border-white/5 md:min-h-[450px] cursor-default">
@@ -75,11 +74,13 @@ const ProjectCard = ({ project }) => {
                rel="noreferrer"
                className="flex items-center font-medium text-white hover:text-blue-400 transition-colors"
              >
-               Preview <FiArrowUpRight className="ml-1 w-5 h-5" />
+               {t('project_preview', 'Preview')} <FiArrowUpRight className="ml-1 w-5 h-5" />
              </a>
           ) : (
              <span className="flex items-center font-medium text-neutral-600 cursor-not-allowed">
-               {project.status === 'local' ? <><FiMonitor className="mr-2"/> Local Only</> : <><FiLock className="mr-2"/> Internal</>}
+               {project.status === 'local'
+                 ? <><FiMonitor className="mr-2"/> {t('project_status_local', 'Local Only')}</>
+                 : <><FiLock className="mr-2"/> {t('project_status_internal', 'Internal')}</>}
              </span>
           )}
 
@@ -91,7 +92,7 @@ const ProjectCard = ({ project }) => {
                className="flex items-center font-medium text-neutral-400 hover:text-white transition-colors"
                aria-label="Source Code"
              >
-              <FiGithub className="mr-2 w-5 h-5" /> Source Code
+              <FiGithub className="mr-2 w-5 h-5" /> {t('project_source', 'Source Code')}
             </a>
           )}
 

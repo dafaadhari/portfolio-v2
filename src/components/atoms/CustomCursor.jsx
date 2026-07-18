@@ -1,48 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+
+// Pointer-based cursor only makes sense with a fine pointer and no reduced-motion preference.
+const supportsCustomCursor = () =>
+  typeof window !== 'undefined' &&
+  !window.matchMedia('(pointer: coarse)').matches &&
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Motion values drive the cursor directly, so mouse movement never triggers a React re-render.
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Ring lags slightly behind the pointer for a smooth spring feel.
+  const ringX = useSpring(mouseX, { stiffness: 150, damping: 15, mass: 0.5 });
+  const ringY = useSpring(mouseY, { stiffness: 150, damping: 15, mass: 0.5 });
+
+  // Resolved once on mount so no state is written from inside the effect.
+  const [enabled] = useState(supportsCustomCursor);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
-    window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener('mousemove', updateMousePosition);
+    return () => window.removeEventListener('mousemove', updateMousePosition);
+  }, [enabled, mouseX, mouseY]);
 
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
-  }, []);
-
-  const variants = {
-    default: {
-      x: mousePosition.x - 16, // Dikurangi setengah ukuran (32/2) agar pas di tengah
-      y: mousePosition.y - 16,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.5
-      }
-    }
-  };
+  if (!enabled) return null;
 
   return (
     <>
-      {/* Kursor lingkaran yang mengikuti mouse dengan efek spring (hanya tampil di Desktop) */}
+      {/* Ring that trails the pointer (desktop only) */}
       <motion.div
         className="hidden md:block fixed top-0 left-0 w-8 h-8 border-2 border-blue-500 rounded-full pointer-events-none z-[9999]"
-        variants={variants}
-        animate="default"
+        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
       />
-      {/* Titik kecil tepat di tengah pointer asli */}
-      <div 
+      {/* Dot pinned exactly to the pointer */}
+      <motion.div
         className="hidden md:block fixed top-0 left-0 w-1.5 h-1.5 bg-blue-500 rounded-full pointer-events-none z-[10000]"
-        style={{ 
-          transform: `translate(${mousePosition.x - 3}px, ${mousePosition.y - 3}px)` 
-        }}
+        style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%' }}
       />
     </>
   );

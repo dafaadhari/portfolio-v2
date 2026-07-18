@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiInstagram } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../atoms/ScrollReveal'; 
@@ -6,11 +6,13 @@ import ScrollReveal from '../atoms/ScrollReveal';
 const Contact = () => {
   const { t } = useTranslation();
   const [statusKey, setStatusKey] = useState("contact_btn_send");
+  const isSending = statusKey === "contact_btn_sending";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSending) return;
     setStatusKey("contact_btn_sending");
-    
+
     const formData = new FormData(e.target);
     formData.append("access_key", "51772b50-2bb2-4261-a569-79b304699acd");
 
@@ -96,9 +98,11 @@ const Contact = () => {
               ></textarea>
             </div>
 
-            <button 
-              type="submit" 
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2 active:bg-blue-500 active:shadow-[0_0_30px_rgba(37,99,235,0.7)] active:scale-98"
+            <button
+              type="submit"
+              disabled={isSending}
+              aria-busy={isSending}
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2 active:bg-blue-500 active:shadow-[0_0_30px_rgba(37,99,235,0.7)] active:scale-98 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:shadow-[0_0_15px_rgba(37,99,235,0.3)] disabled:active:scale-100"
             >
               {t(statusKey)}
             </button>

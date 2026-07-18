@@ -3,15 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../atoms/ScrollReveal';
 
+// Logos are vendored locally (public/assets/logos) so they render offline and
+// stay consistent with the framework badges used on the project cards.
 const techStack = [
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', level: 90 },
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', level: 88 },
-  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', bg: 'bg-white p-1 rounded', level: 82 },
-  { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', level: 92 },
-  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg', level: 80 },
-  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', level: 85 },
-  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', level: 80 },
-  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', level: 88 },
+  { name: 'JavaScript', icon: '/assets/logos/javascript.svg', level: 90 },
+  { name: 'React.js', icon: '/assets/logos/react.svg', level: 88 },
+  { name: 'Next.js', icon: '/assets/logos/nextjs.svg', level: 82 },
+  { name: 'Tailwind', icon: '/assets/logos/tailwindcss.svg', level: 92 },
+  { name: 'PHP', icon: '/assets/logos/php.svg', level: 80 },
+  { name: 'Laravel', icon: '/assets/logos/laravel.svg', level: 85 },
+  { name: 'MySQL', icon: '/assets/logos/mysql.svg', level: 80 },
+  { name: 'Git', icon: '/assets/logos/git.svg', level: 88 },
 ];
 
 const Stats = () => {
@@ -27,7 +29,7 @@ const Stats = () => {
         {/* TECH STACK SECTION */}
         <div className="mb-24">
           <ScrollReveal direction="up">
-            <h2 className="text-sm font-bold text-neutral-500 mb-6 uppercase tracking-[0.2em]">Tech Stack & Tools</h2>
+            <h2 className="text-sm font-bold text-neutral-500 mb-6 uppercase tracking-[0.2em]">{t('stats_techstack_title', 'Tech Stack & Tools')}</h2>
           </ScrollReveal>
 
           {/* Toggle Button for Details */}
@@ -95,10 +97,11 @@ const Stats = () => {
                        </AnimatePresence>
 
                        {/* Icon inside */}
-                       <img 
-                         src={tech.icon} 
-                         alt={tech.name} 
-                         className={`relative z-20 w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-700 ${tech.bg || ''}`} 
+                       <img
+                         src={tech.icon}
+                         alt={tech.name}
+                         loading="lazy"
+                         className="relative z-20 w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-700"
                        />
                        
                        {/* Level Badge */}
@@ -126,7 +129,7 @@ const Stats = () => {
         {/* GITHUB ACTIVITY SECTION */}
         <div>
           <ScrollReveal direction="up">
-            <h2 className="text-sm font-bold text-neutral-500 mb-10 uppercase tracking-[0.2em]">GitHub Activity</h2>
+            <h2 className="text-sm font-bold text-neutral-500 mb-10 uppercase tracking-[0.2em]">{t('stats_github_title', 'GitHub Activity')}</h2>
           </ScrollReveal>
           
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
@@ -161,8 +164,9 @@ const Stats = () => {
               >
                 <div className={`absolute -inset-4 blur-2xl rounded-full animate-pulse transition-all duration-500 ${activeGithubCard === 'streak' ? 'bg-blue-600/20' : 'bg-blue-600/10 group-hover:bg-blue-600/20 group-active:bg-blue-600/20'}`}></div>
                 <img 
-                  src="https://github-readme-streak-stats.herokuapp.com/?user=dafaadhari&background=05050500&hide_border=true&title_color=FFFFFF&text_color=A3A3A3&sideNums=FFFFFF&sideLabels=A3A3A3&ring=3B82F6&fire=3B82F6&currStreakLabel=3B82F6&currStreakNum=FFFFFF" 
-                  alt="GitHub Streak" 
+                  src="https://streak-stats.demolab.com/?user=dafaadhari&background=05050500&hide_border=true&title_color=FFFFFF&text_color=A3A3A3&sideNums=FFFFFF&sideLabels=A3A3A3&ring=3B82F6&fire=3B82F6&currStreakLabel=3B82F6&currStreakNum=FFFFFF"
+                  alt="GitHub Streak"
+                  loading="lazy"
                   className="w-full h-full object-contain relative z-10"
                 />
               </div>

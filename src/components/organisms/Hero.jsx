@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import InteractiveGrid from '../atoms/InteractiveGrid';
@@ -23,9 +22,10 @@ const Hero = () => {
     <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
       
       <div className="absolute inset-0 z-0">
-         <img 
-            src="/assets/images/profil2.jpg" 
-            alt="Background" 
+         <img
+            src="/assets/images/profil2.jpg"
+            alt=""
+            aria-hidden="true"
             className="w-full h-full object-cover object-center grayscale opacity-40"
          />
          <div className="absolute inset-0 bg-[#0B0F19]/35 mix-blend-multiply"></div>

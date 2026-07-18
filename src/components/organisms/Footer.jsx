@@ -1,10 +1,13 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-[#0B0F19] text-center py-10 border-t border-white/5">
       <p className="text-neutral-500 text-sm font-light tracking-wide">
-        {currentYear} <br/> &copy; Mochamad Dapa Adhari.
+        &copy; {currentYear} Mochamad Dapa Adhari
       </p>
     </footer>
   );

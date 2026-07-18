@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from '../molecules/ProjectCard';
 import { projects } from '../../data/portfolioData';
@@ -10,7 +10,12 @@ const Projects = () => {
   
   const [filter, setFilter] = useState('All');
 
-  const categories = ['All', 'Full-Stack', 'Front-End'];
+  // `value` drives the filter logic; `label` is what the user sees (translated).
+  const categories = [
+    { value: 'All', label: t('projects_filter_all', 'All') },
+    { value: 'Full-Stack', label: 'Full-Stack' },
+    { value: 'Front-End', label: 'Front-End' },
+  ];
 
   const filteredProjects = filter === 'All' 
     ? projects 
@@ -29,15 +34,16 @@ const Projects = () => {
           <div className="flex gap-4 flex-wrap">
             {categories.map((cat) => (
               <button
-                key={cat}
-                onClick={() => setFilter(cat)}
+                key={cat.value}
+                onClick={() => setFilter(cat.value)}
+                aria-pressed={filter === cat.value}
                 className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border active:bg-blue-700 active:border-blue-700 active:scale-98 active:text-white ${
-                  filter === cat 
-                    ? 'bg-blue-600 text-white border-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
+                  filter === cat.value
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.4)]'
                     : 'bg-transparent text-neutral-400 border-neutral-700 hover:border-blue-500 hover:text-white'
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
           </div>

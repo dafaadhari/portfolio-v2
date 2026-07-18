@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CustomCursor from './components/atoms/CustomCursor';
 import Navbar from './components/organisms/Navbar';
 import Hero from './components/organisms/Hero';

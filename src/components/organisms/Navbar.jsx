@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -6,10 +6,30 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
   });
+
+  // Close the mobile menu on Escape or when clicking outside of it.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    const handlePointerDown = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setIsOpen(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [isOpen]);
 
   const { i18n, t } = useTranslation();
 
@@ -20,9 +40,9 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'py-4 backdrop-blur-xl bg-[#0B0F19]/20 border-white/5 shadow-lg' : 'py-6 bg-transparent'
+      isScrolled ? 'py-4 backdrop-blur-xl bg-[#0B0F19]/20 border-b border-white/5 shadow-lg' : 'py-6 bg-transparent border-b border-transparent'
     }`}>
-      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center relative">
+      <div ref={menuRef} className="max-w-6xl mx-auto px-6 flex justify-between items-center relative">
         
         {/* Logo */}
         <a href="#" className="text-white font-extrabold tracking-widest text-lg md:text-xl hover:opacity-80 transition-opacity">
@@ -34,7 +54,7 @@ const Navbar = () => {
           <a href="#experience" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_experience', 'Experience')}</a>
           <a href="#projects" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_projects', 'Projects')}</a>
           <a href="#gallery" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_gallery', 'Gallery')}</a>
-          <a href="#contact" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_about', 'About')}</a>
+          <a href="#contact" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_contact', 'Contact')}</a>
           
           {/* Language Switcher (Desktop) */}
           <button 
@@ -58,10 +78,11 @@ const Navbar = () => {
           </button>
 
           {/* Hamburger Menu */}
-          <button 
+          <button
             className="text-white focus:outline-none p-1.5 rounded-md hover:bg-white/5 transition-colors active:bg-white/10 active:scale-95"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -85,10 +106,10 @@ const Navbar = () => {
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="md:hidden absolute top-full right-6 mt-4 w-40 bg-[#121826] border border-white/10 rounded-xl py-4 px-5 flex flex-col gap-5 shadow-2xl origin-top-right"
           >
-            <a href="#experience" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left">{t('nav_experience', 'Experience')}</a>
-            <a href="#projects" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left">{t('nav_projects', 'Projects')}</a>
-            <a href="#gallery" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left">{t('nav_gallery', 'Gallery')}</a>
-            <a href="#contact" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left">{t('nav_about', 'About')}</a>
+            <a href="#experience" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_experience', 'Experience')}</a>
+            <a href="#projects" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_projects', 'Projects')}</a>
+            <a href="#gallery" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_gallery', 'Gallery')}</a>
+            <a href="#contact" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_contact', 'Contact')}</a>
           </motion.div>
         )}
       </AnimatePresence>

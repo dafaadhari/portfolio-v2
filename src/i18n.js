@@ -4,13 +4,9 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      greeting: "Hello, I am",
-      role: "Junior Software Engineer",
-      nav_home: "Home",
       nav_experience: "Experience",
       nav_projects: "Projects",
       nav_gallery: "Gallery",
-      nav_about: "About",
       nav_contact: "Contact",
       hero_subtitle: "Junior Software Engineer",
       hero_description: "Informatics Engineering graduate with experience in developing web-based applications and decision support systems. Interested in software development, data-driven systems, and modern web technologies.",
@@ -34,23 +30,28 @@ const resources = {
       contact_btn_error: "Failed to Send",
       contact_rights: "All rights reserved.",
       gallery_close: "Close",
-      gallery_category: "Category",
       project_details_btn: "Technical Highlights",
       project_details_close: "Back",
       project_highlights_title: "Key Engineering Highlights",
+      project_preview: "Preview",
+      project_source: "Source Code",
+      project_status_local: "Local Only",
+      project_status_internal: "Internal",
+      projects_filter_all: "All",
       stats_show_expertise: "Show Expertise Levels",
-      stats_hide_expertise: "Hide Expertise Levels"
+      stats_hide_expertise: "Hide Expertise Levels",
+      stats_techstack_title: "Tech Stack & Tools",
+      stats_github_title: "GitHub Activity",
+      "404_title": "Lost in Space?",
+      "404_subtitle": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+      "404_btn_home": "Back to Home"
     }
   },
   id: {
     translation: {
-      greeting: "Halo, saya",
-      role: "Junior Software Engineer",
-      nav_home: "Beranda",
       nav_experience: "Pengalaman",
       nav_projects: "Proyek",
       nav_gallery: "Galeri",
-      nav_about: "Tentang",
       nav_contact: "Kontak",
       hero_subtitle: "Junior Software Engineer",
       hero_description: "Lulusan Teknik Informatika dengan pengalaman dalam mengembangkan aplikasi berbasis web dan sistem pendukung keputusan. Tertarik pada pengembangan perangkat lunak, sistem berbasis data, dan teknologi web modern.",
@@ -74,12 +75,21 @@ const resources = {
       contact_btn_error: "Gagal Mengirim!",
       contact_rights: "Hak Cipta Dilindungi.",
       gallery_close: "Tutup",
-      gallery_category: "Kategori",
       project_details_btn: "Highlight Teknis",
       project_details_close: "Kembali",
       project_highlights_title: "Pencapaian Rekayasa Utama",
+      project_preview: "Pratinjau",
+      project_source: "Kode Sumber",
+      project_status_local: "Lokal Saja",
+      project_status_internal: "Internal",
+      projects_filter_all: "Semua",
       stats_show_expertise: "Tampilkan Tingkat Keahlian",
-      stats_hide_expertise: "Sembunyikan Tingkat Keahlian"
+      stats_hide_expertise: "Sembunyikan Tingkat Keahlian",
+      stats_techstack_title: "Tech Stack & Tools",
+      stats_github_title: "Aktivitas GitHub",
+      "404_title": "Tersesat di Luar Angkasa?",
+      "404_subtitle": "Halaman yang Anda cari mungkin telah dihapus, berganti nama, atau sedang tidak tersedia.",
+      "404_btn_home": "Kembali ke Beranda"
     }
   }
 };
@@ -89,7 +99,7 @@ i18n
   .init({
     resources,
     lng: "en",
-    fallbackLng: "id",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false 
     }
