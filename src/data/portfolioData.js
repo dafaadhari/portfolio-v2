@@ -11,9 +11,9 @@ export const projects = [
             id: "Platform enterprise QHSE terintegrasi untuk operasional konstruksi, menggabungkan inspeksi digital, monitoring alat, dashboard medis, dan manajemen QHSE Passport karyawan dalam satu sistem terpusat."
         },
         image: "/assets/images/qshe.png",
-        liveUrl: "https://qshe-inspection-app.vercel.app",
+        liveUrl: "https://siteguard-demo.vercel.app",
         status: "live",
-        credentials: null,
+        credentials: "Email: admin@siteguard.com | Pass: siteguard123",
         githubUrl: "https://github.com/dafaadhari/qshe-inspection",
         highlights: {
             en: [
