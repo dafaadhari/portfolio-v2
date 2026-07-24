@@ -143,21 +143,25 @@ export const experiences = [
     {
         id: 1,
         period: {
-            en: "Nov 2025 - Present",
-            id: "Nov 2025 - Sekarang"
+            en: "Feb 2026 - Present",
+            id: "Februari 2026 – Sekarang"
         },
         role: {
-            en: "Admin, Ops & Finance",
-            id: "Admin Operasional & Keuangan"
+            en: "Freelancer Fullstack Developer",
+            id: "Freelancer Fullstack Developer"
         },
-        company: "CV RAYYAN KARYA",
+        company: "Independen",
         color: "blue",
         description: {
             en: [
-                "Streamlined daily operational workflows, overseeing digital administration, financial management, and logistics to ensure an efficient supply chain for construction materials."
+                "Designed and developed responsive custom web applications for various clients using a wide range of frameworks and libraries such as React.js, Next.js, Laravel, Angular, Svelte, Balsamiq, Figma, Supabase, and others.",
+                "Collaborated directly with clients to analyze business requirements and translate them into functional and efficient software solutions.",
+                "Performed system maintenance, API integration, and database architecture optimization to ensure web application performance and security."
             ],
             id: [
-                "Mengoordinasikan operasional harian perusahaan, mencakup administrasi digital, manajemen keuangan, hingga logistik. Bertanggung jawab memastikan kelancaran alur kerja untuk rantai pasokan material konstruksi."
+                "Merancang dan mengembangkan aplikasi web kustom responsif untuk berbagai klien menggunakan banyak alat Framework dan Library seperti: React.js, Next.js, Laravel, Angular, Svelte, Balsamiq, Figma, SupaBase dan lainnya.",
+                "Berkolaborasi secara langsung dengan klien untuk menganalisis kebutuhan bisnis dan menerjemahkannya menjadi solusi perangkat lunak yang fungsional dan efisien.",
+                "Melakukan pemeliharaan sistem, integrasi API, dan optimalisasi arsitektur basis data untuk memastikan kinerja dan keamanan aplikasi web."
             ]
         }
     },
