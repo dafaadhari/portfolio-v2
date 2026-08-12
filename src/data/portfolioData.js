@@ -10,7 +10,7 @@ export const projects = [
             en: "An integrated enterprise QHSE platform for construction operations, combining digital inspections, equipment monitoring, medical dashboards, and employee passport management in one centralized system.",
             id: "Platform enterprise QHSE terintegrasi untuk operasional konstruksi, menggabungkan inspeksi digital, monitoring alat, dashboard medis, dan manajemen QHSE Passport karyawan dalam satu sistem terpusat."
         },
-        image: "/assets/images/qshe.png",
+        image: "/assets/images/qshe.webp",
         liveUrl: "https://siteguard-demo.vercel.app",
         status: "live",
         credentials: "Email: admin@siteguard.com | Pass: siteguard123",
@@ -37,7 +37,7 @@ export const projects = [
             en: "A dynamic web-based news and media portal developed independently for the DOGMA Community. Built with Laravel to handle content management, article publishing, and community engagement efficiently.",
             id: "Portal berita dan media dinamis berbasis web yang dikembangkan secara mandiri untuk Komunitas DOGMA. Dibangun menggunakan Laravel untuk mengelola konten, publikasi artikel, dan interaksi komunitas secara efisien."
         },
-        image: "/assets/images/dogma.png",
+        image: "/assets/images/dogma.webp",
         liveUrl: "https://dogma.gt.tc/",
         status: "live",
         credentials: null,
@@ -64,7 +64,7 @@ export const projects = [
             en: "Developed a web-based Decision Support System to evaluate and rank education personnel using the Simple Additive Weighting (SAW) method.",
             id: "Sistem Pendukung Keputusan (SPK) berbasis web untuk mengevaluasi dan memeringkat kinerja tenaga kependidikan menggunakan metode Simple Additive Weighting (SAW)."
         },
-        image: "/assets/images/dss.png",
+        image: "/assets/images/dss.webp",
         liveUrl: "https://spksaw.gt.tc",
         status: "live",
         credentials: "Email: review@gmail.com | Pass: review123",
@@ -91,7 +91,7 @@ export const projects = [
             en: "An employee performance management dashboard built using Next.js. Developed as part of a large-scale university ecosystem project during my internship period in 2024.",
             id: "Dasboard manajemen kinerja pegawai yang dibangun menggunakan Next.js. Dikembangkan sebagai bagian dari proyek ekosistem berskala universitas selama masa magang pada tahun 2024."
         },
-        image: "/assets/images/superapps.png",
+        image: "/assets/images/superapps.webp",
         liveUrl: "#",
         status: "internal",
         credentials: null,
@@ -118,7 +118,7 @@ export const projects = [
             en: "A web-based system designed to monitor children's nutrition and detect potential stunting conditions. Provides data visualization and health indicators for early monitoring.",
             id: "Sistem berbasis web yang dirancang untuk memantau gizi anak dan mendeteksi potensi stunting. Dilengkapi dengan visualisasi data dan indikator kesehatan untuk pemantauan sejak dini."
         },
-        image: "/assets/images/stuntguard.jpg",
+        image: "/assets/images/stuntguard.webp",
         liveUrl: "https://stunt-guard-m44x.vercel.app/",
         status: "live",
         credentials: null,
@@ -220,12 +220,12 @@ export const experiences = [
 export const galleryItems = [
     {
         id: 1,
-        image: "/assets/images/gallery1.jpg",
+        image: "/assets/images/gallery1.webp",
         // Multiple photos -> rendered as a horizontal accordion INSIDE the card.
         images: [
-            "/assets/images/gallery1.jpg",
-            "/assets/images/galleryaquascape1.jpeg",
-            "/assets/images/galleryaquascape2.jpg",
+            "/assets/images/gallery1.webp",
+            "/assets/images/galleryaquascape1.webp",
+            "/assets/images/galleryaquascape2.webp",
         ],
         category: "ENVIRONMENT VISUALIZATION",
         title: "Aquascape Concepts",
@@ -236,7 +236,7 @@ export const galleryItems = [
     },
     {
         id: 2,
-        image: "/assets/images/gallery2.png",
+        image: "/assets/images/gallery2.webp",
         category: "BRANDING & IDENTITY",
         title: "Corporate Visuals",
         description: {
@@ -246,7 +246,7 @@ export const galleryItems = [
     },
     {
         id: 3,
-        image: "/assets/images/gallery3.jpeg",
+        image: "/assets/images/gallery3.webp",
         videoUrl: "/assets/videos/aicinematic.mp4",
         category: "AI CINEMATIC VIDEO",
         title: "Promotional Assets",

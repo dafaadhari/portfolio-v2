@@ -107,6 +107,7 @@ const Gallery = () => {
                       src={selectedItem.videoUrl}
                       controls
                       autoPlay
+                      preload="none"
                       className="w-full h-full object-contain max-h-[500px]"
                       poster={selectedItem.image}
                     />

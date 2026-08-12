@@ -26,9 +26,11 @@ const Hero = () => {
 
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/images/profil2.jpg"
+          src="/assets/images/profil2.webp"
           alt=""
           aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover object-center grayscale opacity-40"
         />
         <div className="absolute inset-0 bg-[#0B0F19]/35 mix-blend-multiply"></div>

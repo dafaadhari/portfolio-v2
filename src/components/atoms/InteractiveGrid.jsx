@@ -149,14 +149,17 @@ const InteractiveGrid = () => {
       }
     };
 
-    const animate = () => {
-      const width = Number(canvas.dataset.width) || canvas.width;
-      const height = Number(canvas.dataset.height) || canvas.height;
+    let isAnimating = false;
 
+    const animate = () => {
       if (!isVisible || !isPageVisible) {
-        animationFrameId = requestAnimationFrame(animate);
+        isAnimating = false;
         return;
       }
+      isAnimating = true;
+
+      const width = Number(canvas.dataset.width) || canvas.width;
+      const height = Number(canvas.dataset.height) || canvas.height;
 
       ctx.clearRect(0, 0, width, height);
       for (let i = 0; i < particles.length; i++) {
@@ -166,12 +169,20 @@ const InteractiveGrid = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    const startAnimationIfNeeded = () => {
+      if (isVisible && isPageVisible && !isAnimating) {
+        animate();
+      }
+    };
+
     const handleVisibilityChange = () => {
       isPageVisible = !document.hidden;
+      startAnimationIfNeeded();
     };
 
     const observer = new IntersectionObserver(([entry]) => {
       isVisible = entry.isIntersecting;
+      startAnimationIfNeeded();
     });
 
     // Attach to parent element bounds
@@ -184,7 +195,7 @@ const InteractiveGrid = () => {
     }
     observer.observe(canvas);
 
-    animate();
+    startAnimationIfNeeded();
 
     return () => {
       window.removeEventListener('resize', handleResize);
