@@ -147,8 +147,8 @@ export const experiences = [
             id: "Februari 2026 – Sekarang"
         },
         role: {
-            en: "Freelancer Fullstack Developer",
-            id: "Freelancer Fullstack Developer"
+            en: "Freelance Fullstack Developer",
+            id: "Freelance Fullstack Developer"
         },
         company: "Independen",
         color: "blue",
