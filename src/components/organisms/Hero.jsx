@@ -52,7 +52,7 @@ const Hero = () => {
 
         {/* Subtitle */}
         <motion.h2 variants={itemVariants} className="text-lg sm:text-xl md:text-2xl tracking-[.25em] text-blue-500 font-bold mb-4 drop-shadow-md">
-          {t('hero_subtitle', 'Junior Software Engineer')}
+          {t('hero_subtitle', 'Fullstack Developer')}
         </motion.h2>
 
         {/* Deskripsi */}
