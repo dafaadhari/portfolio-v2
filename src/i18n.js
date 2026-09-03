@@ -8,7 +8,7 @@ const resources = {
       nav_projects: "Projects",
       nav_gallery: "Gallery",
       nav_contact: "Contact",
-      hero_subtitle: "Junior Software Engineer",
+      hero_subtitle: "Fullstack Developer",
       hero_description: "Informatics Engineering graduate with experience in developing web-based applications and decision support systems. Interested in software development, data-driven systems, and modern web technologies.",
       hero_button: "Resume",
       exp_title: "Experience",
