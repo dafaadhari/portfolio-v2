@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiX } from 'react-icons/fi';
@@ -6,12 +7,14 @@ import { localize } from '../../data/portfolioData';
 
 const FOCUSABLE = 'a[href], button, video[controls], [tabindex="0"]';
 
+// Rendered on <body>, since the story panels create stacking contexts below the navbar.
 const MediaLightbox = ({ item, lang, onClose }) => {
   const { t } = useTranslation();
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
   const caption = localize(item.caption, lang);
   const alt = localize(item.alt, lang);
+  const isGallery = item.kind === 'photos' && item.images.length > 1;
 
   useEffect(() => {
     const opener = document.activeElement;
@@ -47,7 +50,7 @@ const MediaLightbox = ({ item, lang, onClose }) => {
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <motion.div
       ref={dialogRef}
       role="dialog"
@@ -58,7 +61,7 @@ const MediaLightbox = ({ item, lang, onClose }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       onClick={onClose}
-      className="fixed inset-0 z-[60] overflow-y-auto bg-night text-paper"
+      className="fixed inset-0 z-[110] overflow-y-auto bg-night text-paper"
     >
       {/* Stays on screen at any height, including landscape phones. */}
       <button
@@ -67,12 +70,12 @@ const MediaLightbox = ({ item, lang, onClose }) => {
         onClick={onClose}
         className="fixed z-10 top-4 right-4 inline-flex items-center gap-2 rounded-full bg-paper text-night px-4 py-2.5 text-[0.8125rem] font-medium"
       >
-        <FiX aria-hidden="true" className="w-4 h-4" /> {t('media_close', 'Tutup')}
+        <FiX aria-hidden="true" className="w-4 h-4" /> {t('media_close', 'Close')}
       </button>
 
       <div className="min-h-full flex flex-col items-center justify-center gap-3 px-4 py-20">
         <div onClick={(e) => e.stopPropagation()} className="max-w-full">
-          {item.kind === 'video' ? (
+          {item.kind === 'video' && (
             <video
               src={item.videoUrl}
               poster={item.thumb}
@@ -82,27 +85,36 @@ const MediaLightbox = ({ item, lang, onClose }) => {
               preload="none"
               className="max-h-[75dvh] max-w-full rounded-md"
             />
-          ) : (
+          )}
+
+          {item.kind === 'photos' && !isGallery && (
+            <img src={item.images[0]} alt={alt} className="max-h-[75dvh] max-w-full rounded-md" />
+          )}
+
+          {/* Photo accordion: hover or focus a photo to widen it. Phones swipe sideways instead. */}
+          {isGallery && (
             <div
-              tabIndex={item.images.length > 1 ? 0 : undefined}
-              role={item.images.length > 1 ? 'group' : undefined}
-              aria-label={item.images.length > 1 ? t('media_gallery', 'Galeri foto') : undefined}
-              className="flex gap-3 overflow-x-auto snap-x snap-mandatory"
+              role="group"
+              aria-label={t('media_gallery', 'Photo gallery')}
+              className="flex gap-1.5 w-[92vw] max-w-6xl h-[70dvh] overflow-x-auto snap-x snap-mandatory md:overflow-hidden md:snap-none"
             >
               {item.images.map((src, index) => (
-                <img
+                <div
                   key={src}
-                  src={src}
-                  alt={`${alt} (${index + 1}/${item.images.length})`}
-                  className="max-h-[75dvh] max-w-[88vw] w-auto shrink-0 snap-center rounded-md"
-                />
+                  tabIndex={0}
+                  className="group/photo relative h-full shrink-0 basis-[85%] snap-center overflow-hidden rounded-md transition-[flex-grow] duration-500 ease-out md:shrink md:basis-0 md:flex-1 md:hover:flex-[4] md:focus:flex-[4]"
+                >
+                  <img src={src} alt={`${alt} (${index + 1}/${item.images.length})`} className="w-full h-full object-cover" />
+                  <div aria-hidden="true" className="hidden md:block absolute inset-0 bg-night/50 transition-colors duration-500 md:group-hover/photo:bg-night/0 md:group-focus/photo:bg-night/0" />
+                </div>
               ))}
             </div>
           )}
         </div>
         <p className="text-sm text-mist text-center">{caption}</p>
       </div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 

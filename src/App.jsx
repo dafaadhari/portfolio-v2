@@ -40,7 +40,7 @@ function App() {
 
         <main>
           <Hero />
-          <Suspense fallback={<div className="py-24 bg-beton" />}>
+          <Suspense fallback={<div className="relative z-10 py-24 bg-beton" />}>
             <Story />
             <Summary />
             <Contact />

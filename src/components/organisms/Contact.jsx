@@ -45,14 +45,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-night text-paper border-t border-white/15">
-      <div className="px-5 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-2 gap-x-14 gap-y-10">
-        <ScrollReveal>
+    <section id="contact" className="relative z-10 bg-night text-paper border-t border-white/15">
+      <div className="px-5 lg:px-10 pt-24 pb-16 lg:pb-24 grid lg:grid-cols-2 gap-x-14 gap-y-10">
+        <ScrollReveal direction="right">
           <h2 className="font-display font-normal uppercase text-6xl lg:text-8xl leading-[1.1]">
-            {t('contact_title', 'Hubungi saya')}
+            {t('contact_title', "Let's talk")}
           </h2>
           <p className="mt-4 text-lg text-mist">
-            {t('contact_subtitle', 'Soal lowongan, proyek, atau sekadar mau ngobrol.')}
+            {t('contact_subtitle', "Whether it's a job, a project, or just a quick hello, I'd be happy to hear from you.")}
           </p>
           <div className="mt-7 flex flex-wrap gap-2.5">
             <PillLink href={socialLinks.email} variant="outlineDark">
@@ -70,11 +70,11 @@ const Contact = () => {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal>
+        <ScrollReveal direction="left">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-sm font-medium text-mist">
-                {t('contact_label_name', 'Nama')}
+                {t('contact_label_name', 'Name')}
               </label>
               <input
                 type="text"
@@ -82,7 +82,7 @@ const Contact = () => {
                 id="name"
                 required
                 autoComplete="name"
-                placeholder={t('contact_ph_name', 'Nama Anda')}
+                placeholder={t('contact_ph_name', 'Your name')}
                 className={FIELD_CLASS}
               />
             </div>
@@ -97,21 +97,21 @@ const Contact = () => {
                 id="email"
                 required
                 autoComplete="email"
-                placeholder={t('contact_ph_email', 'email@anda.com')}
+                placeholder={t('contact_ph_email', 'your@email.com')}
                 className={FIELD_CLASS}
               />
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="text-sm font-medium text-mist">
-                {t('contact_label_message', 'Pesan')}
+                {t('contact_label_message', 'Message')}
               </label>
               <textarea
                 name="message"
                 id="message"
                 required
                 rows="4"
-                placeholder={t('contact_ph_message', 'Tulis pesan Anda di sini')}
+                placeholder={t('contact_ph_message', 'Write your message here')}
                 className={`${FIELD_CLASS} resize-none`}
               ></textarea>
             </div>

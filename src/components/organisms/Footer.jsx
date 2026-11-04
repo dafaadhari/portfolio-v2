@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-night px-5 lg:px-10 py-8 border-t border-white/15">
+    <footer className="relative z-10 bg-night px-5 lg:px-10 py-8 border-t border-white/15">
       <p className="text-mist text-sm">
         &copy; {currentYear} {t('footer_name', 'Mochamad Dapa Adhari')}
       </p>

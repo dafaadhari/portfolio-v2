@@ -38,27 +38,21 @@ const Navbar = () => {
   }, [isOpen]);
 
   const links = [
-    { href: '#story', label: t('nav_story', 'Cerita'), count: chapters.length },
-    { href: '#projects', label: t('nav_projects', 'Proyek'), count: projects.length },
-    { href: '#contact', label: t('nav_contact', 'Kontak') },
+    { href: '#story', label: t('nav_story', 'Story'), count: chapters.length },
+    { href: '#projects', label: t('nav_projects', 'Projects'), count: projects.length },
+    { href: '#contact', label: t('nav_contact', 'Contact') },
   ];
 
-  const languageButton = (
-    <button
-      type="button"
-      onClick={() => i18n.changeLanguage(otherLanguage)}
-      className={pillClass('outline')}
-    >
-      <span className="sr-only">{t('nav_lang_prefix', 'Ganti bahasa ke')} </span>
-      {otherLanguage.toUpperCase()}
-    </button>
-  );
-
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 border-b ${
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-[background-color,border-color,opacity] duration-500 border-b intro-wait:opacity-0 intro-wait:pointer-events-none ${
       isScrolled ? 'bg-beton/90 backdrop-blur-md border-ink/10' : 'bg-transparent border-transparent'
     }`}>
-      <div ref={menuRef} className="relative flex items-center justify-between gap-3 px-5 lg:px-10 h-[4.25rem] lg:h-20 text-ink">
+      <div
+        ref={menuRef}
+        className={`relative flex items-center justify-between gap-2 px-5 lg:px-10 text-ink transition-[height] duration-300 ${
+          isScrolled ? 'h-[3.75rem] lg:h-16' : 'h-[4.25rem] lg:h-20'
+        }`}
+      >
         <a href="#" className="text-lg font-semibold tracking-wide">
           Dap.
         </a>
@@ -74,9 +68,18 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2 lg:gap-3">
-          {languageButton}
+          <button
+            type="button"
+            onClick={() => i18n.changeLanguage(otherLanguage)}
+            className={pillClass('outline')}
+          >
+            <span className="sr-only">{t('nav_lang_prefix', 'Switch language to')} </span>
+            {otherLanguage.toUpperCase()}
+          </button>
+
           <PillLink href={cvPath(i18n.language)} download>
-            {t('cv_download', 'Unduh CV')} <FiArrowUpRight aria-hidden="true" className="w-3.5 h-3.5" />
+            {t('cv_download', 'Download CV')}
+            <FiArrowUpRight aria-hidden="true" className="hidden sm:block w-3.5 h-3.5" />
           </PillLink>
 
           {/* Hamburger Menu */}
@@ -84,7 +87,7 @@ const Navbar = () => {
             type="button"
             className="lg:hidden p-1.5 rounded-md hover:bg-ink/5 active:bg-ink/10"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label={t('nav_menu', 'Buka atau tutup menu')}
+            aria-label={t('nav_menu', 'Toggle menu')}
             aria-expanded={isOpen}
           >
             <svg aria-hidden="true" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

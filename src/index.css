@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+/* The name is the first thing on screen during the intro, so it waits for its own font
+   instead of flashing a wider fallback. The font is preloaded in index.html. */
 @font-face {
   font-family: 'Anton';
   src: url('/fonts/anton-latin-400.woff2') format('woff2');
   font-weight: 400;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -48,6 +50,12 @@
   --font-story: 'Newsreader', Georgia, serif;
 }
 
+/* html[data-intro] is set by the inline script in index.html and advanced by useIntro:
+   play (loading) -> reveal (photo rising) -> done. "off" skips the intro entirely. */
+@custom-variant intro-play (&:where(html[data-intro="play"] *));
+@custom-variant intro-wait (&:where(html[data-intro="play"] *, html[data-intro="reveal"] *));
+@custom-variant intro-off (&:where(html[data-intro="off"] *));
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-beton);
@@ -72,11 +80,6 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-ink);
-}
-
-/* Keeps anchored sections clear of the fixed navbar. */
-html {
-  scroll-padding-top: 5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

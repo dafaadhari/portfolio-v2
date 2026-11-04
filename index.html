@@ -1,31 +1,48 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/fonts/anton-latin-400.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" as="image" href="/assets/images/profilebaru-cutout-1280.webp"
-    imagesrcset="/assets/images/profilebaru-cutout-800.webp 800w, /assets/images/profilebaru-cutout-1280.webp 1280w"
-    imagesizes="(min-width: 1024px) 70vh, 140vw" fetchpriority="high" />
+  <script>
+    // Decides before the first paint whether the loading intro plays, and starts loading the photo.
+    (function () {
+      var root = document.documentElement;
+      var hasHash = location.hash && location.hash !== '#';
+      var seen = null;
+      try { seen = sessionStorage.getItem('intro-seen'); } catch (e) { /* Storage can be blocked. */ }
+      var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var mode = location.pathname !== '/' || hasHash ? 'off' : seen || calm ? 'static' : 'play';
+      root.dataset.intro = mode;
+      if (mode === 'off') return;
+
+      // Same sources as the photo in Hero.jsx, so it comes straight from the cache there.
+      var photo = new Image();
+      photo.fetchPriority = 'high';
+      photo.sizes = '(min-width: 1024px) 78vh, 115vw';
+      photo.srcset = '/assets/images/profilebaru-cutout-800.webp 800w, /assets/images/profilebaru-cutout-1280.webp 1280w';
+      window.__introPhoto = photo;
+    })();
+  </script>
   <title>Moch Dapa Adhari | Fullstack Developer</title>
   <meta name="title" content="Moch Dapa Adhari | Fullstack Developer" />
   <meta name="description"
-    content="Cerita Moch Dapa Adhari, Fullstack Developer lulusan Teknik Informatika UHAMKA: dari menghindari matematika sampai mengerjakan aplikasi web untuk kampus dan PT PP." />
+    content="The story of Moch Dapa Adhari, a Fullstack Developer and Informatics Engineering graduate from UHAMKA: from avoiding math to building web apps for a campus and PT PP." />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dap-psi.vercel.app/" />
   <meta property="og:title" content="Moch Dapa Adhari | Fullstack Developer" />
   <meta property="og:description"
-    content="Cerita Moch Dapa Adhari, Fullstack Developer lulusan Teknik Informatika UHAMKA: dari menghindari matematika sampai mengerjakan aplikasi web untuk kampus dan PT PP." />
+    content="The story of Moch Dapa Adhari, a Fullstack Developer and Informatics Engineering graduate from UHAMKA: from avoiding math to building web apps for a campus and PT PP." />
   <meta property="og:image" content="https://dap-psi.vercel.app/preview.png" />
 
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://dap-psi.vercel.app/" />
   <meta property="twitter:title" content="Moch Dapa Adhari | Fullstack Developer" />
   <meta property="twitter:description"
-    content="Cerita Moch Dapa Adhari, Fullstack Developer lulusan Teknik Informatika UHAMKA: dari menghindari matematika sampai mengerjakan aplikasi web untuk kampus dan PT PP." />
+    content="The story of Moch Dapa Adhari, a Fullstack Developer and Informatics Engineering graduate from UHAMKA: from avoiding math to building web apps for a campus and PT PP." />
   <meta property="twitter:image" content="https://dap-psi.vercel.app/preview.png" />
 
   <script type="application/ld+json">
@@ -57,7 +74,49 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <!-- Loading line. It moves as the font, the photo, and the app code finish loading. -->
+  <div aria-hidden="true"
+    class="fixed inset-x-0 bottom-0 z-[120] h-1 origin-left bg-ink opacity-0 intro-play:opacity-100 scale-x-[var(--intro-progress,0)] transition-[scale,opacity] duration-300">
+  </div>
+
+  <!-- Shown until the app loads, then replaced by Hero.jsx. These classes must match the section
+       and h1 there, or the name jumps when React takes over. -->
+  <div id="root">
+    <section
+      class="@container sticky top-0 z-0 h-svh overflow-hidden bg-beton text-ink intro-off:hidden [--name:min(calc((100cqw_-_2.5rem)/2.666),17svh)] lg:[--name:min(calc((100cqw_-_3.5rem)/4.362),34svh)]">
+      <h1
+        class="absolute z-[1] inset-x-0 top-[5.75rem] lg:top-[4.5rem] text-center font-display font-normal uppercase leading-[0.98] lg:whitespace-nowrap text-[length:var(--name)] will-change-transform">
+        <span class="block lg:inline">Moch</span>
+        <span class="block lg:inline">Dapa</span>
+        <span class="block">Adhari</span>
+      </h1>
+    </section>
+  </div>
+
+  <script>
+    // Tracks real loading for the line above. This runs after the stylesheet, so the font is known.
+    (function () {
+      var root = document.documentElement;
+      if (root.dataset.intro !== 'play') return;
+
+      var done = 0;
+      var step = function () {
+        done += 1;
+        root.style.setProperty('--intro-progress', Math.min(done / 3, 1));
+      };
+      var photo = window.__introPhoto;
+
+      // useIntro.js calls this for the third step, once the app code is running.
+      window.__introStep = step;
+      window.__introReady = Promise.all([
+        document.fonts.load('400 100px Anton').then(step, step),
+        new Promise(function (resolve) {
+          if (photo.complete) resolve();
+          else photo.onload = photo.onerror = resolve;
+        }).then(step),
+      ]);
+    })();
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
