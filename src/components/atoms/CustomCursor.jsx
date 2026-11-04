@@ -35,14 +35,14 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Ring that trails the pointer (desktop only) */}
+      {/* Ring that trails the pointer (desktop only). The difference blend keeps it visible on any section. */}
       <motion.div
-        className="hidden md:block fixed top-0 left-0 w-8 h-8 border-2 border-blue-500 rounded-full pointer-events-none z-[9999]"
+        className="hidden md:block fixed top-0 left-0 w-8 h-8 border-2 border-white mix-blend-difference rounded-full pointer-events-none z-[9999]"
         style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
       />
       {/* Dot pinned exactly to the pointer */}
       <motion.div
-        className="hidden md:block fixed top-0 left-0 w-1.5 h-1.5 bg-blue-500 rounded-full pointer-events-none z-[10000]"
+        className="hidden md:block fixed top-0 left-0 w-1.5 h-1.5 bg-white mix-blend-difference rounded-full pointer-events-none z-[10000]"
         style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%' }}
       />
     </>

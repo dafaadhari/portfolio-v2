@@ -1,4 +1,5 @@
 import { useState, lazy, Suspense } from 'react';
+import { MotionConfig } from 'framer-motion';
 import CustomCursor from './components/atoms/CustomCursor';
 import Navbar from './components/organisms/Navbar';
 import Hero from './components/organisms/Hero';
@@ -9,10 +10,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Below-the-fold components lazy loaded for optimal initial page rendering
-const Stats = lazy(() => import('./components/organisms/Stats'));
-const Experience = lazy(() => import('./components/organisms/Experience'));
-const Projects = lazy(() => import('./components/organisms/Projects'));
-const Gallery = lazy(() => import('./components/organisms/Gallery'));
+const Story = lazy(() => import('./components/organisms/Story'));
+const Summary = lazy(() => import('./components/organisms/Summary'));
 const Contact = lazy(() => import('./components/organisms/Contact'));
 const NotFound = lazy(() => import('./components/pages/NotFound'));
 
@@ -21,37 +20,40 @@ function App() {
 
   if (currentPath !== '/') {
     return (
-      <div className="relative min-h-screen bg-[#0B0F19] selection:bg-blue-500/30">
-        <CustomCursor />
-        <Suspense fallback={<div className="min-h-screen bg-[#0B0F19]" />}>
-          <NotFound />
-        </Suspense>
-      </div>
+      <MotionConfig reducedMotion="user">
+        <div className="relative min-h-screen bg-beton selection:bg-ink selection:text-paper">
+          <CustomCursor />
+          <Suspense fallback={<div className="min-h-screen bg-beton" />}>
+            <NotFound />
+          </Suspense>
+        </div>
+      </MotionConfig>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0B0F19] selection:bg-blue-500/30">
-      <CustomCursor />
-      <ScrollProgress />
-      <Navbar />
+    <MotionConfig reducedMotion="user">
+      <div className="relative min-h-screen bg-beton selection:bg-ink selection:text-paper">
+        <CustomCursor />
+        <ScrollProgress />
+        <Navbar />
 
-      <main>
-        <Hero />
-        <Suspense fallback={<div className="py-24 bg-[#0B0F19]" />}>
-          <Stats />
-          <Experience />
-          <Projects />
-          <Gallery />
-          <Contact />
-          <ScrollToHash />
-        </Suspense>
+        <main>
+          <Hero />
+          <Suspense fallback={<div className="py-24 bg-beton" />}>
+            <Story />
+            <Summary />
+            <Contact />
+            <ScrollToHash />
+          </Suspense>
+        </main>
+
         <Footer />
-      </main>
 
-      <Analytics />
-      <SpeedInsights />
-    </div>
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </MotionConfig>
   );
 }
 
