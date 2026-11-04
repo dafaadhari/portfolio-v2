@@ -1,12 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { FiArrowUpRight } from 'react-icons/fi';
+import PillLink from '../atoms/PillLink';
+import { pillClass } from '../atoms/pillStyles';
+import { cvPath } from '../../data/portfolioData';
 
 const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const { i18n, t } = useTranslation();
+  const otherLanguage = i18n.language === 'en' ? 'id' : 'en';
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
@@ -31,60 +37,60 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const { i18n, t } = useTranslation();
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'id' : 'en';
-    i18n.changeLanguage(newLang);
-  };
+  const links = [
+    { href: '#story', label: t('nav_story', 'Story') },
+    { href: '#experience', label: t('nav_experience', 'Experience') },
+    { href: '#projects', label: t('nav_projects', 'Projects') },
+    { href: '#contact', label: t('nav_contact', 'Contact') },
+  ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'py-4 backdrop-blur-xl bg-[#0B0F19]/20 border-b border-white/5 shadow-lg' : 'py-6 bg-transparent border-b border-transparent'
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-[background-color,border-color,opacity] duration-500 border-b intro-wait:opacity-0 intro-wait:pointer-events-none ${
+      isScrolled ? 'bg-beton/90 backdrop-blur-md border-ink/10' : 'bg-transparent border-transparent'
     }`}>
-      <div ref={menuRef} className="max-w-6xl mx-auto px-6 flex justify-between items-center relative">
-        
-        {/* Logo */}
-        <a href="#" className="text-white font-extrabold tracking-widest text-lg md:text-xl hover:opacity-80 transition-opacity">
-          Dap<span className="text-blue-600">.</span>
+      <div
+        ref={menuRef}
+        className={`relative flex items-center justify-between gap-2 px-5 lg:px-10 text-ink transition-[height] duration-300 ${
+          isScrolled ? 'h-[3.75rem] lg:h-16' : 'h-[4.25rem] lg:h-20'
+        }`}
+      >
+        <a href="#" className="text-lg font-semibold tracking-wide">
+          Dap.
         </a>
-        
+
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 items-center">
-          <a href="#experience" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_experience', 'Experience')}</a>
-          <a href="#projects" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_projects', 'Projects')}</a>
-          <a href="#gallery" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_gallery', 'Gallery')}</a>
-          <a href="#contact" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">{t('nav_contact', 'Contact')}</a>
-          
-          {/* Language Switcher (Desktop) */}
-          <button 
-            onClick={toggleLanguage}
-            className="px-3 py-1.5 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white active:bg-white/20 active:scale-95"
-          >
-            {i18n.language === 'en' ? 'ID' : 'EN'}
-          </button>
+        <div className="hidden lg:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
+          {links.map((link) => (
+            <a key={link.href} href={link.href} className="text-sm font-medium hover:underline underline-offset-4">
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        {/* Mobile Controls */}
-        <div className="md:hidden flex items-center gap-4">
-          
-          {/* Language Switcher (Mobile) */}
-          <button 
-            onClick={toggleLanguage}
-            className="px-2.5 py-1 text-xs font-bold tracking-widest transition-all duration-300 border border-gray-700 rounded-md hover:bg-white/10 text-white active:bg-white/20 active:scale-95"
-            
+        <div className="flex items-center gap-2 lg:gap-3">
+          <button
+            type="button"
+            onClick={() => i18n.changeLanguage(otherLanguage)}
+            className={pillClass('outline')}
           >
-            {i18n.language === 'en' ? 'ID' : 'EN'}
+            <span className="sr-only">{t('nav_lang_prefix', 'Switch language to')} </span>
+            {otherLanguage.toUpperCase()}
           </button>
+
+          <PillLink href={cvPath(i18n.language)} download>
+            {t('cv_download', 'Download CV')}
+            <FiArrowUpRight aria-hidden="true" className="hidden sm:block w-3.5 h-3.5" />
+          </PillLink>
 
           {/* Hamburger Menu */}
           <button
-            className="text-white focus:outline-none p-1.5 rounded-md hover:bg-white/5 transition-colors active:bg-white/10 active:scale-95"
+            type="button"
+            className="lg:hidden p-1.5 rounded-md hover:bg-ink/5 active:bg-ink/10"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label={t('nav_menu', 'Toggle menu')}
             aria-expanded={isOpen}
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -94,25 +100,30 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="lg:hidden absolute top-full right-5 mt-1 w-44 bg-white rounded-lg py-2 shadow-lg border border-ink/10"
+            >
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-ink hover:bg-ink/5"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* Mobile Dropdown Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -15, scale: 0.95 }} 
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="md:hidden absolute top-full right-6 mt-4 w-40 bg-[#121826] border border-white/10 rounded-xl py-4 px-5 flex flex-col gap-5 shadow-2xl origin-top-right"
-          >
-            <a href="#experience" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_experience', 'Experience')}</a>
-            <a href="#projects" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_projects', 'Projects')}</a>
-            <a href="#gallery" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_gallery', 'Gallery')}</a>
-            <a href="#contact" onClick={() => setIsOpen(false)} className="text-sm font-medium text-neutral-300 hover:text-white text-left transition-colors active:text-blue-400">{t('nav_contact', 'Contact')}</a>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 };

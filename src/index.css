@@ -1,28 +1,91 @@
 @import "tailwindcss";
 
+/* The name is the first thing on screen during the intro, so it waits for its own font
+   instead of flashing a wider fallback. The font is preloaded in index.html. */
+@font-face {
+  font-family: 'Anton';
+  src: url('/fonts/anton-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/be-vietnam-pro-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/be-vietnam-pro-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/be-vietnam-pro-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --color-beton: #cfd2d4;
+  --color-ink: #0d0f12;
+  --color-ink-soft: #2b2f35;
+  --color-night: #0b0f19;
+  --color-paper: #f4f5f6;
+  --color-mist: #c9cdd3;
+
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --font-story: 'Newsreader', Georgia, serif;
+}
+
+/* html[data-intro] is set by the inline script in index.html and advanced by useIntro:
+   play (loading) -> reveal (photo rising) -> done. "off" skips the intro entirely. */
+@custom-variant intro-play (&:where(html[data-intro="play"] *));
+@custom-variant intro-wait (&:where(html[data-intro="play"] *, html[data-intro="reveal"] *));
+@custom-variant intro-off (&:where(html[data-intro="off"] *));
+
 body {
-  font-family: 'Gabarito', 'Be Vietnam Pro', sans-serif;
-  background-color: #0B0F19;
-  color: #ffffff;
+  font-family: var(--font-sans);
+  background-color: var(--color-beton);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* Custom Scrollbar UI */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #0B0F19; 
+  background: var(--color-beton);
 }
 ::-webkit-scrollbar-thumb {
-    background: #1e293b; 
-    border-radius: 5px;
+  background: var(--color-ink-soft);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #2563EB; 
+  background: var(--color-ink);
 }
 
-html {
+@media (prefers-reduced-motion: no-preference) {
+  html {
     scroll-behavior: smooth;
+  }
 }
 
 html, body {

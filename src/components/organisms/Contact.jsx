@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiInstagram } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
-import ScrollReveal from '../atoms/ScrollReveal'; 
+import ScrollReveal from '../atoms/ScrollReveal';
+import PillLink from '../atoms/PillLink';
+import { socialLinks } from '../../data/portfolioData';
+
+const FIELD_CLASS =
+  'w-full bg-white/5 border border-white/25 rounded-lg px-4 py-3.5 text-paper placeholder:text-mist/80 focus:border-paper focus:bg-white/10 transition-colors';
 
 const Contact = () => {
   const { t } = useTranslation();
   const [statusKey, setStatusKey] = useState("contact_btn_send");
   const isSending = statusKey === "contact_btn_sending";
+  const hasResult = statusKey === "contact_btn_success" || statusKey === "contact_btn_error";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +32,7 @@ const Contact = () => {
 
       if (data.success) {
         setStatusKey("contact_btn_success");
-        e.target.reset(); 
+        e.target.reset();
         setTimeout(() => setStatusKey("contact_btn_send"), 3000);
       } else {
         console.error("Error:", data);
@@ -39,62 +45,74 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#0B0F19] py-32 text-center overflow-hidden">
-      <div className="max-w-3xl mx-auto px-6">
-        
-        <ScrollReveal direction="down" delay={0}>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+    <section id="contact" className="relative z-10 bg-night text-paper border-t border-white/15">
+      <div className="px-5 lg:px-10 pt-24 pb-16 lg:pb-24 grid lg:grid-cols-2 gap-x-14 gap-y-10">
+        <ScrollReveal direction="right">
+          <h2 className="font-display font-normal uppercase text-6xl lg:text-8xl leading-[1.1]">
             {t('contact_title', 'Get In Touch')}
           </h2>
+          <p className="mt-4 text-lg text-mist">
+            {t('contact_subtitle', "Whether it's a job, a project, or just a quick hello, I'd be happy to hear from you.")}
+          </p>
+          <div className="mt-7 flex flex-wrap gap-2.5">
+            <PillLink href={socialLinks.email} variant="outlineDark">
+              <FiMail aria-hidden="true" className="w-3.5 h-3.5" /> {t('contact_social_email', 'Email')}
+            </PillLink>
+            <PillLink href={socialLinks.linkedin} external variant="outlineDark">
+              <FiLinkedin aria-hidden="true" className="w-3.5 h-3.5" /> {t('contact_social_linkedin', 'LinkedIn')}
+            </PillLink>
+            <PillLink href={socialLinks.github} external variant="outlineDark">
+              <FiGithub aria-hidden="true" className="w-3.5 h-3.5" /> {t('contact_social_github', 'GitHub')}
+            </PillLink>
+            <PillLink href={socialLinks.instagram} external variant="outlineDark">
+              <FiInstagram aria-hidden="true" className="w-3.5 h-3.5" /> {t('contact_social_instagram', 'Instagram')}
+            </PillLink>
+          </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="none" delay={0.2}>
-          <p className="text-neutral-400 mb-12 text-lg font-light max-w-lg mx-auto">
-            {t('contact_subtitle', 'Feel free to reach out for collaboration, project discussion, or job opportunities.')}
-          </p>
-        </ScrollReveal>
-        
-        <ScrollReveal direction="up" delay={0.4}>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left max-w-xl mx-auto mb-16">
+        <ScrollReveal direction="left">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-sm font-medium text-neutral-400">
+              <label htmlFor="name" className="text-sm font-medium text-mist">
                 {t('contact_label_name', 'Name')}
               </label>
-              <input 
-                type="text" 
-                name="name" 
-                id="name" 
-                required 
-                placeholder={t('contact_ph_name', 'Your Name')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                autoComplete="name"
+                placeholder={t('contact_ph_name', 'Your name')}
+                className={FIELD_CLASS}
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-sm font-medium text-neutral-400">
+              <label htmlFor="email" className="text-sm font-medium text-mist">
                 {t('contact_label_email', 'Email')}
               </label>
-              <input 
-                type="email" 
-                name="email" 
-                id="email" 
-                required 
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                autoComplete="email"
                 placeholder={t('contact_ph_email', 'your@email.com')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+                className={FIELD_CLASS}
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-medium text-neutral-400">
+              <label htmlFor="message" className="text-sm font-medium text-mist">
                 {t('contact_label_message', 'Message')}
               </label>
-              <textarea 
-                name="message" 
-                id="message" 
-                required 
+              <textarea
+                name="message"
+                id="message"
+                required
                 rows="4"
-                placeholder={t('contact_ph_message', 'How can I help you?')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all resize-none"
+                placeholder={t('contact_ph_message', 'Write your message here')}
+                className={`${FIELD_CLASS} resize-none`}
               ></textarea>
             </div>
 
@@ -102,41 +120,17 @@ const Contact = () => {
               type="submit"
               disabled={isSending}
               aria-busy={isSending}
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2 active:bg-blue-500 active:shadow-[0_0_30px_rgba(37,99,235,0.7)] active:scale-98 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:shadow-[0_0_15px_rgba(37,99,235,0.3)] disabled:active:scale-100"
+              className="w-full bg-paper text-night font-semibold py-3.5 rounded-lg transition-colors duration-200 hover:bg-white disabled:opacity-70"
             >
               {t(statusKey)}
             </button>
+
+            {/* Announces the result to screen readers, since only the button text changes. */}
+            <p role="status" className="sr-only">
+              {hasResult ? t(statusKey) : ''}
+            </p>
           </form>
         </ScrollReveal>
-
-        <ScrollReveal direction="left" delay={0.6}>
-          <div className="flex justify-center gap-6 mb-20">
-            <a 
-              aria-label="GitHub Profile"
-              href="https://github.com/dafaadhari" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-white hover:text-black hover:border-white transition-all duration-300 active:scale-90 active:bg-white active:text-black active:border-white">
-              <FiGithub className="w-6 h-6" />
-            </a>
-            
-            <a 
-              aria-label="LinkedIn Profile"
-              href="https://www.linkedin.com/in/dafa-adhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all duration-300 active:scale-90 active:bg-[#0077b5] active:text-white active:border-[#0077b5]">
-              <FiLinkedin className="w-6 h-6" />
-            </a>
-            
-            <a 
-              aria-label="Send Email"
-              href="mailto:dafaadhari01@gmail.com" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all duration-300 active:scale-90 active:bg-red-500 active:text-white active:border-red-500">
-              <FiMail className="w-6 h-6" />
-            </a>
-            
-            <a 
-              aria-label="Instagram Profile"
-              href="https://www.instagram.com/mochdafaadhari/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 text-neutral-400 rounded-full flex items-center justify-center border border-white/10 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all duration-300 active:scale-90 active:bg-pink-600 active:text-white active:border-pink-600">
-              <FiInstagram className="w-6 h-6" />
-            </a>
-          </div>
-        </ScrollReveal>
-
       </div>
     </section>
   );
