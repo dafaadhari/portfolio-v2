@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dap-psi.vercel.app/sitemap.xml
