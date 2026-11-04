@@ -6,8 +6,15 @@ import { localize } from '../../data/portfolioData';
 const ChapterPanel = ({ chapter, number, total, lang, dark = false, lead, footer, children }) => {
   const { t } = useTranslation();
   const numeral = localize(chapter.numeral, lang);
+  const numeralTag = chapter.numeralTag && localize(chapter.numeralTag, lang);
   const period = localize(chapter.period, lang);
   const titleId = `${chapter.id}-title`;
+
+  // Sizes keep each numeral on one line down to 320px, in both languages.
+  let numeralSize = 'text-[7.5rem] xl:text-[9rem]';
+  if (chapter.isPart) numeralSize = 'text-[clamp(2.75rem,14vw,4rem)]';
+  else if (numeralTag) numeralSize = 'text-[min(7.5rem,30.5vw)] xl:text-[9rem]';
+  else if (numeral.length > 4) numeralSize = 'text-[clamp(4rem,20vw,7rem)] lg:text-[5.25rem] xl:text-[7rem]';
 
   const story = (
     <>
@@ -46,11 +53,10 @@ const ChapterPanel = ({ chapter, number, total, lang, dark = false, lead, footer
               </p>
               <p
                 aria-hidden="true"
-                className={`font-display uppercase leading-[1.05] mt-1 mb-4 ${
-                  numeral.length > 4 ? 'text-[clamp(4rem,20vw,7rem)] lg:text-[5.25rem] xl:text-[7rem]' : 'text-[7.5rem] xl:text-[9rem]'
-                }`}
+                className={`font-display uppercase whitespace-nowrap leading-[1.05] mt-1 mb-4 ${numeralSize}`}
               >
                 {numeral}
+                {numeralTag && <span className="ml-[0.3em] text-[0.3em]">{numeralTag}</span>}
               </p>
               <h2 id={titleId} className="text-3xl xl:text-[2.5rem] font-semibold tracking-tight leading-[1.14] mb-5 max-w-3xl">
                 {localize(chapter.title, lang)}.

@@ -17,7 +17,16 @@ export const socialLinks = {
   email: 'mailto:dafaadhari01@gmail.com',
 };
 
-export const projectCategories = ['Full-Stack', 'Front-End'];
+export const projectCategories = ['Full-Stack', 'Front-End', 'Mobile'];
+
+// Has the same shape as a media item, so MediaLightbox can open a screen at full size.
+const appScreen = (name, caption, alt) => ({
+  id: name,
+  kind: 'photos',
+  images: [`/assets/images/construction-${name}.webp`],
+  caption,
+  alt,
+});
 
 export const projects = [
   {
@@ -31,7 +40,8 @@ export const projects = [
       en: 'A QHSE web app for PT PP (Persero) Tbk with four modules: Inspection, Equipment Monitoring, Medical, and Passport. The demo version is called SiteGuard.',
       id: 'Aplikasi web QHSE untuk PT PP (Persero) Tbk dengan empat modul: Inspection, Monitoring Equipment, Medis, dan Passport. Versi demonya bernama SiteGuard.',
     },
-    image: '/assets/images/qhse-demo.webp',
+    image: '/assets/images/qhse.png',
+    imageClass: 'aspect-[1918/859]', // Wider than 16:9, and the logo at its left edge must not be cropped.
     liveUrl: 'https://siteguard-demo.vercel.app',
     status: 'live',
     credentials: 'Email: admin@siteguard.com | Pass: siteguard123',
@@ -106,6 +116,90 @@ export const projects = [
     },
   },
   {
+    id: 'construction',
+    chapterId: 'chapter-3',
+    category: 'Mobile',
+    title: 'Construction App',
+    period: { en: 'Jun 2025 – Dec 2026', id: 'Jun 2025 – Des 2026' },
+    stack: 'Kotlin, Jetpack Compose',
+    description: {
+      en: 'An Android app for running the logistics of construction projects at Rayyan Karya: keeping track of projects, recording material deliveries, and billing clients, with delivery notes and invoices ready to print as PDFs.',
+      id: 'Aplikasi Android untuk mengurus logistik proyek konstruksi di Rayyan Karya: memantau proyek, mencatat pengiriman material, dan menagih klien, lengkap dengan surat jalan dan invoice yang siap dicetak sebagai PDF.',
+    },
+    image: null,
+    screens: [
+      appScreen(
+        'dashboard',
+        { en: 'Dashboard', id: 'Dasbor' },
+        {
+          en: 'Dashboard with active projects, pending deliveries, and remaining billing',
+          id: 'Dasbor berisi proyek aktif, pengiriman tertunda, dan sisa penagihan',
+        }
+      ),
+      appScreen(
+        'delivery-log',
+        { en: 'Delivery log', id: 'Log surat jalan' },
+        {
+          en: 'List of delivery notes with their material, driver, and status',
+          id: 'Daftar surat jalan berisi material, sopir, dan statusnya',
+        }
+      ),
+      appScreen(
+        'delivery-form',
+        { en: 'New delivery note', id: 'Buat surat jalan' },
+        {
+          en: 'Form for a new delivery note, with project, material, volume, driver, and photo proof',
+          id: 'Form surat jalan baru berisi proyek, material, volume, sopir, dan foto bukti',
+        }
+      ),
+      appScreen(
+        'delivery-note',
+        { en: 'Delivery note PDF', id: 'PDF surat jalan' },
+        { en: 'Print preview of a delivery note', id: 'Pratinjau cetak surat jalan' }
+      ),
+      appScreen(
+        'billing',
+        { en: 'Billing per project', id: 'Penagihan per proyek' },
+        {
+          en: 'Billing page with the contract value, materials sent, payments, and amount left to bill for each project',
+          id: 'Halaman penagihan berisi nilai kontrak, material terkirim, pembayaran, dan sisa tagihan tiap proyek',
+        }
+      ),
+      appScreen(
+        'payment',
+        { en: 'Recording a payment', id: 'Catat pembayaran' },
+        { en: 'Form for recording a client payment', id: 'Form pencatatan pembayaran klien' }
+      ),
+      appScreen(
+        'invoice',
+        { en: 'Invoice PDF', id: 'PDF invoice' },
+        { en: 'Print preview of an invoice', id: 'Pratinjau cetak invoice' }
+      ),
+    ],
+    liveUrl: null,
+    status: 'internal',
+    credentials: null,
+    githubUrl: null,
+    highlights: {
+      en: [
+        'Native Android app built with Kotlin and Jetpack Compose, using the MVVM architecture.',
+        'Data is stored locally on the device, so field records can still be saved without a connection.',
+        'Four modules: Dashboard, Logistics & Delivery Notes, Invoice Creator, and Billing & Finance.',
+        "Invoices are calculated automatically per term or down payment, with the amount written out in words and the Director's stamp and signature.",
+        'Delivery notes signed by Administration and invoices can both be printed as PDFs.',
+        'Tracks outstanding receivables per project and records client payments.',
+      ],
+      id: [
+        'Aplikasi Android native dengan Kotlin dan Jetpack Compose, memakai arsitektur MVVM.',
+        'Data disimpan lokal di perangkat, jadi pencatatan di lapangan tetap jalan walau tidak ada koneksi.',
+        'Empat modul: Dasbor, Logistik & Surat Jalan, Invoice Creator, serta Tagihan & Keuangan.',
+        'Invoice dihitung otomatis per termin atau DP, lengkap dengan teks terbilang serta stempel dan tanda tangan Direktur.',
+        'Surat jalan bertanda tangan Administrasi dan invoice bisa langsung dicetak sebagai PDF.',
+        'Memantau piutang per proyek dan mencatat pembayaran klien.',
+      ],
+    },
+  },
+  {
     id: 'superapps',
     chapterId: 'chapter-2',
     category: 'Front-End',
@@ -166,6 +260,7 @@ export const projects = [
 export const chapters = [
   {
     id: 'chapter-1',
+    number: 1,
     numeral: { en: '2021', id: '2021' },
     period: { en: '2021–2023', id: '2021–2023' },
     mapLabel: { en: 'The shock phase', id: 'Fase kaget' },
@@ -184,6 +279,7 @@ export const chapters = [
   },
   {
     id: 'chapter-2',
+    number: 2,
     numeral: { en: '2024', id: '2024' },
     period: { en: '2024–2025', id: '2024–2025' },
     mapLabel: { en: 'LPPM & Komisariat', id: 'LPPM & Komisariat' },
@@ -202,6 +298,7 @@ export const chapters = [
   },
   {
     id: 'chapter-3',
+    number: 3,
     numeral: { en: '2025', id: '2025' },
     period: { en: '2025', id: '2025' },
     mapLabel: { en: 'Videos & Android', id: 'Video & Android' },
@@ -209,21 +306,23 @@ export const chapters = [
     paragraphs: {
       en: [
         "In mid-2025 I took on something a little different: branding materials and promotional videos for CV Rayyan Karya and Ahmad Jaya Group, followed by public health education videos with Puskesmas Mekarsari. It started because people asked, and to be honest, I enjoy videography a little and I can do it.",
-        'For Rayyan Karya and Ahmad Jaya, I also built an Android app for monitoring their projects.',
+        "For Rayyan Karya and Ahmad Jaya, I also built an Android app to help run the logistics of their construction projects. It records material deliveries to each site, works out what's left to bill, and prints delivery notes and invoices as PDFs. Since the signal on a site can be unreliable, records are saved right on the phone, so work doesn't stop when the connection drops.",
         "Then in September 2025 I picked up aquascaping. Nobody asked me for this one. It's simply my hobby.",
       ],
       id: [
         'Pertengahan 2025 saya mengerjakan sesuatu yang agak berbeda: materi branding dan video promosi untuk CV Rayyan Karya dan Ahmad Jaya Group, lalu video edukasi kesehatan bersama Puskesmas Mekarsari. Awalnya karena memang ada permintaan, dan jujur saja, saya sedikit suka dan bisa videografi.',
-        'Untuk Rayyan Karya dan Ahmad Jaya, saya juga membuat aplikasi Android untuk memantau proyek mereka.',
+        'Untuk Rayyan Karya dan Ahmad Jaya, saya juga membuat aplikasi Android untuk mengurus logistik proyek konstruksi mereka. Aplikasinya mencatat pengiriman material ke tiap lokasi, menghitung sisa tagihan, dan mencetak surat jalan serta invoice sebagai PDF. Karena sinyal di lokasi proyek tidak selalu bagus, datanya disimpan langsung di HP, jadi pencatatan tetap jalan walau koneksi putus.',
         'Lalu di September 2025 saya mulai main aquascape. Kalau yang ini tidak ada yang minta, murni hobi saya.',
       ],
     },
-    projectIds: [],
+    projectIds: ['construction'],
     hasMedia: true,
   },
   {
     id: 'chapter-4',
+    number: 4,
     numeral: { en: '2026', id: '2026' },
+    numeralTag: { en: 'Early', id: 'Awal' },
     period: { en: 'Early 2026', id: 'Awal 2026' },
     mapLabel: { en: 'My thesis', id: 'Skripsi' },
     title: { en: 'Math, again', id: 'Ketemu matematika lagi' },
@@ -241,7 +340,10 @@ export const chapters = [
   },
   {
     id: 'chapter-5',
-    numeral: { en: '2026', id: '2026' },
+    // Continues chapter 4 on its own panel, so it doesn't repeat the giant year.
+    number: 4,
+    isPart: true,
+    numeral: { en: 'Mid', id: 'Pertengahan' },
     period: { en: 'Mid 2026', id: 'Pertengahan 2026' },
     mapLabel: { en: 'DOGMA & PT PP', id: 'DOGMA & PT PP' },
     title: { en: 'Maybe this was meant to be', id: 'Mungkin ini jodohnya' },
@@ -261,17 +363,18 @@ export const chapters = [
   },
   {
     id: 'chapter-6',
+    number: 5,
     numeral: { en: 'Now', id: 'Sekarang' },
     period: { en: 'Now', id: 'Sekarang' },
     mapLabel: { en: 'Rutan Pandeglang', id: 'Rutan Pandeglang' },
     title: { en: 'Interning again, this time at a detention center', id: 'Magang lagi, kali ini di rutan' },
     paragraphs: {
       en: [
-        "In August 2026 I was accepted into MagangHub Cohort 2 Batch 1, so until February 2027 I'm interning at Rutan Kelas IIB Pandeglang, a detention center, as an Operations Service Operator. The work covers both hardware and software, though it's mostly hardware. On the software side, I'm building a web-based information system for the center on my own, and it will become my final project.",
+        "In August 2026 I was accepted into MagangHub Cohort 2 Batch 1, so until February 2027 I'm interning at Rutan Kelas IIB Pandeglang, a detention center, as an IT Operator. The work covers both hardware and software, though it's mostly hardware. On the software side, I'm building a web-based information system for the center on my own, and it will become my final project.",
         "My freelance work is still going, and I'm also looking for a full-time onsite job. If you have a role that might fit, or you just want to say hi, I'd love to hear from you.",
       ],
       id: [
-        'Agustus 2026 saya lolos MagangHub Angkatan 2 Batch 1, jadi sampai Februari 2027 saya magang di Rutan Kelas IIB Pandeglang sebagai Operator Layanan Operasional. Kerjaannya mencakup hardware dan software, walaupun kebanyakan hardware. Untuk software, saya sedang mengerjakan sendiri sistem informasi berbasis web untuk rutan, yang nantinya jadi final project saya.',
+        'Agustus 2026 saya lolos MagangHub Angkatan 2 Batch 1, jadi sampai Februari 2027 saya magang di Rutan Kelas IIB Pandeglang sebagai IT Operator. Kerjaannya mencakup hardware dan software, walaupun kebanyakan hardware. Untuk software, saya sedang mengerjakan sendiri sistem informasi berbasis web untuk rutan, yang nantinya jadi final project saya.',
         'Freelance saya masih jalan, dan saya juga masih mencari pekerjaan full-time onsite. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
       ],
     },
@@ -279,11 +382,23 @@ export const chapters = [
   },
 ];
 
+export const chapterCount = new Set(chapters.map((chapter) => chapter.number)).size;
+
 export const mediaItems = [
   {
     id: 'aquascape',
     kind: 'photos',
-    thumb: '/assets/images/galleryaquascape2.webp',
+    title: 'Aquascape',
+    description: {
+      en: 'My own aquascape, a Natural Style layout in a 25 cm cube tank.',
+      id: 'Aquascape buatan saya sendiri, bergaya Natural di tank kubus 25 cm.',
+    },
+    tag: { en: 'A hobby since September 2025', id: 'Hobi sejak September 2025' },
+    thumbs: [
+      '/assets/images/aquascape-thumb-1.webp',
+      '/assets/images/aquascape-thumb-2.webp',
+      '/assets/images/aquascape-thumb-3.webp',
+    ],
     images: [
       '/assets/images/galleryaquascape2.webp',
       '/assets/images/galleryaquascape1.webp',
@@ -298,63 +413,101 @@ export const mediaItems = [
   {
     id: 'promo-video',
     kind: 'video',
+    title: { en: 'AI Promo Video', id: 'Video Promosi AI' },
+    description: {
+      en: "A short cinematic promo video made with Google's Veo AI in Gemini, for a distributor and contractor of lightweight steel, ceilings, roof tiles, and other building materials.",
+      id: 'Video promosi sinematik singkat yang dibuat dengan Veo AI dari Google Gemini, tentang distributor dan kontraktor baja ringan, plafon, atap genteng, dan material bangunan lainnya.',
+    },
+    tag: 'Veo AI, Google Gemini',
     thumb: '/assets/images/promo-video-poster.webp',
     videoUrl: '/assets/videos/aicinematic.mp4',
-    caption: { en: 'A promotional video, made with AI.', id: 'Video promosi, dibuat dengan AI.' },
-    alt: { en: 'Promotional video', id: 'Video promosi' },
-  },
-  {
-    id: 'branding',
-    kind: 'photos',
-    thumb: '/assets/images/gallery2.webp',
-    images: ['/assets/images/gallery2.webp'],
-    caption: {
-      en: 'A construction visual for Rayyan Karya, made with AI.',
-      id: 'Visual konstruksi untuk Rayyan Karya, dibuat dengan AI.',
-    },
-    alt: {
-      en: 'Two workers in hard hats reviewing a plan at a construction site',
-      id: 'Dua pekerja berhelm membaca gambar kerja di lokasi konstruksi',
-    },
+    caption: { en: 'A promo video made with Veo AI.', id: 'Video promosi yang dibuat dengan Veo AI.' },
+    alt: { en: 'Play the promo video', id: 'Putar video promosi' },
   },
 ];
 
+// Work comes first, since it's what most visitors look for here. The story covers the details.
 export const experiences = [
   {
     id: 'rutan',
-    role: { en: 'Operations Service Operator (Intern)', id: 'Operator Layanan Operasional (Magang)' },
+    current: true,
+    role: { en: 'IT Operator (Intern)', id: 'IT Operator (Magang)' },
     org: 'Rutan Kelas IIB Pandeglang',
     period: { en: 'Aug 2026 – Feb 2027', id: 'Agt 2026 – Feb 2027' },
+    description: {
+      en: [
+        'Maintain and repair office IT hardware, including printers, CCTV monitors, and network devices.',
+        'Develop internal web apps and portals with PHP, Laravel, and Blade.',
+      ],
+      id: [
+        'Memelihara dan memperbaiki perangkat IT kantor, termasuk printer, monitor CCTV, dan jaringan.',
+        'Mengembangkan aplikasi dan portal web internal dengan PHP, Laravel, dan Blade.',
+      ],
+    },
   },
   {
     id: 'freelance',
+    current: true,
     role: 'Freelance Fullstack Developer',
     org: { en: 'Independent', id: 'Independen' },
     period: { en: 'Feb 2026 – Present', id: 'Feb 2026 – Sekarang' },
-  },
-  {
-    id: 'komisariat',
-    role: { en: 'Campus Chapter Chair (Ketua Komisariat)', id: 'Ketua Komisariat' },
-    org: 'UHAMKA',
-    period: 'Apr 2024 – Apr 2025',
+    description: {
+      en: [
+        'Build custom web apps for clients with React, Next.js, Laravel, and Supabase.',
+        'Work directly with clients, from analyzing their needs to maintaining the finished system.',
+      ],
+      id: [
+        'Membuat aplikasi web kustom untuk klien dengan React, Next.js, Laravel, dan Supabase.',
+        'Bekerja langsung dengan klien, dari menganalisis kebutuhan sampai memelihara sistemnya.',
+      ],
+    },
   },
   {
     id: 'lppm',
     role: { en: 'Front-End Developer (Intern)', id: 'Front-End Developer (Magang)' },
     org: 'LPPM UHAMKA',
     period: 'Mar 2024 – Mar 2025',
+    description: {
+      en: [
+        'Built responsive interfaces with Next.js, Tailwind CSS, and Ant Design.',
+        'Turned Figma designs into reusable components and connected them to APIs for the campus Super Apps.',
+      ],
+      id: [
+        'Membangun antarmuka responsif dengan Next.js, Tailwind CSS, dan Ant Design.',
+        'Mengubah desain Figma menjadi komponen yang bisa dipakai ulang dan menghubungkannya ke API untuk Super Apps kampus.',
+      ],
+    },
   },
   {
     id: 'vocasia',
     role: { en: 'Front-End Developer (Independent Study)', id: 'Front-End Developer (Studi Independen)' },
     org: 'Vocasia',
     period: { en: 'Aug – Dec 2023', id: 'Agt – Des 2023' },
+    description: {
+      en: [
+        'Built web interfaces with React and Tailwind CSS in an Agile team.',
+        'Turned API data into interactive charts with Chart.js.',
+      ],
+      id: [
+        'Membangun antarmuka web dengan React dan Tailwind CSS dalam tim Agile.',
+        'Mengubah data API menjadi grafik interaktif dengan Chart.js.',
+      ],
+    },
   },
+];
+
+export const background = [
   {
     id: 'uhamka',
     role: { en: 'Bachelor of Engineering, Informatics', id: 'Sarjana Teknik, Teknik Informatika' },
-    org: 'UHAMKA',
+    org: { en: 'UHAMKA · GPA 3.39 / 4.00', id: 'UHAMKA · IPK 3.39 / 4.00' },
     period: 'Sep 2021 – Feb 2026',
+  },
+  {
+    id: 'komisariat',
+    role: { en: 'Campus Chapter Chair (Ketua Komisariat)', id: 'Ketua Komisariat' },
+    org: 'IMALA',
+    period: 'Apr 2024 – Apr 2025',
   },
 ];
 
@@ -371,6 +524,7 @@ export const tools = [
   { name: 'Ant Design' },
   { name: 'Supabase' },
   { name: 'Kotlin' },
+  { name: 'Jetpack Compose' },
   { name: 'GitHub Actions' },
   { name: 'Figma' },
 ];

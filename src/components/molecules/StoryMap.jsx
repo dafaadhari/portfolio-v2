@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { localize } from '../../data/portfolioData';
+import { chapterCount, localize } from '../../data/portfolioData';
 
 // Holds the active chapter here, so scrolling only re-renders this bar, not the story text.
 const StoryMap = ({ chapters, lang, containerRef }) => {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
   // The bar sits on the top edge of the story, so it fades in as that edge reaches the navbar.
   const { scrollYProgress: arrival } = useScroll({ target: containerRef, offset: ['start 25%', 'start start'] });
   const pointerEvents = useTransform(arrival, (value) => (value > 0.5 ? 'auto' : 'none'));
@@ -38,7 +37,7 @@ const StoryMap = ({ chapters, lang, containerRef }) => {
       <div className="absolute inset-x-0 top-0 bg-beton/95 backdrop-blur-md border-b border-ink/10 text-ink">
         {/* Stacked layout: only the current chapter fits. */}
         <p aria-hidden="true" className="lg:hidden flex justify-between gap-4 px-5 py-2 text-xs font-medium">
-          <span>{t('chapter_of', { n: activeIndex + 1, total: chapters.length, defaultValue: 'Chapter {{n}} of {{total}}' })}</span>
+          <span>{t('chapter_of', { n: chapters[activeIndex].number, total: chapterCount, defaultValue: 'Chapter {{n}} of {{total}}' })}</span>
           <span>{localize(chapters[activeIndex].period, lang)}</span>
         </p>
 
@@ -60,10 +59,6 @@ const StoryMap = ({ chapters, lang, containerRef }) => {
             ))}
           </ol>
         </nav>
-
-        <div aria-hidden="true" className="h-0.5 bg-ink/10">
-          <motion.div style={{ scaleX: scrollYProgress }} className="h-full bg-ink origin-left" />
-        </div>
       </div>
     </motion.div>
   );

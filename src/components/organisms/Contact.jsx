@@ -49,7 +49,7 @@ const Contact = () => {
       <div className="px-5 lg:px-10 pt-24 pb-16 lg:pb-24 grid lg:grid-cols-2 gap-x-14 gap-y-10">
         <ScrollReveal direction="right">
           <h2 className="font-display font-normal uppercase text-6xl lg:text-8xl leading-[1.1]">
-            {t('contact_title', "Let's talk")}
+            {t('contact_title', 'Get In Touch')}
           </h2>
           <p className="mt-4 text-lg text-mist">
             {t('contact_subtitle', "Whether it's a job, a project, or just a quick hello, I'd be happy to hear from you.")}

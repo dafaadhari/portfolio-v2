@@ -71,13 +71,13 @@ const Hero = () => {
         initial={startedInDone ? false : { y: '110%' }}
         animate={{ y: showPhoto ? 0 : '110%' }}
         transition={{ duration: skipped ? 0.2 : 0.7, ease: PHOTO_EASE }}
-        className="absolute z-10 bottom-0 left-1/2 -translate-x-[58%] lg:-translate-x-[54%] aspect-square h-[calc(100svh_-_5.75rem_-_var(--name)*2.86_+_4.375rem)] lg:h-[78svh]"
+        className="absolute z-10 bottom-0 left-1/2 -translate-x-[54%] aspect-square h-[70svh] lg:h-[78svh] [@media(max-height:480px)]:h-[50svh]"
       >
         <motion.img
           style={{ y: photoY }}
           src="/assets/images/profilebaru-cutout-1280.webp"
           srcSet="/assets/images/profilebaru-cutout-800.webp 800w, /assets/images/profilebaru-cutout-1280.webp 1280w"
-          sizes="(min-width: 1024px) 78vh, 115vw"
+          sizes="(min-width: 1024px) 78vh, 70vh"
           width="1280"
           height="1280"
           alt={t('hero_photo_alt', 'Photo of Dapa Adhari')}

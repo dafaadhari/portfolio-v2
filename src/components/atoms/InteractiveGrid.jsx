@@ -144,7 +144,7 @@ const InteractiveGrid = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-500 intro-wait:opacity-0"
+      className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-500 intro-wait:opacity-0"
     />
   );
 };

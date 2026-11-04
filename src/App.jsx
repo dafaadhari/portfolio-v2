@@ -11,6 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Below-the-fold components lazy loaded for optimal initial page rendering
 const Story = lazy(() => import('./components/organisms/Story'));
+const Experience = lazy(() => import('./components/organisms/Experience'));
 const Summary = lazy(() => import('./components/organisms/Summary'));
 const Contact = lazy(() => import('./components/organisms/Contact'));
 const NotFound = lazy(() => import('./components/pages/NotFound'));
@@ -42,6 +43,7 @@ function App() {
           <Hero />
           <Suspense fallback={<div className="relative z-10 py-24 bg-beton" />}>
             <Story />
+            <Experience />
             <Summary />
             <Contact />
             <ScrollToHash />

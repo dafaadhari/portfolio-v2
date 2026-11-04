@@ -7,13 +7,17 @@ import ProofStack from '../molecules/ProofStack';
 import StoryMap from '../molecules/StoryMap';
 import StoryMedia from '../molecules/StoryMedia';
 import PillLink from '../atoms/PillLink';
-import { chapters, projects } from '../../data/portfolioData';
+import { chapterCount, chapters, projects } from '../../data/portfolioData';
+
+const renderProjects = (chapter, lang) =>
+  chapter.projectIds.map((id) => (
+    <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} />
+  ));
 
 const Story = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language === 'id' ? 'id' : 'en';
   const containerRef = useRef(null);
-  const total = chapters.length;
 
   return (
     <section ref={containerRef} aria-label={t('nav_story', 'Story')} className="relative z-10">
@@ -21,14 +25,14 @@ const Story = () => {
       <StoryMap chapters={chapters} lang={lang} containerRef={containerRef} />
 
       {chapters.map((chapter, index) => {
-        const isLast = index === total - 1;
+        const isLast = index === chapters.length - 1;
 
         return (
           <ChapterPanel
             key={chapter.id}
             chapter={chapter}
-            number={index + 1}
-            total={total}
+            number={chapter.number}
+            total={chapterCount}
             lang={lang}
             dark={isLast}
             // The hero shows this line on wide screens only, and chapter 1 picks up right after it.
@@ -47,13 +51,9 @@ const Story = () => {
           >
             {/* A single expression, so a chapter without proof really has no children. */}
             {chapter.hasMedia ? (
-              <StoryMedia lang={lang} />
+              <StoryMedia lang={lang}>{renderProjects(chapter, lang)}</StoryMedia>
             ) : chapter.projectIds.length > 0 ? (
-              <ProofStack>
-                {chapter.projectIds.map((id) => (
-                  <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} />
-                ))}
-              </ProofStack>
+              <ProofStack>{renderProjects(chapter, lang)}</ProofStack>
             ) : null}
           </ChapterPanel>
         );

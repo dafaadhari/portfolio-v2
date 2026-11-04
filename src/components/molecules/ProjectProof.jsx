@@ -5,6 +5,7 @@ import { FiArrowUpRight, FiCpu, FiGithub, FiLock } from 'react-icons/fi';
 import ScrollReveal from '../atoms/ScrollReveal';
 import PillLink from '../atoms/PillLink';
 import { pillClass } from '../atoms/pillStyles';
+import MediaStrip from './MediaStrip';
 import { localize } from '../../data/portfolioData';
 
 const ProjectProof = ({ project, lang }) => {
@@ -28,13 +29,29 @@ const ProjectProof = ({ project, lang }) => {
       <div className="relative overflow-hidden rounded-lg border border-ink/20 bg-beton">
         {/* Hidden from keyboards and screen readers while the drawer covers it. */}
         <div inert={showDrawer}>
-          <img
-            src={project.image}
-            alt={t('project_screenshot', { title: project.title, defaultValue: 'Screenshot of {{title}}' })}
-            loading="lazy"
-            decoding="async"
-            className="w-full aspect-video object-cover object-top bg-white"
-          />
+          {project.screens ? (
+            <MediaStrip
+              label={t('project_screens_label', 'App screens')}
+              items={project.screens.map((screen) => ({
+                id: screen.id,
+                src: screen.images[0],
+                width: 341,
+                height: 756,
+                alt: localize(screen.alt, lang),
+                caption: localize(screen.caption, lang),
+                lightbox: screen,
+              }))}
+              lang={lang}
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={t('project_screenshot', { title: project.title, defaultValue: 'Screenshot of {{title}}' })}
+              loading="lazy"
+              decoding="async"
+              className={`w-full ${project.imageClass ?? 'aspect-video'} object-cover object-top bg-white`}
+            />
+          )}
 
           <div className="p-4 lg:p-5">
             <h3 className="font-semibold">{project.title}</h3>

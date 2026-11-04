@@ -8,10 +8,11 @@ import { localize } from '../../data/portfolioData';
 const FOCUSABLE = 'a[href], button, video[controls], [tabindex="0"]';
 
 // Rendered on <body>, since the story panels create stacking contexts below the navbar.
-const MediaLightbox = ({ item, lang, onClose }) => {
+const MediaLightbox = ({ item, startIndex = 0, lang, onClose }) => {
   const { t } = useTranslation();
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
+  const galleryRef = useRef(null);
   const caption = localize(item.caption, lang);
   const alt = localize(item.alt, lang);
   const isGallery = item.kind === 'photos' && item.images.length > 1;
@@ -20,7 +21,15 @@ const MediaLightbox = ({ item, lang, onClose }) => {
     const opener = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    closeRef.current?.focus();
+    // Focusing the tapped photo widens it on wide screens. Phones swipe instead, and focus alone
+    // doesn't move the snapping gallery, so it scrolls there explicitly.
+    const photo = galleryRef.current?.children[startIndex];
+    if (photo) {
+      photo.focus({ preventScroll: true });
+      photo.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'instant' });
+    } else {
+      closeRef.current?.focus();
+    }
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -48,7 +57,7 @@ const MediaLightbox = ({ item, lang, onClose }) => {
       document.body.style.overflow = previousOverflow;
       opener?.focus?.();
     };
-  }, [onClose]);
+  }, [onClose, startIndex]);
 
   return createPortal(
     <motion.div
@@ -94,6 +103,7 @@ const MediaLightbox = ({ item, lang, onClose }) => {
           {/* Photo accordion: hover or focus a photo to widen it. Phones swipe sideways instead. */}
           {isGallery && (
             <div
+              ref={galleryRef}
               role="group"
               aria-label={t('media_gallery', 'Photo gallery')}
               className="flex gap-1.5 w-[92vw] max-w-6xl h-[70dvh] overflow-x-auto snap-x snap-mandatory md:overflow-hidden md:snap-none"
@@ -102,7 +112,8 @@ const MediaLightbox = ({ item, lang, onClose }) => {
                 <div
                   key={src}
                   tabIndex={0}
-                  className="group/photo relative h-full shrink-0 basis-[85%] snap-center overflow-hidden rounded-md transition-[flex-grow] duration-500 ease-out md:shrink md:basis-0 md:flex-1 md:hover:flex-[4] md:focus:flex-[4]"
+                  // The gallery clips anything outside it, so the keyboard focus ring sits inside the photo.
+                  className="group/photo relative h-full shrink-0 basis-[85%] snap-center overflow-hidden rounded-md transition-[flex-grow] duration-500 ease-out focus-visible:-outline-offset-3! md:shrink md:basis-0 md:flex-1 md:hover:flex-[4] md:focus:flex-[4]"
                 >
                   <img src={src} alt={`${alt} (${index + 1}/${item.images.length})`} className="w-full h-full object-cover" />
                   <div aria-hidden="true" className="hidden md:block absolute inset-0 bg-night/50 transition-colors duration-500 md:group-hover/photo:bg-night/0 md:group-focus/photo:bg-night/0" />

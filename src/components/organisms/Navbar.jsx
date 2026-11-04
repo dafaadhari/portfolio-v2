@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FiArrowUpRight } from 'react-icons/fi';
 import PillLink from '../atoms/PillLink';
 import { pillClass } from '../atoms/pillStyles';
-import { chapters, projects, cvPath } from '../../data/portfolioData';
+import { cvPath } from '../../data/portfolioData';
 
 const Navbar = () => {
   const { scrollY } = useScroll();
@@ -38,8 +38,9 @@ const Navbar = () => {
   }, [isOpen]);
 
   const links = [
-    { href: '#story', label: t('nav_story', 'Story'), count: chapters.length },
-    { href: '#projects', label: t('nav_projects', 'Projects'), count: projects.length },
+    { href: '#story', label: t('nav_story', 'Story') },
+    { href: '#experience', label: t('nav_experience', 'Experience') },
+    { href: '#projects', label: t('nav_projects', 'Projects') },
     { href: '#contact', label: t('nav_contact', 'Contact') },
   ];
 
@@ -62,7 +63,6 @@ const Navbar = () => {
           {links.map((link) => (
             <a key={link.href} href={link.href} className="text-sm font-medium hover:underline underline-offset-4">
               {link.label}
-              {link.count && <span className="ml-1 text-xs text-ink-soft">[{link.count}]</span>}
             </a>
           ))}
         </div>
@@ -118,7 +118,6 @@ const Navbar = () => {
                   className="block px-4 py-2.5 text-sm font-medium text-ink hover:bg-ink/5"
                 >
                   {link.label}
-                  {link.count && <span className="ml-1 text-xs text-ink-soft">[{link.count}]</span>}
                 </a>
               ))}
             </motion.div>
