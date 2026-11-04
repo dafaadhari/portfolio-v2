@@ -11,7 +11,7 @@ const ProjectCard = ({ project }) => {
   // Neon-glow pills: dark pill + brand-colored border/text/logo with a soft outer glow that intensifies on hover.
   const frameworkIcons = {
     "React JS": { logo: "/assets/logos/react.svg", color: "text-[#61DAFB]", border: "border-[#61DAFB]/30", glow: "shadow-[0_0_6px_rgba(97,218,251,0.15)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(97,218,251,0.35)]" },
-    "Vite": { logo: "/assets/logos/vitejs.svg", color: "text-[#BD34FE]", border: "border-[#BD34FE]/30", glow: "shadow-[0_0_6px_rgba(189,52,254,0.15)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(189,52,254,0.35)]" },
+    "Vite": { logo: "/assets/logos/vitejs.svg", color: "text-[#C44FFE]", border: "border-[#BD34FE]/30", glow: "shadow-[0_0_6px_rgba(189,52,254,0.15)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(189,52,254,0.35)]" },
     "Laravel": { logo: "/assets/logos/laravel.svg", color: "text-[#F0513F]", border: "border-[#F0513F]/30", glow: "shadow-[0_0_6px_rgba(240,81,63,0.15)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(240,81,63,0.35)]" },
     "Next JS": { logo: "/assets/logos/nextjs.svg", color: "text-white", border: "border-white/30", glow: "shadow-[0_0_6px_rgba(255,255,255,0.12)]", hoverGlow: "hover:shadow-[0_0_12px_rgba(255,255,255,0.3)]" },
   };
@@ -60,7 +60,7 @@ const ProjectCard = ({ project }) => {
         )}
 
         {project.credentials && (
-          <div className="inline-block bg-black/20 border border-white/5 rounded-lg px-4 py-2 mb-6 text-sm text-neutral-500 w-max">
+          <div className="self-start max-w-full break-words bg-black/20 border border-white/5 rounded-lg px-4 py-2 mb-6 text-sm text-neutral-400">
             {project.credentials}
           </div>
         )}
@@ -77,7 +77,7 @@ const ProjectCard = ({ project }) => {
                {t('project_preview', 'Preview')} <FiArrowUpRight className="ml-1 w-5 h-5" />
              </a>
           ) : (
-             <span className="flex items-center font-medium text-neutral-600 cursor-not-allowed">
+             <span className="flex items-center font-medium text-neutral-400 cursor-not-allowed">
                {project.status === 'local'
                  ? <><FiMonitor className="mr-2"/> {t('project_status_local', 'Local Only')}</>
                  : <><FiLock className="mr-2"/> {t('project_status_internal', 'Internal')}</>}
@@ -90,7 +90,6 @@ const ProjectCard = ({ project }) => {
                target="_blank"
                rel="noreferrer"
                className="flex items-center font-medium text-neutral-400 hover:text-white transition-colors"
-               aria-label="Source Code"
              >
               <FiGithub className="mr-2 w-5 h-5" /> {t('project_source', 'Source Code')}
             </a>

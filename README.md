@@ -2,7 +2,7 @@
 
 > Crafting seamless digital experiences through clean code and modern design.
 
-Welcome to the repository of my personal portfolio website. This project is meticulously designed to showcase my professional journey, technical skills, and featured projects as a Software Engineer. Built with a focus on performance, aesthetics, and user experience.
+Welcome to the repository of my personal portfolio website. This project is meticulously designed to showcase my professional journey, technical skills, and featured projects as a Fullstack Developer. Built with a focus on performance, aesthetics, and user experience.
 
 ### Key Features
 

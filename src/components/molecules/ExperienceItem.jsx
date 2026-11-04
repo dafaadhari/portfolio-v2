@@ -37,7 +37,7 @@ const ExperienceItem = ({ exp, isLast, isActive, onSelect }) => {
             <h3 className={`text-xl md:text-2xl font-bold tracking-wide transition-colors duration-300 ${titleColor}`}>
               {currentRole}
             </h3>
-            <h4 className="text-sm font-bold uppercase tracking-wider mt-2 text-neutral-500">
+            <h4 className="text-sm font-bold uppercase tracking-wider mt-2 text-neutral-400">
               {exp.company}
             </h4>
           </div>

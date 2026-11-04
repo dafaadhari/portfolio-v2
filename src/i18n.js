@@ -53,7 +53,7 @@ const resources = {
       nav_projects: "Proyek",
       nav_gallery: "Galeri",
       nav_contact: "Kontak",
-      hero_subtitle: "Junior Software Engineer",
+      hero_subtitle: "Fullstack Developer",
       hero_description: "Lulusan Teknik Informatika dengan pengalaman dalam mengembangkan aplikasi berbasis web dan sistem pendukung keputusan. Tertarik pada pengembangan perangkat lunak, sistem berbasis data, dan teknologi web modern.",
       hero_button: "Unduh CV",
       exp_title: "Pengalaman",

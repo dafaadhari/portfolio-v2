@@ -4,6 +4,7 @@ import Navbar from './components/organisms/Navbar';
 import Hero from './components/organisms/Hero';
 import Footer from './components/organisms/Footer';
 import ScrollProgress from './components/atoms/ScrollProgress';
+import ScrollToHash from './components/atoms/ScrollToHash';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
@@ -43,6 +44,7 @@ function App() {
           <Projects />
           <Gallery />
           <Contact />
+          <ScrollToHash />
         </Suspense>
         <Footer />
       </main>

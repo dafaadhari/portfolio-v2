@@ -29,7 +29,7 @@ const Stats = () => {
         {/* TECH STACK SECTION */}
         <div className="mb-24">
           <ScrollReveal direction="up">
-            <h2 className="text-sm font-bold text-neutral-500 mb-6 uppercase tracking-[0.2em]">{t('stats_techstack_title', 'Tech Stack & Tools')}</h2>
+            <h2 className="text-sm font-bold text-neutral-400 mb-6 uppercase tracking-[0.2em]">{t('stats_techstack_title', 'Tech Stack & Tools')}</h2>
           </ScrollReveal>
 
           {/* Toggle Button for Details */}
@@ -99,7 +99,7 @@ const Stats = () => {
                        {/* Icon inside */}
                        <img
                          src={tech.icon}
-                         alt={tech.name}
+                         alt=""
                          loading="lazy"
                          className="relative z-20 w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-700"
                        />
@@ -118,7 +118,7 @@ const Stats = () => {
                          )}
                        </AnimatePresence>
                     </div>
-                    <span className={`text-xs font-medium transition-colors duration-500 ${activeTech === index ? 'text-blue-400' : 'text-neutral-500 group-hover:text-white group-active:text-blue-400'}`}>{tech.name}</span>
+                    <span className={`text-xs font-medium transition-colors duration-500 ${activeTech === index ? 'text-blue-400' : 'text-neutral-400 group-hover:text-white group-active:text-blue-400'}`}>{tech.name}</span>
                   </button>
                 </ScrollReveal>
               );
@@ -129,7 +129,7 @@ const Stats = () => {
         {/* GITHUB ACTIVITY SECTION */}
         <div>
           <ScrollReveal direction="up">
-            <h2 className="text-sm font-bold text-neutral-500 mb-10 uppercase tracking-[0.2em]">{t('stats_github_title', 'GitHub Activity')}</h2>
+            <h2 className="text-sm font-bold text-neutral-400 mb-10 uppercase tracking-[0.2em]">{t('stats_github_title', 'GitHub Activity')}</h2>
           </ScrollReveal>
           
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">

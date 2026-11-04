@@ -60,7 +60,7 @@ const Projects = () => {
               exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               transition={{ duration: 0.5, type: "spring", bounce: 0.3 }}
               key={project.id}
-              className="sticky top-[10vh] transition-all duration-500"
+              className="md:sticky md:top-[10vh] transition-all duration-500"
               style={{ marginBottom: '40px' }}
             >
               <ProjectCard project={project} />
