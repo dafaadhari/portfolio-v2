@@ -11,6 +11,14 @@ const setIntroState = (state) => {
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// The keys of Ctrl+Shift+R or F5 are often still held when the reloaded page starts, and they
+// repeat. Those must not count as the visitor choosing to skip.
+const isDeliberate = (event) => {
+  if (event.type !== 'keydown') return true;
+  const isShortcut = event.ctrlKey || event.metaKey || event.altKey || event.key === 'Shift' || event.key === 'F5';
+  return !event.repeat && !isShortcut;
+};
+
 // Runs the loading intro started by the inline scripts in index.html.
 // Any scroll, click, or key press ends it at once, so nobody is ever held up.
 export const useIntro = () => {
@@ -46,8 +54,8 @@ export const useIntro = () => {
       }
     };
 
-    function skip() {
-      if (!active) return;
+    function skip(event) {
+      if (!active || !isDeliberate(event)) return;
       setSkipped(true);
       finish();
     }

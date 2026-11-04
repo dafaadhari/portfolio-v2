@@ -6,17 +6,28 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/fonts/anton-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Linked here rather than imported in main.jsx, so the static name below is styled from the
+       first paint on the dev server too. -->
+  <link rel="stylesheet" href="/src/index.css" />
   <script>
     // Decides before the first paint whether the loading intro plays, and starts loading the photo.
+    // It plays on the first page of a visit and on a refresh, but not when coming back to the
+    // home page from elsewhere during the same visit.
     (function () {
       var root = document.documentElement;
       var hasHash = location.hash && location.hash !== '#';
       var seen = null;
       try { seen = sessionStorage.getItem('intro-seen'); } catch (e) { /* Storage can be blocked. */ }
+      var navigation = performance.getEntriesByType('navigation')[0];
+      var reloaded = navigation && navigation.type === 'reload';
       var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var mode = location.pathname !== '/' || hasHash ? 'off' : seen || calm ? 'static' : 'play';
+      var mode = location.pathname !== '/' || hasHash ? 'off' : calm || (seen && !reloaded) ? 'static' : 'play';
       root.dataset.intro = mode;
       if (mode === 'off') return;
+
+      // A refresh starts over from the top. The story loads after the browser would restore the
+      // scroll position, so restoring would stop short at a random spot anyway.
+      if (mode === 'play' && reloaded) history.scrollRestoration = 'manual';
 
       // Same sources as the photo in Hero.jsx, so it comes straight from the cache there.
       var photo = new Image();
