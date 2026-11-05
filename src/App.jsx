@@ -13,6 +13,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 const Story = lazy(() => import('./components/organisms/Story'));
 const Experience = lazy(() => import('./components/organisms/Experience'));
 const Summary = lazy(() => import('./components/organisms/Summary'));
+const Gallery = lazy(() => import('./components/organisms/Gallery'));
 const Contact = lazy(() => import('./components/organisms/Contact'));
 const NotFound = lazy(() => import('./components/pages/NotFound'));
 
@@ -45,6 +46,7 @@ function App() {
             <Story />
             <Experience />
             <Summary />
+            <Gallery />
             <Contact />
             <ScrollToHash />
           </Suspense>

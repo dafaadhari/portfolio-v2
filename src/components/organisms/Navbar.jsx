@@ -41,6 +41,7 @@ const Navbar = () => {
     { href: '#story', label: t('nav_story', 'Story') },
     { href: '#experience', label: t('nav_experience', 'Experience') },
     { href: '#projects', label: t('nav_projects', 'Projects') },
+    { href: '#gallery', label: t('nav_gallery', 'Gallery') },
     { href: '#contact', label: t('nav_contact', 'Contact') },
   ];
 
