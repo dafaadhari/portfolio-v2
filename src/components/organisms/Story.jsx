@@ -5,14 +5,8 @@ import ChapterPanel from '../molecules/ChapterPanel';
 import ProjectProof from '../molecules/ProjectProof';
 import ProofStack from '../molecules/ProofStack';
 import StoryMap from '../molecules/StoryMap';
-import StoryMedia from '../molecules/StoryMedia';
 import PillLink from '../atoms/PillLink';
 import { chapterCount, chapters, projects } from '../../data/portfolioData';
-
-const renderProjects = (chapter, lang) =>
-  chapter.projectIds.map((id) => (
-    <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} />
-  ));
 
 const Story = () => {
   const { t, i18n } = useTranslation();
@@ -50,10 +44,12 @@ const Story = () => {
             }
           >
             {/* A single expression, so a chapter without proof really has no children. */}
-            {chapter.hasMedia ? (
-              <StoryMedia lang={lang}>{renderProjects(chapter, lang)}</StoryMedia>
-            ) : chapter.projectIds.length > 0 ? (
-              <ProofStack>{renderProjects(chapter, lang)}</ProofStack>
+            {chapter.projectIds.length > 0 ? (
+              <ProofStack>
+                {chapter.projectIds.map((id) => (
+                  <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} />
+                ))}
+              </ProofStack>
             ) : null}
           </ChapterPanel>
         );

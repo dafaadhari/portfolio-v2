@@ -307,16 +307,13 @@ export const chapters = [
       en: [
         "In mid-2025 I took on something a little different: branding materials and promotional videos for CV Rayyan Karya and Ahmad Jaya Group, followed by public health education videos with Puskesmas Mekarsari. It started because people asked, and to be honest, I enjoy videography a little and I can do it.",
         "For Rayyan Karya and Ahmad Jaya, I also built an Android app to help run the logistics of their construction projects. It records material deliveries to each site, works out what's left to bill, and prints delivery notes and invoices as PDFs. Since the signal on a site can be unreliable, records are saved right on the phone, so work doesn't stop when the connection drops.",
-        "Then in September 2025 I picked up aquascaping. Nobody asked me for this one. It's simply my hobby.",
       ],
       id: [
         'Pertengahan 2025 saya mengerjakan sesuatu yang agak berbeda: materi branding dan video promosi untuk CV Rayyan Karya dan Ahmad Jaya Group, lalu video edukasi kesehatan bersama Puskesmas Mekarsari. Awalnya karena memang ada permintaan, dan jujur saja, saya sedikit suka dan bisa videografi.',
         'Untuk Rayyan Karya dan Ahmad Jaya, saya juga membuat aplikasi Android untuk mengurus logistik proyek konstruksi mereka. Aplikasinya mencatat pengiriman material ke tiap lokasi, menghitung sisa tagihan, dan mencetak surat jalan serta invoice sebagai PDF. Karena sinyal di lokasi proyek tidak selalu bagus, datanya disimpan langsung di HP, jadi pencatatan tetap jalan walau koneksi putus.',
-        'Lalu di September 2025 saya mulai main aquascape. Kalau yang ini tidak ada yang minta, murni hobi saya.',
       ],
     },
     projectIds: ['construction'],
-    hasMedia: true,
   },
   {
     id: 'chapter-4',
@@ -390,10 +387,10 @@ export const mediaItems = [
     kind: 'photos',
     title: 'Aquascape',
     description: {
-      en: 'My own aquascape, a Natural Style layout in a 25 cm cube tank.',
-      id: 'Aquascape buatan saya sendiri, bergaya Natural di tank kubus 25 cm.',
+      en: "My own aquascape, a Natural Style layout in a 25 cm cube tank. Nobody asked me for this one, it's simply my hobby.",
+      id: 'Aquascape buatan saya sendiri, bergaya Natural di tank kubus 25 cm. Kalau yang ini tidak ada yang minta, murni hobi saya.',
     },
-    tag: { en: 'A hobby since September 2025', id: 'Hobi sejak September 2025' },
+    tag: { en: 'Since September 2025', id: 'Sejak September 2025' },
     thumbs: [
       '/assets/images/aquascape-thumb-1.webp',
       '/assets/images/aquascape-thumb-2.webp',
