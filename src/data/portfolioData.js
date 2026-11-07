@@ -28,7 +28,105 @@ const appScreen = (name, caption, alt) => ({
   alt,
 });
 
+// A desktop and phone collage from a web project's mockups. The card shows the smaller file,
+// and the lightbox opens the larger one.
+const webScreen = (project, name, caption, alt) => ({
+  id: `${project}-${name}`,
+  kind: 'photos',
+  thumb: `/assets/images/${project}-${name}.webp`,
+  images: [`/assets/images/${project}-${name}-lg.webp`],
+  caption,
+  alt,
+});
+
+const OVERVIEW = { en: 'Overview', id: 'Ringkasan' };
+
 export const projects = [
+  {
+    id: 'rutan',
+    chapterId: 'chapter-6',
+    category: 'Full-Stack',
+    title: 'Rutan Pandeglang Information System',
+    period: { en: 'Sep 2026 – Present', id: 'Sep 2026 – Sekarang' },
+    stack: 'Laravel, Blade, Tailwind CSS, MySQL',
+    description: {
+      en: "A public information portal for Rutan Kelas IIB Pandeglang that brings public services, news, and a panel for the PR team into one web app. It's now in the finishing stage.",
+      id: 'Portal informasi publik untuk Rutan Kelas IIB Pandeglang yang menyatukan layanan publik, berita, dan panel humas dalam satu aplikasi web. Sekarang sudah masuk tahap finishing.',
+    },
+    image: '/assets/images/rutan-cover.webp',
+    liveUrl: null,
+    status: 'progress',
+    credentials: null,
+    githubUrl: 'https://github.com/dafaadhari/rutan-pdg',
+    highlights: {
+      en: [
+        'Public service pages for visiting hours, item drop-offs, the integration program, and research permits.',
+        'News and activities from the detention center.',
+        'A PR panel for writing news, managing pages, and running announcement banners.',
+        'Built on my own as the final project of my internship.',
+      ],
+      id: [
+        'Halaman layanan publik untuk jadwal besuk, titipan barang, program integrasi, dan perizinan penelitian.',
+        'Berita dan kegiatan dari rutan.',
+        'Panel humas untuk menulis berita, mengelola halaman, dan menayangkan banner pengumuman.',
+        'Saya kerjakan sendiri sebagai final project magang.',
+      ],
+    },
+  },
+  {
+    id: 'btoday',
+    chapterId: 'chapter-6',
+    category: 'Full-Stack',
+    title: 'B.Today Portal',
+    period: { en: 'Sep – Oct 2026', id: 'Sep – Okt 2026' },
+    stack: 'Laravel, Blade, Tailwind CSS, Alpine.js',
+    description: {
+      en: 'A news portal built for a company, with an editorial CMS, articles sent in by readers, and ad slots the newsroom manages itself.',
+      id: 'Portal berita yang dibuat untuk sebuah perusahaan, lengkap dengan CMS redaksi, kiriman tulisan dari pembaca, dan slot iklan yang diatur sendiri oleh redaksi.',
+    },
+    image: null,
+    screenShape: 'wide',
+    screens: [
+      webScreen('btoday', 'cover', OVERVIEW, {
+        en: 'B.Today on a laptop and three phones',
+        id: 'B.Today di laptop dan tiga ponsel',
+      }),
+      webScreen('btoday', 'home', { en: 'Home page', id: 'Beranda' }, {
+        en: 'The B.Today home page with an ad banner and the headline story, on desktop and phone',
+        id: 'Beranda B.Today dengan banner iklan dan berita utama, di desktop dan ponsel',
+      }),
+      webScreen('btoday', 'article', { en: 'Article page', id: 'Detail artikel' }, {
+        en: 'An article page with share buttons and related stories, on desktop and phone',
+        id: 'Halaman artikel dengan tombol berbagi dan berita terkait, di desktop dan ponsel',
+      }),
+      webScreen('btoday', 'dashboard', { en: 'Newsroom dashboard', id: 'Dasbor redaksi' }, {
+        en: 'The newsroom dashboard with article, submission, and ad counts, on desktop and phone',
+        id: 'Dasbor redaksi berisi jumlah artikel, kiriman, dan iklan, di desktop dan ponsel',
+      }),
+      webScreen('btoday', 'ads', { en: 'Ad slots', id: 'Slot iklan' }, {
+        en: 'Ad slot management with placements, impressions, and clicks, on desktop and phone',
+        id: 'Pengelolaan slot iklan berisi posisi, jumlah tayang, dan klik, di desktop dan ponsel',
+      }),
+    ],
+    liveUrl: null,
+    status: 'internal',
+    credentials: null,
+    githubUrl: 'https://github.com/dafaadhari/B.TODAY',
+    highlights: {
+      en: [
+        'An editorial CMS for writing, editing, and approving articles, with drafts and review status.',
+        "Readers can send in articles without an account, and once approved, they're published under the writer's byline.",
+        'Ad slots for the leaderboard, sidebar, and in-article placements, with impression and click counts.',
+        'Regional sub-categories, such as Cilegon, Lebak, Pandeglang, Serang, and Tangerang under Banten.',
+      ],
+      id: [
+        'CMS redaksi untuk menulis, menyunting, dan menyetujui artikel, lengkap dengan draf dan status review.',
+        'Pembaca bisa mengirim tulisan tanpa akun, dan setelah disetujui, tulisannya tayang dengan byline penulisnya.',
+        'Slot iklan untuk posisi leaderboard, sidebar, dan dalam artikel, lengkap dengan jumlah tayang dan klik.',
+        'Subkategori per wilayah, misalnya Cilegon, Lebak, Pandeglang, Serang, dan Tangerang di bawah Banten.',
+      ],
+    },
+  },
   {
     id: 'qhse',
     chapterId: 'chapter-5',
@@ -40,8 +138,31 @@ export const projects = [
       en: 'A QHSE web app for PT PP (Persero) Tbk with four modules: Inspection, Equipment Monitoring, Medical, and Passport. The demo version is called SiteGuard.',
       id: 'Aplikasi web QHSE untuk PT PP (Persero) Tbk dengan empat modul: Inspection, Monitoring Equipment, Medis, dan Passport. Versi demonya bernama SiteGuard.',
     },
-    image: '/assets/images/qhse.png',
-    imageClass: 'aspect-[1918/859]', // Wider than 16:9, and the logo at its left edge must not be cropped.
+    image: null,
+    screenShape: 'wide',
+    // One page from each module, after the cover.
+    screens: [
+      webScreen('qhse', 'cover', OVERVIEW, {
+        en: 'QHSE Super App on a laptop and three phones',
+        id: 'QHSE Super App di laptop dan tiga ponsel',
+      }),
+      webScreen('qhse', 'dashboard', { en: 'Dashboard', id: 'Dasbor' }, {
+        en: 'The dashboard with inspection, equipment, and clinic summaries, on desktop and phone',
+        id: 'Dasbor berisi ringkasan inspeksi, alat, dan klinik, di desktop dan ponsel',
+      }),
+      webScreen('qhse', 'form-builder', 'Form Builder', {
+        en: 'The Form Builder for creating inspection forms, on desktop and phone',
+        id: 'Form Builder untuk membuat form inspeksi, di desktop dan ponsel',
+      }),
+      webScreen('qhse', 'heavy-equipment', { en: 'Heavy equipment', id: 'Alat berat' }, {
+        en: 'The heavy equipment list with each unit’s status and permit expiry dates, on desktop and phone',
+        id: 'Daftar alat berat berisi status tiap unit dan masa berlaku izinnya, di desktop dan ponsel',
+      }),
+      webScreen('qhse', 'fit-for-duty', 'Fit for duty', {
+        en: 'Fit for duty checks with blood pressure, sleep, and work readiness, on desktop and phone',
+        id: 'Pemeriksaan fit for duty berisi tekanan darah, jam tidur, dan kesiapan kerja, di desktop dan ponsel',
+      }),
+    ],
     liveUrl: 'https://siteguard-demo.vercel.app',
     status: 'live',
     credentials: 'Email: admin@siteguard.com | Pass: siteguard123',
@@ -51,11 +172,13 @@ export const projects = [
         'Handled requirements analysis, UML diagrams, database design, UI/UX, and implementation on my own.',
         'Four modules in one app, plus user management.',
         'Uses Supabase for auth, storage, and the database.',
+        'Comes with light and dark mode.',
       ],
       id: [
         'Analisis kebutuhan, diagram UML, rancangan database, UI/UX, dan implementasi saya kerjakan sendiri.',
         'Empat modul dalam satu aplikasi, ditambah manajemen user.',
         'Memakai Supabase untuk auth, storage, dan database.',
+        'Tersedia mode terang dan gelap.',
       ],
     },
   },
@@ -356,26 +479,27 @@ export const chapters = [
         'Yang paling bikin pusing itu app monitoring, app medis, dan manajemen user. Saya baru pertama kali belajar back end dan langsung dapat proyek sungguhan, jadi terbayang kan.',
       ],
     },
-    projectIds: ['qhse', 'dogma'],
+    // In the order the story tells them. QHSE's card is also the taller one, so it stacks neatly in front.
+    projectIds: ['dogma', 'qhse'],
   },
   {
     id: 'chapter-6',
     number: 5,
     numeral: { en: 'Now', id: 'Sekarang' },
     period: { en: 'Now', id: 'Sekarang' },
-    mapLabel: { en: 'Rutan Pandeglang', id: 'Rutan Pandeglang' },
+    mapLabel: { en: 'Rutan & B.Today', id: 'Rutan & B.Today' },
     title: { en: 'Interning again, this time at a detention center', id: 'Magang lagi, kali ini di rutan' },
     paragraphs: {
       en: [
-        "In August 2026 I was accepted into MagangHub Cohort 2 Batch 1, so until February 2027 I'm interning at Rutan Kelas IIB Pandeglang, a detention center, as an IT Operator. The work covers both hardware and software, though it's mostly hardware. On the software side, I'm building a web-based information system for the center on my own, and it will become my final project.",
-        "My freelance work is still going, and I'm also looking for a full-time onsite job. If you have a role that might fit, or you just want to say hi, I'd love to hear from you.",
+        "In August 2026 I was accepted into MagangHub Cohort 2 Batch 1, so until February 2027 I'm interning at Rutan Kelas IIB Pandeglang, a detention center, as an IT Operator. The work covers both hardware and software, though it's mostly hardware. On the software side, since September I've been building a web-based information system for the center on my own. It will become my final project, and it's now in the finishing stage.",
+        "My freelance work is still going too. From September to October I built B.Today, another news portal, but this time for a company. I'm also still looking for a full-time onsite job. If you have a role that might fit, or you just want to say hi, I'd love to hear from you.",
       ],
       id: [
-        'Agustus 2026 saya lolos MagangHub Angkatan 2 Batch 1, jadi sampai Februari 2027 saya magang di Rutan Kelas IIB Pandeglang sebagai IT Operator. Kerjaannya mencakup hardware dan software, walaupun kebanyakan hardware. Untuk software, saya sedang mengerjakan sendiri sistem informasi berbasis web untuk rutan, yang nantinya jadi final project saya.',
-        'Freelance saya masih jalan, dan saya juga masih mencari pekerjaan full-time onsite. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
+        'Agustus 2026 saya lolos MagangHub Angkatan 2 Batch 1, jadi sampai Februari 2027 saya magang di Rutan Kelas IIB Pandeglang sebagai IT Operator. Kerjaannya mencakup hardware dan software, walaupun kebanyakan hardware. Untuk software, sejak September saya mengerjakan sendiri sistem informasi berbasis web untuk rutan. Nantinya ini jadi final project saya, dan sekarang sudah masuk tahap finishing.',
+        'Freelance saya juga masih jalan. September sampai Oktober saya membuat B.Today, portal berita lagi, tapi kali ini memang untuk perusahaan. Saya juga masih mencari pekerjaan full-time onsite. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
       ],
     },
-    projectIds: [],
+    projectIds: ['rutan', 'btoday'],
   },
 ];
 
@@ -520,6 +644,7 @@ export const tools = [
   { name: 'Git', logo: '/assets/logos/git.svg' },
   { name: 'Ant Design' },
   { name: 'Supabase' },
+  { name: 'Alpine.js' },
   { name: 'Kotlin' },
   { name: 'Jetpack Compose' },
   { name: 'GitHub Actions' },

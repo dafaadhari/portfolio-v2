@@ -1,19 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiArrowUpRight, FiCpu, FiGithub, FiLock } from 'react-icons/fi';
+import { FiArrowUpRight, FiClock, FiCpu, FiGithub, FiLock } from 'react-icons/fi';
 import ScrollReveal from '../atoms/ScrollReveal';
 import PillLink from '../atoms/PillLink';
 import { pillClass } from '../atoms/pillStyles';
 import MediaStrip from './MediaStrip';
 import { localize } from '../../data/portfolioData';
 
-const ProjectProof = ({ project, lang }) => {
+// Phone screens are tall and narrow; web collages are 16:9 and wide enough that the next one just peeks in.
+const SCREEN_SHAPES = {
+  phone: { width: 341, height: 756, itemClassName: 'w-40' },
+  wide: { width: 1280, height: 720, itemClassName: 'w-[85%]' },
+};
+
+// `dark` is for the last chapter, whose panel is night instead of concrete.
+const ProjectProof = ({ project, lang, dark = false }) => {
   const { t } = useTranslation();
   const [showDrawer, setShowDrawer] = useState(false);
   const openRef = useRef(null);
   const closeRef = useRef(null);
   const wasOpen = useRef(false);
+  const shape = SCREEN_SHAPES[project.screenShape ?? 'phone'];
+  const muted = dark ? 'text-mist' : 'text-ink-soft';
+  const outline = dark ? 'outlineDark' : 'outline';
 
   // Runs after the commit: the open button can't take focus while the card behind is still inert.
   useEffect(() => {
@@ -26,7 +36,10 @@ const ProjectProof = ({ project, lang }) => {
 
   return (
     <ScrollReveal direction="up">
-      <div className="relative overflow-hidden rounded-lg border border-ink/20 bg-beton">
+      <div
+        data-project={project.id}
+        className={`relative overflow-hidden rounded-lg border ${dark ? 'border-white/15 bg-night-soft' : 'border-ink/20 bg-beton'}`}
+      >
         {/* Hidden from keyboards and screen readers while the drawer covers it. */}
         <div inert={showDrawer}>
           {project.screens ? (
@@ -34,13 +47,14 @@ const ProjectProof = ({ project, lang }) => {
               label={t('project_screens_label', 'App screens')}
               items={project.screens.map((screen) => ({
                 id: screen.id,
-                src: screen.images[0],
-                width: 341,
-                height: 756,
+                src: screen.thumb ?? screen.images[0],
+                width: shape.width,
+                height: shape.height,
                 alt: localize(screen.alt, lang),
                 caption: localize(screen.caption, lang),
                 lightbox: screen,
               }))}
+              itemClassName={shape.itemClassName}
               lang={lang}
             />
           ) : (
@@ -55,26 +69,34 @@ const ProjectProof = ({ project, lang }) => {
 
           <div className="p-4 lg:p-5">
             <h3 className="font-semibold">{project.title}</h3>
-            <p className="text-[0.9375rem] leading-relaxed text-ink-soft">{localize(project.description, lang)}</p>
-            <p className="mt-1 text-sm text-ink-soft">{project.stack}</p>
+            <p className={`text-[0.9375rem] leading-relaxed ${muted}`}>{localize(project.description, lang)}</p>
+            <p className={`mt-1 text-sm ${muted}`}>{project.stack}</p>
             {project.credentials && (
-              <p className="mt-1 text-sm text-ink-soft break-words">
+              <p className={`mt-1 text-sm break-words ${muted}`}>
                 {t('project_demo_account', 'Demo account')}: {project.credentials}
               </p>
             )}
 
             <div className="mt-3.5 flex flex-wrap gap-2.5">
               {project.status === 'live' ? (
-                <PillLink href={project.liveUrl} external>
+                <PillLink href={project.liveUrl} external variant={dark ? 'paper' : 'ink'}>
                   {t('project_live', 'View live')} <FiArrowUpRight aria-hidden="true" className="w-3.5 h-3.5" />
                 </PillLink>
               ) : (
-                <span className="inline-flex items-center gap-2 px-[1.125rem] py-2.5 text-[0.8125rem] font-medium text-ink-soft">
-                  <FiLock aria-hidden="true" className="w-3.5 h-3.5" /> {t('project_internal', 'Internal')}
+                <span className={`inline-flex items-center gap-2 px-[1.125rem] py-2.5 text-[0.8125rem] font-medium ${muted}`}>
+                  {project.status === 'progress' ? (
+                    <>
+                      <FiClock aria-hidden="true" className="w-3.5 h-3.5" /> {t('project_progress', 'In progress')}
+                    </>
+                  ) : (
+                    <>
+                      <FiLock aria-hidden="true" className="w-3.5 h-3.5" /> {t('project_internal', 'Internal')}
+                    </>
+                  )}
                 </span>
               )}
               {project.githubUrl && (
-                <PillLink href={project.githubUrl} external variant="outline">
+                <PillLink href={project.githubUrl} external variant={outline}>
                   <FiGithub aria-hidden="true" className="w-3.5 h-3.5" /> {t('project_source', 'Source code')}
                 </PillLink>
               )}
@@ -83,7 +105,7 @@ const ProjectProof = ({ project, lang }) => {
                 type="button"
                 onClick={() => setShowDrawer(true)}
                 aria-expanded={showDrawer}
-                className={pillClass('outline')}
+                className={pillClass(outline)}
               >
                 <FiCpu aria-hidden="true" className="w-3.5 h-3.5" /> {t('project_details_btn', 'Technical Highlights')}
               </button>
