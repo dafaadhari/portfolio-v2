@@ -150,10 +150,11 @@ const resources = {
   }
 };
 
+// The choice lasts for the current tab only, so every new visit opens in English.
 // Storage can throw in private modes, and the site must still work without it.
 const readSavedLanguage = () => {
   try {
-    return localStorage.getItem(STORAGE_KEY);
+    return sessionStorage.getItem(STORAGE_KEY);
   } catch {
     return null;
   }
@@ -161,13 +162,20 @@ const readSavedLanguage = () => {
 
 const saveLanguage = (language) => {
   try {
-    localStorage.setItem(STORAGE_KEY, language);
+    sessionStorage.setItem(STORAGE_KEY, language);
   } catch {
     // The choice simply won't survive a reload.
   }
 };
 
-// English unless the visitor already chose Indonesian.
+// Older versions kept the choice for good, which made later visits open in Indonesian.
+try {
+  localStorage.removeItem(STORAGE_KEY);
+} catch {
+  // Nothing to clean up.
+}
+
+// English unless the visitor chose Indonesian earlier in this tab.
 const initialLanguage = readSavedLanguage() === 'id' ? 'id' : 'en';
 document.documentElement.lang = initialLanguage;
 
