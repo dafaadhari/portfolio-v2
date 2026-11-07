@@ -27,7 +27,9 @@ const ProofStack = ({ children }) => {
   const items = Children.toArray(children);
 
   return (
-    <div ref={containerRef} className="space-y-10 lg:space-y-20">
+    // A gap, not space-y: space-y puts a bottom margin on each card, and a sticky card counts its margin,
+    // so the card behind would be pushed up early and show well above the one covering it.
+    <div ref={containerRef} className="flex flex-col gap-10 lg:gap-20">
       {items.map((item, index) => (
         <StackCard key={item.key} index={index} total={items.length} progress={scrollYProgress}>
           {item}

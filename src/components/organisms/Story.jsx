@@ -47,7 +47,7 @@ const Story = () => {
             {chapter.projectIds.length > 0 ? (
               <ProofStack>
                 {chapter.projectIds.map((id) => (
-                  <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} />
+                  <ProjectProof key={id} project={projects.find((project) => project.id === id)} lang={lang} dark={isLast} />
                 ))}
               </ProofStack>
             ) : null}
