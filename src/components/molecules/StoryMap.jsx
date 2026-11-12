@@ -49,7 +49,7 @@ const StoryMap = ({ chapters, lang, containerRef }) => {
                   href={`#${chapter.id}`}
                   aria-current={index === activeIndex ? 'true' : undefined}
                   className={`flex items-baseline justify-between gap-2 py-2.5 hover:underline underline-offset-4 ${
-                    index === activeIndex ? 'font-semibold text-ink' : 'text-ink-soft'
+                    index === activeIndex ? 'font-semibold text-ink shadow-[inset_0_-2px_0_var(--color-accent)]' : 'text-ink-soft'
                   }`}
                 >
                   <span className="truncate">{localize(chapter.mapLabel, lang)}</span>

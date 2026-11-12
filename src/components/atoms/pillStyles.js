@@ -7,6 +7,8 @@ const variants = {
   outline: 'border border-ink/25 text-ink hover:bg-ink hover:text-paper',
   paper: 'bg-paper text-night hover:bg-white',
   outlineDark: 'border border-white/25 text-paper hover:bg-paper hover:text-night',
+  // For the main calls to action. The paper hover reads on both the grey and the dark sections.
+  accent: 'bg-accent text-ink hover:bg-paper',
 };
 
 export const pillClass = (variant = 'ink') => `${base} ${variants[variant]}`;
