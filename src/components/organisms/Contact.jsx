@@ -120,7 +120,7 @@ const Contact = () => {
               type="submit"
               disabled={isSending}
               aria-busy={isSending}
-              className="w-full bg-paper text-night font-semibold py-3.5 rounded-lg transition-colors duration-200 hover:bg-white disabled:opacity-70"
+              className="w-full bg-accent text-ink font-semibold py-3.5 rounded-lg transition-colors duration-200 hover:bg-paper disabled:opacity-70"
             >
               {t(statusKey)}
             </button>

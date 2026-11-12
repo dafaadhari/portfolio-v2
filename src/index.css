@@ -42,6 +42,8 @@
   --color-ink: #0d0f12;
   --color-ink-soft: #2b2f35;
   --color-night: #0b0f19;
+  /* The one accent: burnt orange, used sparingly. Text on it is ink (4.8:1), never white (4.0:1). */
+  --color-accent: #d9541e;
   /* An opaque card on night, so stacked cards still hide the ones behind them. */
   --color-night-soft: #12161f;
   --color-paper: #f4f5f6;

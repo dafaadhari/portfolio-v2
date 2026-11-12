@@ -36,7 +36,7 @@ const Hero = () => {
 
   const status = (
     <>
-      <span aria-hidden="true" className="w-2 h-2 rounded-full bg-emerald-600" />
+      <span aria-hidden="true" className="w-2 h-2 rounded-full bg-accent" />
       {t('hero_status', 'Looking for a full-time onsite job')}
     </>
   );
@@ -95,7 +95,7 @@ const Hero = () => {
         <p className="text-[0.9375rem] leading-relaxed text-ink-soft mb-5">
           {t('hero_hook', 'Growing up, I did everything I could to avoid math. Then I signed up for Informatics Engineering.')}
         </p>
-        <PillLink href="#story" variant="white">{startStory}</PillLink>
+        <PillLink href="#story" variant="accent">{startStory}</PillLink>
       </div>
 
       {/* Status and links, wide screens */}
@@ -113,7 +113,7 @@ const Hero = () => {
         <p className="inline-flex items-center gap-2 rounded-full bg-white px-[1.125rem] py-2.5 text-[0.8125rem] font-medium [@media(max-height:480px)]:hidden">
           {status}
         </p>
-        <PillLink href="#story">{startStory}</PillLink>
+        <PillLink href="#story" variant="accent">{startStory}</PillLink>
       </div>
 
       {/* Darkens the hero a little as the first chapter covers it. */}
