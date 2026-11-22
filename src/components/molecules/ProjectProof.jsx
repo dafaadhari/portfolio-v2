@@ -6,6 +6,7 @@ import ScrollReveal from '../atoms/ScrollReveal';
 import PillLink from '../atoms/PillLink';
 import { pillClass } from '../atoms/pillStyles';
 import MediaStrip from './MediaStrip';
+import DemoAccount from './DemoAccount';
 import { localize } from '../../data/portfolioData';
 
 // Phone screens are tall and narrow; web collages are 16:9 and wide enough that the next one just peeks in.
@@ -71,11 +72,7 @@ const ProjectProof = ({ project, lang, dark = false }) => {
             <h3 className="font-semibold">{project.title}</h3>
             <p className={`text-[0.9375rem] leading-relaxed ${muted}`}>{localize(project.description, lang)}</p>
             <p className={`mt-1 text-sm ${muted}`}>{project.stack}</p>
-            {project.credentials && (
-              <p className={`mt-1 text-sm break-words ${muted}`}>
-                {t('project_demo_account', 'Demo account')}: {project.credentials}
-              </p>
-            )}
+            {project.credentials && <DemoAccount credentials={project.credentials} dark={dark} />}
 
             <div className="mt-3.5 flex flex-wrap gap-2.5">
               {project.status === 'live' ? (

@@ -165,7 +165,7 @@ export const projects = [
     ],
     liveUrl: 'https://siteguard-demo.vercel.app',
     status: 'live',
-    credentials: 'Email: admin@siteguard.com | Pass: siteguard123',
+    credentials: { email: 'admin@siteguard.com', password: 'siteguard123' },
     githubUrl: 'https://github.com/dafaadhari/qshe-inspection',
     highlights: {
       en: [
@@ -225,7 +225,7 @@ export const projects = [
     image: '/assets/images/dss.webp',
     liveUrl: 'https://spksaw.gt.tc',
     status: 'live',
-    credentials: 'Email: review@gmail.com | Pass: review123',
+    credentials: { email: 'review@gmail.com', password: 'review123' },
     githubUrl: 'https://github.com/dafaadhari/spk-saw',
     highlights: {
       en: [
