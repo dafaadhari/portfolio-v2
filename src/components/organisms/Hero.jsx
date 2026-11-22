@@ -47,6 +47,13 @@ const Hero = () => {
     </>
   );
 
+  // For visitors in a hurry: straight to the project list, past the story.
+  const skipToProjects = (
+    <PillLink href="#projects" variant="outline" className="bg-beton">
+      {t('hero_skip', 'Skip to projects')}
+    </PillLink>
+  );
+
   return (
     <section className="@container sticky top-0 z-0 h-svh overflow-hidden bg-beton text-ink [--name:min(calc((100cqw_-_2.5rem)/2.666),17svh)] lg:[--name:min(calc((100cqw_-_3.5rem)/4.362),34svh)]">
       <InteractiveGrid />
@@ -105,7 +112,11 @@ const Hero = () => {
         <p className="text-[0.9375rem] leading-relaxed text-ink-soft mb-5 hero-tight:hidden">
           {t('hero_hook', 'Growing up, I did everything I could to avoid math. Then I signed up for Informatics Engineering.')}
         </p>
-        <PillLink href="#story" variant="white">{startStory}</PillLink>
+        {/* One row that may run past the block's width, so it adds no height under the name. */}
+        <div className="flex gap-2 w-max">
+          <PillLink href="#story" variant="white">{startStory}</PillLink>
+          {skipToProjects}
+        </div>
       </div>
 
       {/* Status and links, wide screens */}
@@ -123,7 +134,10 @@ const Hero = () => {
         <p className="inline-flex items-center gap-2 rounded-full bg-white px-[1.125rem] py-2.5 text-[0.8125rem] font-medium [@media(max-height:480px)]:hidden">
           {status}
         </p>
-        <PillLink href="#story">{startStory}</PillLink>
+        <div className="flex flex-wrap gap-2">
+          <PillLink href="#story">{startStory}</PillLink>
+          {skipToProjects}
+        </div>
       </div>
 
       {/* Darkens the hero a little as the first chapter covers it. */}
