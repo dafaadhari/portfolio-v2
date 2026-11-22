@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiArrowDown } from 'react-icons/fi';
+import { FiArrowDown, FiMapPin } from 'react-icons/fi';
 import InteractiveGrid from '../atoms/InteractiveGrid';
 import PillLink from '../atoms/PillLink';
 import { useIntro } from '../atoms/useIntro';
@@ -53,7 +53,7 @@ const Hero = () => {
 
       {/* Role line (stacked layout) */}
       <p className={`lg:hidden absolute z-20 top-[4.25rem] inset-x-5 text-sm font-medium text-ink-soft ${AFTER_INTRO}`}>
-        {t('hero_role', 'Fullstack Developer')}
+        {t('hero_role', 'Fullstack Developer')} · {t('hero_location_short', 'Lebak, Banten')}
       </p>
 
       <motion.h1
@@ -90,16 +90,26 @@ const Hero = () => {
       </motion.div>
 
       {/* Intro, wide screens */}
-      <div className={`hidden lg:block absolute z-20 left-10 bottom-12 w-52 xl:w-64 ${AFTER_INTRO}`}>
-        <p className="text-xl xl:text-2xl font-semibold tracking-tight mb-2.5">{t('hero_role', 'Fullstack Developer')}</p>
-        <p className="text-[0.9375rem] leading-relaxed text-ink-soft mb-5">
+      <div className={`hidden lg:block absolute z-20 left-10 bottom-12 hero-tight:bottom-8 w-52 xl:w-64 ${AFTER_INTRO}`}>
+        <p className="text-xl xl:text-2xl font-semibold tracking-tight mb-2">{t('hero_role', 'Fullstack Developer')}</p>
+        {/* Chapter 6 says the same, so very short screens can drop it here. */}
+        <p className="flex gap-1.5 text-sm font-medium leading-snug mb-3 hero-short:hidden">
+          <FiMapPin aria-hidden="true" className="w-3.5 h-3.5 mt-[0.15rem] shrink-0" />
+          {/* Tight desktops get the short form, or this block grows up into the name. */}
+          <span className="hidden hero-tight:inline">{t('hero_location_compact', 'Lebak, Banten · open to relocating')}</span>
+          <span className="hero-tight:hidden">
+            {t('hero_location', 'Based in Lebak, Banten. Open to relocating, especially to Tangerang, Serang, or Jakarta.')}
+          </span>
+        </p>
+        {/* On tight desktops this line opens chapter 1 instead, as it does on phones. */}
+        <p className="text-[0.9375rem] leading-relaxed text-ink-soft mb-5 hero-tight:hidden">
           {t('hero_hook', 'Growing up, I did everything I could to avoid math. Then I signed up for Informatics Engineering.')}
         </p>
         <PillLink href="#story" variant="white">{startStory}</PillLink>
       </div>
 
       {/* Status and links, wide screens */}
-      <div className={`hidden lg:flex absolute z-20 right-10 bottom-12 flex-col items-end gap-2.5 ${AFTER_INTRO}`}>
+      <div className={`hidden lg:flex absolute z-20 right-10 bottom-12 hero-tight:bottom-8 flex-col items-end gap-2.5 ${AFTER_INTRO}`}>
         <p className="inline-flex items-center gap-2 rounded-full border border-ink/25 bg-beton px-[1.125rem] py-2.5 text-[0.8125rem] font-medium">
           {status}
         </p>
