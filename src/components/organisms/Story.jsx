@@ -29,7 +29,7 @@ const Story = () => {
             total={chapterCount}
             lang={lang}
             dark={isLast}
-            // The hero shows this line on wide screens only, and chapter 1 picks up right after it.
+            // The hero shows this line on roomy desktops only; elsewhere chapter 1 opens with it.
             lead={
               index === 0
                 ? t('hero_hook', 'Growing up, I did everything I could to avoid math. Then I signed up for Informatics Engineering.')
@@ -37,7 +37,7 @@ const Story = () => {
             }
             footer={
               isLast ? (
-                <PillLink href="#contact" variant="accent">
+                <PillLink href="#contact" variant="paper">
                   {t('chapter_cta', 'Get in touch')} <FiArrowDown aria-hidden="true" className="w-3.5 h-3.5" />
                 </PillLink>
               ) : undefined

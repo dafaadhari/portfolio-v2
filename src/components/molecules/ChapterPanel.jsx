@@ -45,7 +45,8 @@ const ChapterPanel = ({ chapter, number, total, lang, dark = false, lead, footer
           {/* The story text stays in place while the project cards move past it. */}
           <StickyBlock offset="8.25rem" gap="1rem" className="lg:sticky self-start">
             <ScrollReveal direction="right">
-              {lead && <p className="lg:hidden font-story text-[1.75rem] leading-snug mb-10">{lead}</p>}
+              {/* Shown wherever the hero leaves this line out: phones and tight desktops. */}
+              {lead && <p className="lg:hidden hero-tight:block font-story text-[1.75rem] leading-snug mb-10">{lead}</p>}
               {/* On phones the bar under the navbar already shows this. */}
               <p className="sr-only lg:not-sr-only text-[0.8125rem] font-medium">
                 {t('chapter_of', { n: number, total, defaultValue: 'Chapter {{n}} of {{total}}' })}

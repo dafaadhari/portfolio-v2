@@ -42,8 +42,6 @@
   --color-ink: #0d0f12;
   --color-ink-soft: #2b2f35;
   --color-night: #0b0f19;
-  /* The one accent: burnt orange, used sparingly. Text on it is ink (4.8:1), never white (4.0:1). */
-  --color-accent: #d9541e;
   /* An opaque card on night, so stacked cards still hide the ones behind them. */
   --color-night-soft: #12161f;
   --color-paper: #f4f5f6;
@@ -59,6 +57,20 @@
 @custom-variant intro-play (&:where(html[data-intro="play"] *));
 @custom-variant intro-wait (&:where(html[data-intro="play"] *, html[data-intro="reveal"] *));
 @custom-variant intro-off (&:where(html[data-intro="off"] *));
+/* Desktops where the hero's left block would grow up into the giant name: narrower than xl, or short. */
+@custom-variant hero-tight {
+  @media (min-width: 64rem) and (max-width: 79.999rem), (min-width: 64rem) and (max-height: 50rem) {
+    @slot;
+  }
+}
+/* Narrow and very short desktops, where even the tight hero has room for little more than the name.
+   Wider ones (such as 1920x1080 at 150% scaling, about 1280x580) keep the location: the name is small
+   enough there that the block sits clear of it. */
+@custom-variant hero-short {
+  @media (min-width: 64rem) and (max-width: 79.999rem) and (max-height: 42.5rem) {
+    @slot;
+  }
+}
 
 body {
   font-family: var(--font-sans);

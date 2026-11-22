@@ -53,7 +53,30 @@ export const projects = [
       en: "A public information portal for Rutan Kelas IIB Pandeglang that brings public services, news, and a panel for the PR team into one web app. It's now in the finishing stage.",
       id: 'Portal informasi publik untuk Rutan Kelas IIB Pandeglang yang menyatukan layanan publik, berita, dan panel humas dalam satu aplikasi web. Sekarang sudah masuk tahap finishing.',
     },
-    image: '/assets/images/rutan-cover.webp',
+    image: null,
+    screenShape: 'wide',
+    screens: [
+      webScreen('rutan', 'cover', OVERVIEW, {
+        en: 'The Rutan Pandeglang portal on a laptop and three phones',
+        id: 'Portal Rutan Pandeglang di laptop dan tiga ponsel',
+      }),
+      webScreen('rutan', 'home', { en: 'Home page', id: 'Beranda' }, {
+        en: 'The home page with an urgent announcement bar and the main public services, on desktop and phone',
+        id: 'Beranda dengan bar pengumuman darurat dan layanan publik utama, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'news', { en: 'News & activities', id: 'Berita & kegiatan' }, {
+        en: 'The news archive with category filters, on desktop and phone',
+        id: 'Arsip berita dengan filter kategori, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'visiting', { en: 'Visiting hours', id: 'Jadwal besuk' }, {
+        en: 'The visiting hours page with the weekly schedule, on desktop and phone',
+        id: 'Halaman jadwal besuk berisi jadwal mingguan, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'reports', { en: 'Public reports', id: 'Informasi publik' }, {
+        en: 'The LAKIP performance report page with downloadable documents, on desktop and phone',
+        id: 'Halaman laporan kinerja LAKIP berisi dokumen yang bisa diunduh, di desktop dan ponsel',
+      }),
+    ],
     liveUrl: null,
     status: 'progress',
     credentials: null,
@@ -165,7 +188,7 @@ export const projects = [
     ],
     liveUrl: 'https://siteguard-demo.vercel.app',
     status: 'live',
-    credentials: 'Email: admin@siteguard.com | Pass: siteguard123',
+    credentials: { email: 'admin@siteguard.com', password: 'siteguard123' },
     githubUrl: 'https://github.com/dafaadhari/qshe-inspection',
     highlights: {
       en: [
@@ -225,7 +248,7 @@ export const projects = [
     image: '/assets/images/dss.webp',
     liveUrl: 'https://spksaw.gt.tc',
     status: 'live',
-    credentials: 'Email: review@gmail.com | Pass: review123',
+    credentials: { email: 'review@gmail.com', password: 'review123' },
     githubUrl: 'https://github.com/dafaadhari/spk-saw',
     highlights: {
       en: [
@@ -492,14 +515,16 @@ export const chapters = [
     paragraphs: {
       en: [
         "In August 2026 I was accepted into MagangHub Cohort 2 Batch 1, so until February 2027 I'm interning at Rutan Kelas IIB Pandeglang, a detention center, as an IT Operator. The work covers both hardware and software, though it's mostly hardware. On the software side, since September I've been building a web-based information system for the center on my own. It will become my final project, and it's now in the finishing stage.",
-        "My freelance work is still going too. From September to October I built B.Today, another news portal, but this time for a company. I'm also still looking for a full-time onsite job. If you have a role that might fit, or you just want to say hi, I'd love to hear from you.",
+        "My freelance work is still going too. From September to October I built B.Today, another news portal, but this time for a company. I'm also still looking for a full-time onsite job. I live in Lebak, Banten, and I'm happy to relocate anywhere, though Tangerang, Serang, or Jakarta would be ideal. If you have a role that might fit, or you just want to say hi, I'd love to hear from you.",
       ],
       id: [
         'Agustus 2026 saya lolos MagangHub Angkatan 2 Batch 1, jadi sampai Februari 2027 saya magang di Rutan Kelas IIB Pandeglang sebagai IT Operator. Kerjaannya mencakup hardware dan software, walaupun kebanyakan hardware. Untuk software, sejak September saya mengerjakan sendiri sistem informasi berbasis web untuk rutan. Nantinya ini jadi final project saya, dan sekarang sudah masuk tahap finishing.',
-        'Freelance saya juga masih jalan. September sampai Oktober saya membuat B.Today, portal berita lagi, tapi kali ini memang untuk perusahaan. Saya juga masih mencari pekerjaan full-time onsite. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
+        'Freelance saya juga masih jalan. September sampai Oktober saya membuat B.Today, portal berita lagi, tapi kali ini memang untuk perusahaan. Saya juga masih mencari pekerjaan full-time onsite. Saya tinggal di Lebak, Banten, dan siap pindah ke mana saja, walaupun yang paling saya harapkan Tangerang, Serang, atau Jakarta. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
       ],
     },
-    projectIds: ['rutan', 'btoday'],
+    // The finished project first, then the one still going. Rutan's card is also the taller one on
+    // narrow desktops, so it stacks neatly in front.
+    projectIds: ['btoday', 'rutan'],
   },
 ];
 
