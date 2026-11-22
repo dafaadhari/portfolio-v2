@@ -37,7 +37,7 @@ const Story = () => {
             }
             footer={
               isLast ? (
-                <PillLink href="#contact" variant="accent">
+                <PillLink href="#contact" variant="paper">
                   {t('chapter_cta', 'Get in touch')} <FiArrowDown aria-hidden="true" className="w-3.5 h-3.5" />
                 </PillLink>
               ) : undefined
