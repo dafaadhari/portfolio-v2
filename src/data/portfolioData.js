@@ -53,7 +53,30 @@ export const projects = [
       en: "A public information portal for Rutan Kelas IIB Pandeglang that brings public services, news, and a panel for the PR team into one web app. It's now in the finishing stage.",
       id: 'Portal informasi publik untuk Rutan Kelas IIB Pandeglang yang menyatukan layanan publik, berita, dan panel humas dalam satu aplikasi web. Sekarang sudah masuk tahap finishing.',
     },
-    image: '/assets/images/rutan-cover.webp',
+    image: null,
+    screenShape: 'wide',
+    screens: [
+      webScreen('rutan', 'cover', OVERVIEW, {
+        en: 'The Rutan Pandeglang portal on a laptop and three phones',
+        id: 'Portal Rutan Pandeglang di laptop dan tiga ponsel',
+      }),
+      webScreen('rutan', 'home', { en: 'Home page', id: 'Beranda' }, {
+        en: 'The home page with an urgent announcement bar and the main public services, on desktop and phone',
+        id: 'Beranda dengan bar pengumuman darurat dan layanan publik utama, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'news', { en: 'News & activities', id: 'Berita & kegiatan' }, {
+        en: 'The news archive with category filters, on desktop and phone',
+        id: 'Arsip berita dengan filter kategori, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'visiting', { en: 'Visiting hours', id: 'Jadwal besuk' }, {
+        en: 'The visiting hours page with the weekly schedule, on desktop and phone',
+        id: 'Halaman jadwal besuk berisi jadwal mingguan, di desktop dan ponsel',
+      }),
+      webScreen('rutan', 'reports', { en: 'Public reports', id: 'Informasi publik' }, {
+        en: 'The LAKIP performance report page with downloadable documents, on desktop and phone',
+        id: 'Halaman laporan kinerja LAKIP berisi dokumen yang bisa diunduh, di desktop dan ponsel',
+      }),
+    ],
     liveUrl: null,
     status: 'progress',
     credentials: null,
@@ -499,7 +522,9 @@ export const chapters = [
         'Freelance saya juga masih jalan. September sampai Oktober saya membuat B.Today, portal berita lagi, tapi kali ini memang untuk perusahaan. Saya juga masih mencari pekerjaan full-time onsite. Saya tinggal di Lebak, Banten, dan siap pindah ke mana saja, walaupun yang paling saya harapkan Tangerang, Serang, atau Jakarta. Kalau kamu punya lowongan yang cocok atau sekadar ingin menyapa, saya senang sekali mendengarnya.',
       ],
     },
-    projectIds: ['rutan', 'btoday'],
+    // The finished project first, then the one still going. Rutan's card is also the taller one on
+    // narrow desktops, so it stacks neatly in front.
+    projectIds: ['btoday', 'rutan'],
   },
 ];
 
