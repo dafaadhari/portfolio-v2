@@ -18,6 +18,8 @@ const streakUrl = (lang) => {
     hide_border: 'true',
     // Its numbers fade in over 2 seconds, so a visitor scrolling past would see a half-empty card.
     disable_animations: 'true',
+    // Weekly, not daily: a daily streak drops to 0 after a single day off, which reads badly to a visitor.
+    mode: 'weekly',
     stroke: 'FFFFFF33',
     ring: 'F4F5F6',
     fire: 'F4F5F6',
